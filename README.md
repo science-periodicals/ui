@@ -1,5 +1,7 @@
 # `@scipe/ui`
 
+[![CircleCI](https://circleci.com/gh/science-periodicals/ui.svg?style=svg&circle-token=8c15cb9904941b56afe55b4f19a8ad7c43d5a3b7)](https://circleci.com/gh/science-periodicals/ui)
+
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 [sci.pe](https://sci.pe) UI components.
