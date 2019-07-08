@@ -1,0 +1,17 @@
+.layout-wrap-rows {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.layout-wrap-item {
+  /* very important to set flex-basis to auto for safari to wrap correctly
+  min-width is set inline to maintain proportions */
+  flex: 1 1 auto;
+  box-sizing: border-box;
+
+  /* min-content helps layout when layout-wrap-item contains text blocks
+  otherwise will force size to grow */
+  width: min-content;
+}

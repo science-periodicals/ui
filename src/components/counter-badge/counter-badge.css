@@ -1,0 +1,30 @@
+.counter-badge {
+  display: inline-block;
+  position: relative;
+
+  &__counter {
+    height: 14px;
+    min-width: 14px;
+    position: absolute;
+    top: 0;
+    right: -33%;
+    color: white;
+    background-color: red;
+    text-align: center;
+    border-radius: 8px;
+    font: var(--ui-type--small);
+    letter-spacing: -0.03em;
+    font-size: 9px;
+    vertical-align: middle;
+    line-height: 0;
+    box-sizing: border-box;
+    padding: 0 3px 0 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__contents {
+    display: flex; /* this helps get rid of extraneous white space cause by inline elements in childre */
+  }
+}

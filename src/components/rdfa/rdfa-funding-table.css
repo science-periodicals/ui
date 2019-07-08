@@ -1,0 +1,84 @@
+.rdfa-funding-table {
+  width: 100%;
+  max-width: 100%;
+  overflow: auto;
+  border-collapse: collapse;
+
+  font: var(--ui-type--condensed);
+  font-stretch: condensed;
+  color: var(--ui-type--condensed__color);
+  letter-spacing: var(--ui-type--condensed__letter-spacing);
+
+  line-height: 1.35em;
+
+  @media print {
+    font: var(--sans-body-print-type--small-condensed);
+    color: var(--sans-body-print-type--small-condensed__color);
+    letter-spacing: var(
+      --sans-body-print-type--small-condensed__letter-spacing
+    );
+
+    & :any-link {
+      color: var(--sans-body-print-type--condensed__color);
+    }
+
+    overflow: hidden;
+  }
+
+  &__table-head &__table-cell {
+    &--header {
+      border-bottom: 2px solid var(--ruling-color);
+      color: var(--text-color--light);
+      /* text-transform: lowercase; */
+      /* font-variant: small-caps; */
+      white-space: nowrap;
+      letter-spacing: 0.075em;
+      font-weight: 600;
+
+      @media screen {
+        font: var(--ui-type);
+        letter-spacing: var(--ui-type__letter-spacing);
+      }
+
+      @media print {
+        color: black;
+      }
+    }
+  }
+
+  &__table-row:first-of-type &__table-cell {
+    padding-top: var(--xsgrd;);
+  }
+  &__table-row:last-of-type &__table-cell {
+    padding-bottom: var(--xsgrd;);
+  }
+  &__table-cell {
+    border-bottom: 1px solid var(--ruling-color);
+    padding: var(--xsgrd);
+    vertical-align: top;
+    text-align: left;
+    line-height: 1.35em; /* for some reason line-height is not being inherited */
+    min-width: 24ch;
+    &--header {
+      font-weight: normal;
+    }
+
+    @media print {
+      min-width: 0;
+    }
+  }
+
+  &__table-body {
+    border-bottom: 1px solid var(--ruling-color);
+    background-color: transparent;
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: var(--accent-color-1-a);
+    }
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+  }
+}

@@ -1,0 +1,28 @@
+.create-graph-action-editor-modal {
+  &__question-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  &__question {
+    margin-bottom: var(--xsgrd);
+    padding: var(--sgrd);
+    background-color: var(--grey-50);
+    border-radius: var(--xsgrd);
+  }
+
+  &__question-controls {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__question-input {
+    margin-bottom: var(--sgrd);
+  }
+
+  &__question-list-controls {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--xsgrd);
+  }
+}

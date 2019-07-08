@@ -1,0 +1,275 @@
+html {
+  /*
+    For dark-mode - the following colors are effected
+    
+      --card-bg-color
+      --reader-bg-color
+
+      --text-color
+      --text-color--light
+
+      --accent-color
+      --accent-color--ghost
+      --accent-color--light
+      --accent-color--dark
+
+    vars defined in app-suite:
+      meta-margin.css
+        --meta-margin__dark-highlight-color
+        --meta-margin__dark-highlight-color
+  */
+
+  /* science.ai colors */
+  --sci-red: #f15d44;
+
+  /* Material Design Colors */
+  --grey-25: #fcfcfc;
+  --grey-50: #fafafa;
+  --grey-75: #f7f7f7;
+  --grey-100: #f5f5f5;
+  --grey-200: #eeeeee;
+  --grey-300: #e0e0e0;
+  --grey-400: #bcbcbc;
+  --grey-500: #9e9e9e;
+  --grey-600: #757575;
+  --grey-700: #616161;
+  --grey-800: #424242;
+  --grey-900: #212121;
+
+  /* transparent versions of grey */
+  --grey-25-a: rgba(0, 0, 0, 0.025);
+  --grey-50-a: rgba(0, 0, 0, 0.05);
+  --grey-100-a: rgba(0, 0, 0, 0.1);
+  --grey-200-a: rgba(0, 0, 0, 0.2);
+
+  --grey-700-7-a: rgba(97, 97, 97, 0.9);
+
+  --blue-50: #e3f2fd;
+  --blue-100: #bbdefb;
+  --blue-200: #90caf9;
+  --blue-300: #64b5f6;
+  --blue-400: #42a5f5;
+  --blue-500: #2196f3;
+  --blue-600: #1e88e5;
+  --blue-700: #1976d2;
+  --blue-800: #1565c0;
+
+  /* highlighter colors*/
+
+  /* opaque highlight blues */
+  --hl-blue-1: #f7fafc;
+  --hl-blue-2: #f0f6fa;
+  --hl-blue-3: #e9f1f7;
+  --hl-blue-4: #e1ecf5;
+  --hl-blue-5: #dae7f2;
+  --hl-blue-6: #d3e3f0;
+  --hl-blue-7: #cbdeee;
+  --hl-blue-8: #c4d9eb;
+  --hl-blue-9: #bdd5e9;
+  --hl-blue-10: #b5d0e6;
+
+  /* Equivelent Tranparent blue highlight colors */
+  --hl-blue-1-a: rgba(181, 208, 230, 0.1);
+  --hl-blue-2-a: rgba(181, 208, 230, 0.2);
+  --hl-blue-3-a: rgba(181, 208, 230, 0.3);
+  --hl-blue-4-a: rgba(181, 208, 230, 0.4);
+  --hl-blue-5-a: rgba(181, 208, 230, 0.5);
+  --hl-blue-6-a: rgba(181, 208, 230, 0.6);
+  --hl-blue-7-a: rgba(181, 208, 230, 0.7);
+  --hl-blue-8-a: rgba(181, 208, 230, 0.8);
+  --hl-blue-9-a: rgba(181, 208, 230, 0.9);
+  --hl-blue-10-a: rgba(181, 208, 230, 1);
+
+  /* Opaque Yellow*/
+  --hl-yellow-1: #fefcf7;
+  --hl-yellow-2: #fdfaef;
+  --hl-yellow-3: #fdf7e6;
+  --hl-yellow-4: #fcf5de;
+  --hl-yellow-5: #faefce;
+  --hl-yellow-6: #faefce;
+  --hl-yellow-7: #f9edc6;
+  --hl-yellow-8: #f9eabd;
+  --hl-yellow-9: #f8e8b5;
+  --hl-yellow-10: #f7e5ad;
+
+  /* Translucent Yellow */
+  --hl-yellow-1-a: rgba(247, 229, 173, 0.1);
+  --hl-yellow-2-a: rgba(247, 229, 173, 0.2);
+  --hl-yellow-3-a: rgba(247, 229, 173, 0.3);
+  --hl-yellow-4-a: rgba(247, 229, 173, 0.4);
+  --hl-yellow-5-a: rgba(247, 229, 173, 0.5);
+  --hl-yellow-6-a: rgba(247, 229, 173, 0.6);
+  --hl-yellow-7-a: rgba(247, 229, 173, 0.7);
+  --hl-yellow-8-a: rgba(247, 229, 173, 0.8);
+  --hl-yellow-9-a: rgba(247, 229, 173, 0.9);
+  --hl-yellow-10-a: rgba(247, 229, 173, 1);
+
+  /* user colors  */
+  --user-red-0: #e7ab5b;
+  --user-red-1: #ff9700;
+  --user-red-2: #b06298;
+  --user-red-3: #ebd503;
+  --user-red-4: #fa8084;
+  --user-red-5: #ea6338;
+  --user-red-6: #feba8c;
+  --user-red-7: #d76b4f;
+  --user-red-8: #b5355a;
+  --user-red-9: #ffa304;
+  --user-red-10: #ff855b;
+  --user-red-11: #f4617c;
+  --user-red-12: #fec106;
+  --user-red-13: #ff7b17;
+  --user-red-14: #f34336;
+
+  --user-blue-0: #18739f;
+  --user-blue-1: #70b1aa;
+  --user-blue-2: #758584;
+  --user-blue-3: #6e52a7;
+  --user-blue-4: #7fa3e4;
+  --user-blue-5: #9ec678;
+  --user-blue-6: #8aaebf;
+  --user-blue-7: #819ede;
+  --user-blue-8: #4ea6ce;
+  --user-blue-9: #368d6d;
+  --user-blue-10: #3f606c;
+  --user-blue-11: #a995f0;
+  --user-blue-12: #4276f3;
+  --user-blue-13: #60806c;
+  --user-blue-14: #75819e;
+  --user-blue-15: #6869af;
+  --user-blue-16: #2096f3;
+  --user-blue-17: #4daf50;
+  --user-blue-18: #607d8b;
+  --user-blue-19: #717ef0;
+
+  /* UI element colors */
+  --base-bg-color: var(--grey-200);
+  --panel-bg-color: var(--grey-100);
+
+  /* Card Background Color */
+  --card-bg-color--light-theme: white;
+  --card-bg-color--dark-theme: var(--grey-900);
+  --card-bg-color--alt-theme: #fff5cd;
+  --card-bg-color: var(--card-bg-color--light-theme);
+
+  --card-bg-color--inactive: whitesmoke;
+
+  /* 
+    Card Drop-Shadow Colors
+    These are useed by box-shadow vars in global-vars.css 
+  */
+
+  --card-shadow-color--light-theme: var(--grey-100-a);
+  --card-shadow-color--dark-theme: rgba(255, 255, 255, 0.5);
+  --card-shadow-color--alt-theme: var(--grey-100-a);
+  --card-shadow-color: var(--card-shadow-color--light-theme);
+
+  /* Reader Background colors */
+  --reader-bg-color--light-theme: white;
+  --reader-bg-color--dark-theme: var(--grey-900);
+  --reader-bg-color--alt-theme: #fff5cd;
+  --reader-bg-color: var(--reader-bg-color--light-theme);
+
+  --icon-button-color: var(--grey-500);
+  --icon-status-color: var(--grey-400);
+
+  /* Accent Colors */
+  --accent-color--light-theme: var(--blue-400);
+  --accent-color--dark-theme: var(--blue-200);
+  --accent-color--alt-theme: var(--blue-600);
+
+  --accent-color: var(--accent-color--light-theme);
+
+  --accent-color--ghost: rgba(66, 165, 245, 0.15);
+  --accent-color--light: var(--blue-300);
+  --accent-color--dark: var(--blue-500);
+  --accent-color-1-a: rgba(66, 165, 245, 0.1);
+  --accent-color-2-a: rgba(66, 165, 245, 0.2);
+  --accent-color-3-a: rgba(66, 165, 245, 0.3);
+  --accent-color-4-a: rgba(66, 165, 245, 0.4);
+  --accent-color-5-a: rgba(66, 165, 245, 0.5);
+  --accent-color-6-a: rgba(66, 165, 245, 0.6);
+  --accent-color-7-a: rgba(66, 165, 245, 0.7);
+  --accent-color-8-a: rgba(66, 165, 245, 0.8);
+  --accent-color-9-a: rgba(66, 165, 245, 0.9);
+  --accent-color-10-a: rgba(66, 165, 245, 1);
+
+  --error-color: #f15232;
+
+  /* Text Colors */
+  --text-color--light-theme: #434343;
+  --text-color--light--light-theme: var(--grey-500);
+
+  --text-color--dark-theme: #ffffff;
+  --text-color--light--dark-theme: var(--grey-200);
+
+  --text-color--alt-theme: var(--grey-800);
+  --text-color--light--alt-theme: var(--grey-600);
+
+  --text-color: var(--text-color--light-theme);
+  --text-color--light: var(--text-color--light--light-theme);
+
+  --link-color: var(--accent-color);
+  --link-color--active: var(--accent-color--light);
+  --link-color--focus: var(--accent-color--dark);
+  --link-color--hover: var(--accent-color--dark);
+
+  --button-color: var(--grey-500);
+  --button-color--light: var(--grey-300);
+  --button-color--disabled: var(--grey-300);
+  --button-color--hover: var(--grey-700);
+  --button-color--focus: var(--grey-700);
+  --button-color--active: black;
+
+  /* Ruling Color */
+  --ruling-color--light-theme: var(--grey-200);
+  --ruling-color--minor--light-theme: var(--grey-100);
+  --ruling-color--major--light-theme: var(--grey-300);
+
+  --ruling-color--dark-theme: var(--grey-600);
+  --ruling-color--minor--dark-theme: var(--grey-700);
+  --ruling-color--major--dark-theme: var(--grey-500);
+
+  --ruling-color--alt-theme: #d1c8a5;
+  --ruling-color--minor--alt-theme: #ede4be;
+  --ruling-color--major--alt-theme: #c8bf9e;
+
+  --ruling-color: var(--ruling-color--light-theme);
+  --ruling-color--minor: var(--ruling-color--minor--light-theme);
+  --ruling-color--major: var(--ruling-color--major--light-theme);
+
+  /* Status Colors */
+  --status-warning-color: #ffcd82; /* orange */
+  --status-warning-color--light: #fff6e9; /* orange */
+  --status-error-color: #ffab91; /* red */
+  --status-error-color--light: #fdf4f3;
+  --status-positive-color: #d3e3f0; /* blue */
+  --status-neutral-color: var(--grey-300);
+  --status-important-color: #ddc3e8;
+  --status-important-color--light: #eae3ef;
+
+  --status-warning-color-3-a: rgba(255, 224, 130, 0.3); /* orange */
+  --status-error-color-3-a: rgba(255, 171, 145, 0.3); /* red */
+  --status-positive-color-3-a: rgba(211, 227, 240, 0.3); /* blue */
+  --status-neutral-color-3-a: rgba(224, 224, 224, 0.3);
+
+  /* Annotation & Comment colors */
+  --endorser-comment-color: var(--blue-100);
+  --comment-color: var(--hl-blue-5);
+  --reviewer-comment-color: var(--grey-100);
+  --revision-request-comment-color: var(--status-important-color--light);
+
+  /* Paper Components */
+  --paper-error-color: #d34336;
+  --paper-transparent-color: rgba(0, 0, 0, 0);
+  --paper-border-color: var(--ruling-color);
+  --paper-label-color: rgba(0, 0, 0, 0.38);
+
+  /* Action Status Colors */
+  --action-active-color: #42a5fa;
+  --action-completed-color: #13c46b;
+  --action-canceled-color: #88ccb2;
+  --action-staged-color: var(--blue-200);
+  --action-failed-color: var(--error-color);
+  --action-waiting-color: var(--grey-500);
+}

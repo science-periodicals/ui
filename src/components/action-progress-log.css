@@ -1,0 +1,102 @@
+.action-progress-log {
+  & ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    width: 100%;
+  }
+
+  & ul > li {
+    width: 100%;
+    vertical-align: top;
+  }
+
+  /* Give max height to body and make it body scrollable */
+  &__body {
+    max-height: 400px;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    color: var(--text-color--light);
+    padding: var(--xsgrd) var(--sgrd);
+  }
+}
+
+.progress-events {
+  transition: opacity 0.2s;
+  &__event {
+    /* &--entering {
+      outline: 2px solid red;
+    }
+    &--entered {
+      outline: 2px solid pink;
+    } */
+    &--exiting {
+      /* outline: 2px solid lime; */
+      opacity: 0.25;
+    }
+    &--exited {
+      /* outline: 2px solid green; */
+      opacity: 0;
+    }
+  }
+
+  & ul {
+    margin-top: var(--xsgrd);
+    list-style-type: none;
+  }
+
+  & li {
+    margin-left: 0;
+    line-height: 16px;
+    margin-top: var(--xsgrd);
+    padding-left: 0;
+  }
+
+  &__number {
+    display: inline-block;
+    height: 100%;
+    min-width: 42px;
+    text-align: left;
+    margin-right: var(--xsgrd);
+    vertical-align: top;
+  }
+
+  &__description {
+    display: inline-block;
+    width: calc(100% - 82px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  &__status {
+    position: relative;
+    float: right;
+    margin-right: 4px;
+  }
+}
+
+.fade-enter {
+  opacity: 0.01;
+  background: green;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms ease-in;
+  background: green;
+}
+
+.fade-exit {
+  opacity: 1;
+  background: red;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0.01;
+  transition: opacity 800ms ease-in;
+  background: red;
+}
+
+.log__icon {
+  display: inline-block;
+}

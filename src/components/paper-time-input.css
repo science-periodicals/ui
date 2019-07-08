@@ -1,0 +1,43 @@
+.paper-time-input {
+  position: relative;
+  box-sizing: border-box;
+
+  &__input-container {
+    position: relative;
+  }
+
+  &__icon-container {
+    position: absolute;
+    top: 1.8rem;
+    right: 0;
+  }
+
+  &__menu {
+    position: absolute;
+    right: 0;
+    top: 0.4rem;
+    height: 1.8rem;
+
+    &--float-label {
+      top: 2.2rem;
+    }
+  }
+
+  &--read-only &__menu {
+    display: none;
+  }
+
+  &--disabled &__menu {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  & .paper-input input {
+    padding-right: 20px; /* make room for icon */
+    width: calc(100% - 20px);
+  }
+}
+
+.react-portal__portal.paper-time-input__menu {
+  right: auto;
+}

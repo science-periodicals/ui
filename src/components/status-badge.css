@@ -1,0 +1,13 @@
+.status-badge {
+  position: relative;
+  display: inline-block;
+  &__icon-container {
+    position: absolute;
+    top: 0;
+    border-radius: 50%;
+    background-color: white;
+    line-height: 0;
+    padding: 1px;
+    box-sizing: border-box;
+  }
+}

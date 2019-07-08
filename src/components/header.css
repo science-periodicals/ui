@@ -1,0 +1,440 @@
+@custom-media --header__small-screen screen and (max-width: 600px);
+@custom-media --header__medium-screen screen and (max-width: 980px);
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 56px;
+  width: 100%;
+  background-color: var(--card-bg-color);
+  border-top: 1px solid var(--ruling-color--major);
+  border-bottom: 1px solid var(--ruling-color--major);
+  position: fixed;
+  top: 0;
+  z-index: 52;
+  padding: 0;
+  box-sizing: border-box;
+  font: var(--ui-type--big);
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--text-color);
+
+  &--warning {
+    border-bottom: 2px solid var(--error-color);
+  }
+  &--error {
+    border-bottom: 2px solid var(--error-color);
+  }
+  &--side-bar-icon {
+    padding-left: 4rem; /* manualy set to be aligned to header search in app suite */
+  }
+
+  & ol,
+  & ul {
+    list-style: none;
+    -webkit-margin-after: 0;
+    -webkit-margin-before: 0;
+  }
+
+  @media (--header__medium-screen) {
+    font-size: 13px;
+  }
+}
+.header * {
+  box-sizing: border-box;
+}
+.header.header--unfixed {
+  position: static;
+  top: auto;
+  z-index: auto;
+}
+
+.header :any-link,
+.header .menu__header-title {
+  border-bottom: 0;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: 24px;
+  color: var(--text-color--light);
+  opacity: 1;
+
+  &:hover {
+    color: var(--text-color);
+  }
+}
+
+.header .header__left,
+.header .header__right {
+  display: flex;
+  height: 56px;
+  flex: 1 1 auto;
+  align-items: center;
+}
+
+.header .header__left {
+  overflow: hidden;
+}
+
+.header__hamburger {
+  padding-left: var(--sgrd);
+  height: var(--mgrd);
+}
+
+.header .header__right {
+  justify-content: flex-end;
+  padding-right: var(--sgrd);
+}
+
+.header__branding-box {
+  border-right: 1px solid whitesmoke;
+  display: flex;
+  flex-shrink: 0;
+  height: 56px;
+  max-width: 200px;
+  box-sizing: border-box;
+  padding: 4px 16px;
+  position: relative;
+  box-sizing: border-box;
+
+  & > a,
+  & > span {
+    display: contents;
+  }
+}
+
+.header__branding-box img {
+  max-height: 100%;
+  height: 100%;
+  /* use this calc instead of 100% to workaround rounding error in chrome that 
+  causes slightly different sizing bewtween dashboard and publisher */
+  max-width: calc(200px - 32px);
+  object-fit: contain;
+}
+
+.header__branding-box .branding-box__product-logo {
+  width: 200px;
+  padding: 12px;
+  display: flex;
+  height: 56px;
+  box-sizing: border-box;
+}
+
+.header__breadcrumb {
+  display: flex;
+  align-items: center;
+  height: 56px;
+  margin-left: 24px;
+  margin-right: 16px;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+  color: var(--text-color--light);
+  flex-shrink: 1;
+  flex-grow: 1;
+  font-size: 16px;
+
+  @media (--header__medium-screen) {
+    font-size: 13px;
+  }
+}
+
+.header__breadcrumb a,
+.header__breadcrumb a:link,
+.header__breadcrumb a:visited {
+  color: var(--text-color--light);
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.header__breadcrumb a.header__breadcrumb-home {
+  display: flex;
+  overflow: visible;
+}
+
+.header__breadcrumb a:hover {
+  color: black;
+}
+.header__breadcrumb .breadcrumb__crumb {
+  height: 24px;
+  align-items: center;
+  display: flex;
+  flex-shrink: 4;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  transition: max-width 0.2s;
+
+  /* force elipses */
+  & * {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: inline;
+  }
+
+  &:last-of-type {
+    flex-shrink: 1;
+    flex-grow: 4;
+    min-width: 64px;
+  }
+  &:hover {
+    overflow: visible;
+    flex-shrink: 0;
+    max-width: 100% !important;
+  }
+}
+.header__breadcrumb .breadcrumb__text {
+  display: inline-block;
+  height: 24px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 1;
+  padding: 0 2px;
+  box-sizing: border-box;
+
+  &:hover {
+    overflow: visible;
+    flex-shrink: 0;
+    z-index: 20;
+    /* background-color: white; */
+  }
+}
+.header__breadcrumb .breadcrumb__home {
+  height: 16px;
+  width: 16px;
+  opacity: 0.4;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  top: -1px;
+}
+.header__breadcrumb .breadcrumb__home:hover {
+  opacity: 1;
+}
+.header__breadcrumb .breadcrumb__arrow {
+  opacity: 0.4;
+  flex-shrink: 0;
+}
+.breadcrumb__crumb:hover .breadcrumb__arrow {
+  opacity: 1;
+}
+
+.header__status-icon {
+  height: 1.9rem;
+  margin-left: var(--sgrd);
+  & .iconoclass {
+    color: var(--error-color);
+  }
+}
+
+/*.header__children{
+  height: 56px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+}*/
+.header__responsive-child-item {
+  text-align: right;
+  padding: 0 var(--sgrd);
+  white-space: nowrap;
+  flex-shrink: 1;
+  flex-grow: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  justify-content: flex-end;
+
+  @media (--header__small-screen) {
+    display: none;
+  }
+
+  @media (--header__medium-screen) {
+    font-size: 13px;
+    padding: 0 var(--xsgrd);
+  }
+}
+.header__responsive-menu {
+  display: flex;
+  position: relative;
+  flex-shrink: 1;
+  overflow: hidden;
+  justify-content: flex-end;
+  @media (--header__small-screen) {
+    display: none;
+  }
+}
+
+.header__right-menus {
+  display: flex;
+  align-items: center;
+  & .start-menu {
+    margin-left: var(--sgrd);
+  }
+}
+
+.header {
+  & .menu-container {
+    position: relative;
+    overflow: hidden;
+
+    & .menu {
+      max-width: 100%;
+    }
+
+    & .menu__title {
+      padding-right: 0;
+      font-size: 16px;
+      color: #9e9ea0;
+      opacity: 1;
+      text-transform: uppercase;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      @media (--header__medium-screen) {
+        font-size: 13px;
+      }
+    }
+    &:hover .menu__title {
+      color: black;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}
+.header__documentation {
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-shrink: 1;
+  justify-content: flex-start;
+  padding-left: 24px;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  justify-content: flex-end;
+}
+
+.header__account {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.header__mobile-menu {
+  position: relative;
+  display: none;
+  height: 24px;
+  width: 24px;
+  overflow: hidden;
+  margin-left: var(--xsgrd);
+  flex: 0 0 24px;
+
+  @media only screen and (max-width: 600px) {
+    display: flex;
+    align-items: flex-start;
+  }
+}
+
+.header__account--badge {
+  margin-left: var(--sgrd);
+  flex: 0 0 auto;
+  @media only screen and (max-width: 600px) {
+    margin-left: 8px;
+  }
+}
+
+.header .user-badge-menu {
+  /*position: absolute;*/
+  right: 0;
+  padding: 0;
+}
+
+ul.login-sign-up {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  right: 0;
+  top: 0;
+  margin: 0;
+  margin-right: 16px;
+  text-transform: uppercase;
+  padding: 0;
+  height: 24px;
+  font-size: 16px;
+  line-height: 24px;
+  white-space: nowrap;
+
+  @media (--header__medium-screen) {
+    font-size: 13px;
+  }
+}
+ul.login-sign-up li {
+  list-style: none;
+  height: 24px;
+  margin: 0;
+  margin-left: var(--sgrd);
+  padding: 0;
+  display: inline-block;
+  line-height: 24px;
+  white-space: nowrap;
+}
+ul.login-sign-up a,
+ul.login-sign-up :link,
+ul.login-sign-up :visited {
+  text-decoration: none;
+  color: var(--text-color--light);
+}
+ul.login-sign-up a:hover {
+  color: var(--accent-color);
+}
+
+@media only screen and (max-width: 350px) {
+  .header__branding-box--should-hide {
+    display: none;
+  }
+
+  .header__breadcrumb {
+    margin-left: 10px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .header__account--no-badge .login-sign-up {
+    display: none;
+  }
+  .header__documentation {
+    display: none;
+  }
+}
+@media only screen and (max-width: 980px) {
+  .header__branding-box--should-hide.sa-logo {
+    display: none;
+  }
+  .header__branding-box {
+    /*width: 56px;*/
+    /*padding-left: 2px;*/
+  }
+  .header__branding-box .branding-box__product-logo {
+    width: 56px;
+    height: 56px;
+    overflow: hidden;
+    padding: 8px;
+    display: block;
+  }
+  .header__branding-box .branding-box__product-logo img {
+    /* fix for safari img sizing */
+    object-fit: cover;
+    width: auto;
+    /* --- */
+    height: 40px;
+    min-height: 40px;
+  }
+}
+
+@media print {
+  .header {
+    display: none;
+  }
+}

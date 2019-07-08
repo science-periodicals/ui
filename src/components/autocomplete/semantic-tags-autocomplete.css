@@ -1,0 +1,101 @@
+.semantic-tags-autocomplete .paper-autocomplete__results {
+  max-height: 600px;
+}
+
+/* TODO make that fixed (position: fixed) */
+.semantic-tags-autocomplete .paper-autocomplete__results .nav-crumbs {
+  font: var(--ui-type--label);
+  font-size: 0.9em;
+  padding: 12px 24px;
+  color: var(--accent-color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: clip;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .nav-crumbs.deeper {
+  /* overflow ellipsis on left */
+  text-align: left;
+  direction: rtl;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .nav-crumbs.shallower {
+  /* overflow ellipsis on right */
+  text-align: right;
+  direction: ltr;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .results-info {
+  text-align: left;
+  font: var(--ui-type--label);
+  padding: 16px 24px;
+  border-top: 1px solid var(--grey-100);
+  border-bottom: 1px solid var(--grey-100);
+  color: var(--text-color--light);
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  -webkit-margin-after: 0;
+  -webkit-margin-before: 0;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results li {
+  display: block;
+  margin: 0;
+  padding: var(--sgrd);
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results dfn {
+  display: inline-block;
+  font-style: normal;
+  margin: 2px 24px;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results p {
+  color: var(--text-color--light);
+  padding: 0;
+  margin: 0;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .matches {
+  font-size: 0.8em;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .matches > span {
+  color: var(--accent-color);
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 0 24px;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results header {
+  position: relative;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .expandDeeper,
+.semantic-tags-autocomplete .paper-autocomplete__results .expandShallower {
+  position: absolute !important;
+  top: -2px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .expandDeeper {
+  right: 0;
+}
+
+.semantic-tags-autocomplete .paper-autocomplete__results .expandShallower {
+  left: 0;
+}
+
+.semantic-tags-autocomplete .icon-autocomplete-loading--16px {
+  display: inline-block;
+  float: right;
+}

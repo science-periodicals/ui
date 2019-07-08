@@ -1,0 +1,255 @@
+.tag-list {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  overflow: auto;
+  align-items: center;
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 2;
+    justify-content: flex-start;
+    overflow: hidden;
+    position: relative;
+    transition: all 0.3s;
+    align-items: center;
+  }
+
+  &__add-tag-message {
+    font-size: 12px;
+    font-style: italic;
+    line-height: 28px;
+  }
+
+  &__suggestion {
+    line-height: 1;
+  }
+}
+
+/* text preview tag */
+.tag-list__tag {
+  background-color: var(--grey-100);
+  box-sizing: border-box;
+  cursor: pointer;
+  margin: 2px;
+  padding: 0 8px;
+  position: relative;
+  min-width: 24px;
+  flex-shrink: 1;
+  flex-basis: content;
+  text-align: left;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  border-radius: 12px;
+  height: 24px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  width: auto;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &--disabled {
+    opacity: 0.6;
+  }
+
+  &--menu {
+    flex-shrink:0;
+    display: flex;
+    align-items: center;
+
+    & .menu-container {
+      height: 24px;
+    }
+
+    & .menu__header-title {
+      opacity: 1;
+    }
+  }
+
+  &--deletable {
+    padding-right: 2px;
+  }
+
+  &--deletable&--read-only {
+    padding-right: 8px;
+  }
+
+  &--light {
+    color: #333;
+    & .menu__header-title {
+      opacity: 1 !important;
+      color: #333 !important;
+    }
+    & .menu__header-icon {
+      color: #333 !important;
+      opacity: 0.4;
+    }
+    & .menu__header-container--focused,
+    &:hover {
+      & .menu__header-icon {
+        opacity: 1;
+        transition: all ease-out 50ms;
+      }
+    }
+  }
+
+  &--dark {
+    color: #fff;
+    & .menu__header-title {
+      opacity: 1 !important;
+      color: #fff !important;
+    }
+    & .menu__header-icon {
+      color: #fff !important;
+      opacity: 0.4;
+      &:hover {
+        opacity: 1;
+      }
+    }
+    & .menu__header-container--focused,
+    &:hover {
+      & .menu__header-icon {
+        opacity: 1;
+        transition: all ease-out 50ms;
+      }
+    }
+    & .menu__header-container--focused {
+
+    }
+  }
+}
+
+.tag-add {
+  display: flex;
+  align-items: center;
+  background-color: var(--grey-400);
+  border-radius: 12px;
+  height: 24px;
+  position: relative;
+  transition: max-width 0.2s, padding 0.1s;
+  box-sizing: border-box;
+  justify-content: space-between;
+
+  &:hover {
+    background-color: var(--grey-500);
+  }
+
+  &--disabled {
+    pointer-events: none;
+  }
+
+  &--collapsed {
+    width: 24px;
+    max-width: 24px;
+    padding: 0;
+
+    & .tag-add__audience {
+      display: none;
+    }
+  }
+
+  &--expanded {
+    min-width: 56px;
+    max-width: 144px;
+    flex-grow: 1;
+    padding: 0 2px 0 8px;
+  }
+
+  &__input-container {
+    overflow: hidden;
+    width: auto;
+    height: 24px;
+  }
+
+  &--expanded &__input-container {
+    opacity: 1;
+    transition: opacity 0.2s 0.1s;
+    flex: 1 1 auto;
+  }
+
+  &--collapsed &__input-container {
+    opacity: 0;
+    visibility: hidden; /* prevent tab focus */
+    transition: opacity 0.1s;
+    flex: 0 0 4px;
+  }
+
+  &__input {
+    flex: 1;
+    font-size: 13px;
+    margin: 0;
+    text-align: left;
+
+    & input,
+    & input:focus {
+      border: 0 !important;
+      font-size: 13px;
+      padding: 0 0 0 8px;
+      outline: none;
+      height: 24px;
+      line-height: 24px;
+      color: white;
+
+      & ~ label {
+        height: 24px;
+        line-height: 24px;
+        padding: 0 0 0 8px;
+        bottom: 0;
+        color: var(--grey-200);
+        top: 0;
+      }
+
+      & ~ .border-line,
+      &:invalid ~ .border-line {
+        opacity: 0;
+      }
+    }
+
+    & .error {
+      background-color: #D34336;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      border-top-width: 0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+      color: #fff;
+      left: 0;
+      margin: 0;
+      padding: 4px 8px;
+      position: absolute;
+      top: 100%;
+      width: calc(100% - 18px);
+      z-index: 101;
+    }
+  }
+
+  &__audience {
+    margin-top: 2px;
+  }
+
+  &__button {
+    cursor: pointer;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 8px;
+    right: 2px;
+    opacity: 1;
+    margin: 2px;
+    transition: transform 0.2s 0.1s;
+
+    &--add {
+      transform: rotate(225deg);
+    }
+
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+  }
+}

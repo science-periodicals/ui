@@ -1,0 +1,265 @@
+.value {
+  & [role='math'] {
+    overflow-x: auto;
+    overflow-y: hidden;
+    max-width: 100%;
+  }
+
+  /* force equation to fit in print */
+  & [role='math'] svg {
+    @media print {
+      max-width: 100%;
+      object-fit: contain;
+    }
+  }
+
+  & [role='math'] math {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  @media screen {
+    /* link icons (link decoration) */
+    & a[rel~='footnote'],
+    & a[rel~='endnote'],
+    & a[rel~='doc-biblioentry'],
+    & a[rel~='doc-biblioref'],
+    & a cite[property~='schema:identifier'],
+    & a cite[property~='schema:name'],
+    & a:not([property~='schema:isBasedOn']) cite[property~='schema:alternateName'], /* Common in funding table (target is RdfaCite) */
+    & a[property~='schema:citation'],
+    & a[property~='schema:isBasedOn'],
+    & a[property~='schema:hasPart'],
+    & a[property~='sa:roleAction'],
+    & a[property~='sa:targetRole'],
+    & a[property~='sa:roleContactPoint'],
+    & a[property~='sa:roleAffiliation'],
+    & a[rel~='schema:citation'],
+    & a[rel~='schema:isBasedOn'],
+    & a[rel~='schema:hasPart'],
+    & a[rel~='sa:roleAction'],
+    & a[rel~='sa:targetRole'],
+    & a[rel~='sa:roleContactPoint'],
+    & a[rel~='sa:roleAffiliation'],
+    & a:not([property]):not([resource])[role='doc-anchorlink'][href^="#"], /* link to section */
+    & a[href^='http'] {
+      display: inline;
+      padding-right: 16px;
+      margin-bottom: -3px;
+      position: relative;
+      &:after {
+        /* this is a trick to make the background image take a css color.
+      the png is used as mask over the element's bg color.
+       */
+        mask-image: url('/images/inline-icons__shell_black.svg');
+        mask-position: right bottom -3px;
+        mask-repeat: no-repeat;
+        mask-size: 16px 16px;
+        background-color: var(--accent-color);
+        position: relative;
+        content: '';
+        width: 16px;
+        height: 10px; /* this needs to be as small as possible to prevent it from interfering with vertical alignment */
+        display: inline-block;
+        margin-right: -16px; /* compensate for padding in parent - used to keep from wrapping widow */
+        vertical-align: baseline;
+      }
+
+    }
+
+    & a:not([property]):not([resource])[role='doc-anchorlink'][href^='#'] {
+      &:after {
+        mask-image: url('/images/inline-icons__anchor_black.svg');
+      }
+    }
+
+    & a[href^='http'] {
+      &:after {
+        mask-image: url('/images/inline-icons__offsite_black.svg');
+      }
+    }
+
+    /* shrink the shell icon for superscript */
+    & sup {
+      & a[rel~='footnote'],
+      & a[rel~='endnote'],
+      & a[rel~='doc-biblioentry'],
+      & a[rel~='doc-biblioref'],
+      & a cite[property~='schema:identifier'],
+      & a cite[property~='schema:name'],
+      & a:not([property~='schema:isBasedOn']) cite[property~='schema:alternateName'], /* Common in funding table (target is RdfaCite) */
+      & a[property~='schema:citation'],
+      & a[property~='schema:isBasedOn'],
+      & a[property~='schema:hasPart'],
+      & a[property~='sa:roleAction'],
+      & a[property~='sa:targetRole'],
+      & a[property~='sa:roleContactPoint'],
+      & a[property~='sa:roleAffiliation'],
+      & a[rel~='schema:citation'],
+      & a[rel~='schema:isBasedOn'],
+      & a[rel~='schema:hasPart'],
+      & a[rel~='sa:roleAction'],
+      & a[rel~='sa:targetRole'],
+      & a[rel~='sa:roleContactPoint'],
+      & a[rel~='sa:roleAffiliation'],
+      & a:not([property]):not([resource])[role='doc-anchorlink'][href^="#"], /* link to section */
+      & a[href^='http'] {
+        padding-right: 0.8em;
+        &:after {
+          mask-size: 1em;
+          mask-position: right 3px bottom -0.2em; /* -3px is used to compensate for the padding in the icon */
+        }
+      }
+    }
+  }
+}
+
+@media screen {
+  /* link icons when .value is itself an <a> */
+  a.value[rel~='footnote'],
+  a.value[rel~='endnote'],
+  a.value[rel~='doc-biblioentry'],
+  a.value[rel~='doc-biblioref'],
+  a.value cite[property~='schema:identifier'],
+  a.value cite[property~='schema:name'],
+  a.value:not([property~='schema:isBasedOn']) cite[property~='schema:alternateName'],
+  a.value[property~='schema:citation'],
+  a.value[property~='schema:isBasedOn'],
+  a.value[property~='schema:hasPart'],
+  a.value[property~='sa:roleAction'],
+  a.value[property~='sa:targetRole'],
+  a.value[property~='sa:roleContactPoint'],
+  a.value[property~='sa:roleAffiliation'],
+  a.value[rel~='schema:citation'],
+  a.value[rel~='schema:isBasedOn'],
+  a.value[rel~='schema:hasPart'],
+  a.value[rel~='sa:roleAction'],
+  a.value[rel~='sa:targetRole'],
+  a.value[rel~='sa:roleContactPoint'],
+  a.value[rel~='sa:roleAffiliation'],
+  a.value:not([property]):not([resource])[role='doc-anchorlink'][href^="#"], /* link to section */
+  a.value[href^='http'] {
+    display: inline;
+    padding-right: 16px;
+    margin-bottom: -3px;
+    position: relative;
+
+    &:after {
+      /* this is a trick to make the background image take css color.
+      the png is used as mask over the elements bg color.
+     */
+      mask-image: url('/images/inline-icons__shell_black.svg');
+      mask-position: right bottom -4px;
+      mask-repeat: no-repeat;
+      mask-size: 16px 16px;
+      background-color: var(--accent-color);
+      position: relative;
+      content: '';
+      width: 16px;
+      height: 10px; /* this needs to be as small as possible to prevent it from interfering with vertical alignment */
+      margin-right: -16px; /* compensate for padding in parent - used to keep from wrapping widow */
+      display: inline-block;
+      vertical-align: baseline;
+    }
+    @media print {
+      /* don't show icons in print */
+      mask-image: none !important;
+      mask-position: center;
+      mask-repeat: no-repeat;
+      mask-size: auto;
+      padding-right: 0;
+      background-color: transparent;
+    }
+  }
+  a.value:not([property]):not([resource])[role='doc-anchorlink'][href^='#'] {
+    &:after {
+      mask-image: url('/images/inline-icons__anchor_black.svg');
+
+      @media print {
+        /* don't show icons in print */
+        mask-image: none !important;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: auto;
+        padding-right: 0;
+        background-color: transparent;
+      }
+    }
+  }
+
+  a.value[href^='http'] {
+    &:after {
+      mask-image: url('/images/inline-icons__offsite_black.svg');
+      mask-position: right bottom -3px;
+
+      @media print {
+        /* don't show icons in print */
+        mask-image: none !important;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: auto;
+        padding-right: 0;
+        background-color: transparent;
+      }
+    }
+  }
+
+  /* shrink the shell icon for superscript */
+  sup {
+    & a.value[rel~='footnote'],
+    & a.value[rel~='endnote'],
+    & a.value[rel~='doc-biblioentry'],
+    & a.value[rel~='doc-biblioref'],
+    & a.value cite[property~='schema:identifier'],
+    & a.value cite[property~='schema:name'],
+    & a.value:not([property~='schema:isBasedOn']) cite[property~='schema:alternateName'],
+    & a.value[property~='schema:citation'],
+    & a.value[property~='schema:isBasedOn'],
+    & a.value[property~='schema:hasPart'],
+    & a.value[property~='sa:roleAction'],
+    & a.value[property~='sa:targetRole'],
+    & a.value[property~='sa:roleContactPoint'],
+    & a.value[property~='sa:roleAffiliation'],
+    & a.value[rel~='schema:citation'],
+    & a.value[rel~='schema:isBasedOn'],
+    & a.value[rel~='schema:hasPart'],
+    & a.value[rel~='sa:roleAction'],
+    & a.value[rel~='sa:targetRole'],
+    & a.value[rel~='sa:roleContactPoint'],
+    & .value[rel~='sa:roleAffiliation'],
+    & a.value:not([property]):not([resource])[role='doc-anchorlink'][href^="#"], /* link to section */
+    & a.value[href^='http'] {
+      padding-right: 0.8em;
+      &:after {
+        mask-size: 1.2em 1.2em;
+        mask-position: right 0.3em bottom -0.2em; /* compensate for the padding in the icon */
+        width: 1.35em;
+        height: 0.75em;
+        margin-right: -1.35em;
+      }
+
+      @media print {
+        /* don't show icons in print */
+        mask-image: none !important;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: auto;
+        padding-right: 0;
+        background-color: transparent;
+      }
+
+    }
+  }
+}
+
+/* object-fit: contain; in combination with svg's relative ex unit seems to cause width calc issues in safari at print
+  this should not be need inside of a table cell anyway */
+table .value [role='math'] svg {
+  @media print {
+    max-width: none;
+  }
+}

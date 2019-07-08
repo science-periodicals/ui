@@ -1,0 +1,15 @@
+/* All the metadata are in the markup for RdfaPersonOrOrganization, here we remove what we control what we want to display in RdfaCite */
+.rdfa-cite .rdfa-person-or-organization--person [property="schema:name"],
+.rdfa-cite .rdfa-person-or-organization--person [property="schema:givenName"],
+.rdfa-cite .rdfa-person-or-organization--person [property="schema:additionanName"] {
+  display: none !important;
+}
+
+.rdfa-cite .rdfa-person-or-organization--person [property="schema:familyName"] {
+  display: inline !important;
+}
+
+.rdfa-cite .rdfa-person-or-organization [property="schema:additionalName"]::before,
+.rdfa-cite .rdfa-person-or-organization [property="schema:familyName"]::before {
+  content: '';
+}

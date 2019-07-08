@@ -1,0 +1,18 @@
+.helptip {
+  margin: 2px;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: text-top;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    font: var(--ui-type--subhead-3);
+    letter-spacing: var(--ui-type--subhead-3__letter-spacing);
+    padding-bottom: 4px;
+  }
+
+  &__close-icon {
+    margin-left: var(--xsgrd);
+  }
+}

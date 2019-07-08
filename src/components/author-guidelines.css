@@ -1,0 +1,58 @@
+.author-guidelines {
+  color: #434343;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  letter-spacing: 0.025em;
+
+  & ul {
+    list-style: disc;
+    padding-left: var(--mgrd);
+  }
+
+  background-color: whitesmoke;
+  padding: var(--sgrd) var(--lgrd);
+  margin: var(--sgrd) 0;
+
+  & h3 {
+    font-weight: 400;
+    letter-spacing: 0.035;
+    page-break-after: avoid;
+    font-family: var(--ui-type-face);
+    padding: var(--sgrd) 0;
+    font: var(--ui-type--subhead-2);
+    color: var(--ui-type--subhead-2__color);
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+
+    border-bottom: 2px solid white;
+    padding: var(--sgrd) 0;
+    margin-bottom: var(--mgrd);
+  }
+
+  &__section-list {
+    margin: 0;
+    list-style: none;
+  }
+
+  &__section-list-item {
+    margin: 0;
+    padding: 0 0 var(--sgrd) 0;
+    & .value:last-of-type p {
+      padding-bottom: 0;
+    }
+  }
+
+  &__section-name {
+    font: var(--ui-type--subhead-2) !important;
+    color: var(--ui-type--subhead-2__color) !important;
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing) !important;
+    /*Temporary over-rides until css refactor*/
+    text-transform: none !important;
+    border-bottom: 0px solid var(--ruling-color--major) !important;
+    padding: var(--xsgrd) 0 !important;
+    margin-bottom: 0 !important;
+    position: relative;
+  }
+
+}

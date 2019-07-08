@@ -1,0 +1,53 @@
+.affiliation-list-editor {
+  &__controls {
+    display: flex;
+    margin-top: var(--sgrd);
+    & > * {
+      margin-left: auto;
+    }
+  }
+}
+
+.affiliation-list-item {
+  display: flex;
+
+  align-items: center;
+  padding: 0 var(--xsgrd);
+  height: var(--lgrd);
+  transition: box-shadow 0.2s;
+  border-radius: 1px;
+
+  &__org-name {
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+    cursor: pointer;
+    &:focus {
+      outline: none;
+    }
+  }
+  &--active &__org-name {
+    font-weight: 600;
+  }
+  &__controls {
+    margin-left: auto;
+    padding-left: var(--sgrd);
+    display: flex;
+
+    &__edit-icon {
+      margin-right: var(--sgrd);
+      &--active {
+        color: var(--accent-color);
+      }
+    }
+
+    &__delete-icon {
+      margin-right: var(--sgrd);
+    }
+  }
+}
+
+.person-form-fragment {
+  &__item {
+  }
+}

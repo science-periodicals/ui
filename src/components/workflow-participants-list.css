@@ -1,0 +1,14 @@
+.workflow-participants-list {
+  /* clear list styles */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  /* ---------------- */
+  padding: 0;
+  display: flex;
+
+  &__item {
+    margin-right: var(--xsgrd);
+    display: flex;
+  }
+}

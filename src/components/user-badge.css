@@ -1,0 +1,138 @@
+.user-badge {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: top;
+  width: auto;
+  cursor: default;
+  position: relative;
+  font: var(--ui-type);
+}
+
+.user-badge > div.user-badge__circle {
+  display: inline-block;
+  letter-spacing: 0.5px;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.user-badge > div.user-badge__circle > .user-badge_initials {
+  vertical-align: middle;
+}
+
+.user-badge > div.user-badge__name {
+  margin-right: 16px;
+  vertical-align: middle;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: right;
+  /*max-width:calc(100% - 40px);*/
+}
+
+.user-badge > div.user-badge__name a,
+.user-badge > div.user-badge__name a:visited {
+  color: #757575;
+  text-decoration: none;
+}
+
+.user-badge__circle .user-badge_initials a,
+.user-badge__circle .user-badge_initials span,
+.user-badge__circle .user-badge_initials a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+/*Progess Circle */
+
+.user-badge__progress {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+}
+.user-badge__progress .progress__mask--left {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.user-badge__progress .progress__mask--right {
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.progress__mask--left .progress__circle--left {
+  border-radius: 50%;
+  border: 2px solid transparent;
+  /*border-right: 2px solid black;
+      border-top: 2px solid black;*/
+  box-sizing: border-box;
+  opacity: 0.35;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: transform 0.2s ease-out;
+}
+
+.progress__mask--right .progress__circle--right {
+  border-radius: 50%;
+  border: 2px solid transparent;
+  /*border-right: 2px solid black;
+      border-top: 2px solid black;*/
+  box-sizing: border-box;
+  opacity: 0.35;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: transform 0.2s ease-out;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(270deg);
+  }
+  to {
+    transform: rotate(990deg);
+  }
+}
+@keyframes bounce {
+  0% {
+    transform: rotate(270deg);
+  }
+
+  100% {
+    transform: rotate(1230deg);
+  }
+}
+.progress__mask--left .progress__circle--left.spin--up,
+.progress__mask--right .progress__circle--right.spin--up {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.55, 0.12, 0.47, 0.92);
+}
+.progress__mask--left .progress__circle--left.spin--down,
+.progress__mask--right .progress__circle--right.spin--down {
+  animation-name: spin;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.55, 0.12, 0.47, 0.92);
+  animation-direction: reverse;
+}
+
+.progress__mask--left .progress__circle--left.bounce,
+.progress__mask--right .progress__circle--right.bounce {
+  animation-name: bounce;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}

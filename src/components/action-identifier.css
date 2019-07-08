@@ -1,0 +1,25 @@
+.action-identifier {
+  font: var(--ui-type--condensed);
+  color: var(--grey-500);
+  letter-spacing: var(--ui-type--condensed__letter-spacing);
+  font-stretch: condensed;
+  font-size: 0.85em;
+  padding: 0 4px 0 2px;
+  height: 16px;
+  height: var(--sgrd);
+  border-radius: 4px;
+  background-color: var(--grey-300);
+  display: inline-block;
+  white-space: nowrap;
+
+  &__symbol {
+    color: var(--grey-400);
+  }
+  &__id .iconoclass {
+    padding-top: 3px !important;
+  }
+
+  & .shell-link .iconoclass {
+    color: var(--grey-500) !important;
+  }
+}

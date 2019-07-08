@@ -1,0 +1,91 @@
+/* this is use to initial basic global values */
+/* most importantly, it sets up default values for 10px rem units */
+
+html {
+  /* set standard font size to 10px as a base unit for REMs */
+  font-size: 62.5%;
+  min-height: 100%;
+}
+
+body {
+  /* set default REM unit to 10px */
+  font-size: 1.3rem;
+  min-height: 100%;
+}
+
+p {
+  padding-bottom: 1em;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding-left: var(--mgrd);
+}
+
+:any-link {
+  color: var(--link-color);
+  text-decoration: none;
+  box-sizing: border-box;
+  border-bottom: 1px solid transparent;
+}
+
+a[href]:hover {
+  color: var(--link-color--hover);
+}
+
+a[href]:active {
+  color: var(--link-color--active);
+}
+
+html[data-focus-source='key'] > body a:focus {
+  border-bottom: 1px dotted var(--accent-color);
+  outline: 0;
+}
+
+sup {
+  /* don't use 'old-style' numerals in superscript */
+  font-variant-numeric: lining-nums;
+}
+
+@keyframes fade-in-keyframes {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-out-keyframes {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-keyframes {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes float-bounce-keyframes {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-0.8rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

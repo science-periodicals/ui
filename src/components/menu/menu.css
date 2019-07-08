@@ -1,0 +1,233 @@
+/* need to hoist the z-index when the menu appears inside of a modal so that it
+is above the modal. */
+.modal-portal ~ .menu__portal {
+  z-index: 40000 !important;
+}
+
+.menu-container--no-position {
+  position: relative;
+}
+
+.menu-container--no-position .menu {
+  position: static;
+}
+
+/* chrome / webkit shows focus outline on buttons by default so restyle */
+@supports (-webkit-appearance: none) {
+  .menu__header-container:focus {
+    outline: none;
+  }
+}
+
+.menu {
+  color: var(--text-color);
+  display: inline-flex;
+  position: relative;
+  cursor: pointer;
+  min-width: 16px;
+  min-height: 24px;
+  box-sizing: border-box;
+  font: inherit;
+  white-space: nowrap;
+
+  &:hover {
+    color: var(--text-color);
+  }
+
+  /* fix for firefox */
+  & button {
+    cursor: pointer;
+  }
+  & button:disabled {
+    cursor: default;
+  }
+
+  /*@media (--mobile) {
+    position: static;
+  }*/
+
+  &__pointer-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 100%;
+  }
+
+  &__pointer {
+    bottom: 0;
+    left: 0px;
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+
+    /* produce a border around top edges */
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid var(--card-shadow-color);
+
+    z-index: 5;
+
+    /* fill pointer with card bg color */
+    &__background {
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 6px solid var(--card-bg-color);
+      z-index: 10;
+      left: -6px;
+      right: 0;
+      top: 1px;
+      position: absolute;
+      box-sizing: border-box;
+    }
+  }
+
+  &__list-container--right &__pointer {
+    left: auto;
+    right: 0px;
+
+    &--left-border {
+      right: 0;
+    }
+  }
+
+  &__header {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+  }
+
+  &__header-title {
+    white-space: nowrap;
+    display: inline-block;
+    line-height: 24px;
+    position: relative;
+    color: var(--text-color);
+    opacity: 0.6;
+    padding: 0 8px;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  &--left &__header-title {
+    order: 2;
+  }
+
+  &__header-icon {
+    display: inline-block;
+    cursor: pointer;
+    top: 0;
+    line-height: 0;
+    position: relative;
+  }
+
+  &__header-container--focused &__header-icon {
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      bottom: 0px;
+      right: 0px;
+      border: 2px solid var(--accent-color-6-a);
+      background-color: var(--accent-color-3-a);
+      box-shadow: 0 0 4px var(--accent-color-6-a), inset 0 0 4px -1px white;
+      border-radius: 50%;
+      transition: background-color 0.2s ease;
+      pointer-events: none;
+      flex: 0 0 auto;
+    }
+  }
+
+  &__list-container {
+    position: absolute;
+    width: auto;
+    max-width: 99vw;
+    top: 24px;
+    left: 0;
+    right: auto;
+    background: #fff; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
+    background: rgba(
+      255,
+      255,
+      255,
+      0
+    ); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+    list-style: none;
+    overflow: hidden;
+    height: 1px; /* 0px height content will not be read by some sreen readers */
+    display: block;
+    min-width: 128px;
+    text-align: left;
+    background-color: rgba(255, 255, 255, 0);
+    z-index: 3001;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    font: var(--ui-type);
+    cursor: pointer;
+    border: 1px solid var(--ruling-color--minor);
+
+    &--right {
+      right: 0;
+      left: auto;
+    }
+
+    &--expanded {
+      height: auto;
+      display: block;
+      overflow: visible;
+      background-color: var(--card-bg-color);
+      box-shadow: var(--card-shadow);
+      margin-top: 7px;
+      margin-bottom: 8px; /* this is needed to make drop shadow visible */
+      padding: 8px 0;
+    }
+
+    /*&--right {
+      @media (--mobile) {
+        margin-right: var(--xsgrd);
+      }
+    }*/
+
+    /*@media (--mobile) {
+      position: absolute;
+      top: auto;
+      left: var(--xsgrd);
+      margin-left: var(--xsgrd);
+      margin-top: var(--lgrd) !important;
+      right: var(--xsgrd);
+    }*/
+  } /* end of list */
+
+  &__list {
+    list-style: none;
+    -webkit-margin-after: 0;
+    -webkit-margin-before: 0;
+    margin: 0;
+    padding: 0;
+    &--no-submenu {
+      overflow-y: auto;
+      -ms-overflow-style: -ms-autohiding-scrollbar;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:focus-within {
+      outline: none;
+    }
+  }
+
+  &--left .react-portal__placeholder {
+    position: absolute;
+    left: 0;
+  }
+}
+
+/*.menu__portal .menu__list-container{
+  @media (--mobile) {
+    position: fixed;
+  }
+}*/

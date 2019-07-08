@@ -1,0 +1,76 @@
+.expansion-panel {
+  border-top: 1px solid var(--ruling-color);
+
+  &:last-of-type {
+    border-bottom: 1px solid var(--ruling-color);
+  }
+
+  &__preview-row {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 var(--sgrd) 0 var(--sgrd);
+    /*height: 4.8rem;*/
+    width: 100%;
+    overflow: hidden;
+    font: var(--ui-type--label);
+    color: var(--ui-type--label__color);
+    letter-spacing: var(--ui-type--label__letter-spacing);
+    position: relative;
+  }
+
+  &__preview-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    width: calc(100% - var(--mgrd) - var(--xsgrd));
+    overflow: hidden;
+    margin-right: var(--xsgrd);
+    box-sizing: border-box;
+  }
+
+  &__controls {
+    flex-shrink: 0;
+    width: 24px;
+  }
+  & .iconoclass {
+    transition: transform 0.2s;
+  }
+  &--expanded > &__preview-row &__controls--more {
+    transform: rotate(180deg);
+  }
+
+  &__preview {
+    height: 4.8rem;
+    display: flex;
+    flex: 1 1 auto;
+    align-items: center;
+    max-width: 100%;
+    & > * {
+      white-space: nowrap;
+    }
+  }
+
+  &--collapsed &__contents {
+    visibility: hidden; /* this is required to prevent tab-focus of contents */
+
+  }
+
+  &__max-height-contents {
+    overflow-y: hidden; /* !! setting it to auto create issue with the Card component */
+    transition: all 0.2s;
+
+    &--collapsed {
+      overflow: hidden;
+      visibility: hidden; /* this is required to prevent tab-focus of contents */
+    }
+  }
+}
+
+/* !! handle the nested case so only display none direct descendant ! */
+.expansion-panel__contents > .expansion-panel__preview,
+.expansion-panel__max-height-contents > .expansion-panel__preview {
+  display: none;
+}

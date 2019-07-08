@@ -1,0 +1,126 @@
+html {
+  --bevel-size: 17px;
+}
+.card {
+  position: relative;
+
+  /*
+  To make the drop-shadow for the beveled card we have a absolute
+  position div with a mask composed of a linear gradient. The mask
+  prevent the drop-shadow from extending into the bevel corner. 
+  It also create the effect of a shadow on bevel with a gradient transition.
+  The div must be larger than the parent to allow the dropshadow to extend beyond
+  the parent bounding-box without being clipped. 
+  */
+  &__beveled-shadow-container {
+    position: absolute;
+    /* outline: 1px solid green; */
+    top: -5px;
+    bottom: -5px;
+    right: -5px;
+    left: -5px;
+    mask-image: linear-gradient(
+      225deg,
+      transparent 0px,
+      transparent 21px,
+      black 29px,
+      black 100%
+    );
+  }
+  /* This div is masked by the container div. It provides the drop-shadow. */
+  &__beveled-shadow {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    background: var(--card-shadow-color);
+    box-shadow: var(--card-shadow);
+  }
+
+  &__background {
+    position: absolute;
+    top: 24px;
+    left: 1px;
+    right: 1px;
+    bottom: 1px;
+    transition: background-color 0.2s;
+  }
+
+  /* &--bevel {
+    filter: drop-shadow(1px 1px 3px var(--grey-200-a));
+  } */
+
+  &--no-bevel &__background {
+    top: 1px;
+  }
+
+  &--active &__background {
+    background-color: var(--card-bg-color);
+    /* background-color: transparent */
+  }
+
+  &--inactive &__background {
+    background-color: var(--card-bg-color--inactive);
+  }
+
+  &__notice-color {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 10;
+  }
+
+  /* border-hack to make the miter corner */
+  &__border--bevel {
+    position: absolute;
+    top: 0;
+    left: 1px;
+    right: 1px;
+    bottom: 0;
+
+    &:before {
+      content: '';
+      border-bottom: 24px solid var(--card-bg-color);
+      border-right: 24px solid transparent;
+      width: 100%;
+      top: 0px;
+      left: 0;
+      display: block;
+      position: absolute;
+      box-sizing: border-box;
+    }
+  }
+
+  &--inactive &__border--bevel {
+    &:before {
+      border-bottom: 24px solid var(--card-bg-color--inactive);
+    }
+  }
+  &__border--no-bevel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: box-shadow 0.2s;
+    box-shadow: var(--card-shadow);
+  }
+
+  /* &--inactive &__border--no-bevel {
+    box-shadow: 0px 1px 4px -1px rgba(0, 0, 0, 0.3);
+  }
+  &--active &__border--no-bevel {
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  &--pinned &__border--no-bevel {
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3),
+      0px 15px 24px -6px rgba(0, 0, 0, 0.2);
+  } */
+
+  &__content {
+    position: relative;
+  }
+}

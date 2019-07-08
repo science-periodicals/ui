@@ -1,0 +1,36 @@
+.control-panel {
+  padding-top: var(--xsgrd);
+
+  &__error {
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+
+    color: var(--error-color);
+    display: flex;
+    width: auto;
+    flex-grow: 1;
+  }
+
+  &__error-icon {
+    padding-right: var(--sgrd);
+  }
+
+  &__error-text {
+    padding-top: 4px;
+  }
+
+  &__controls {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+    & > .paper-button, & > .paper-button-link {
+      margin: .4rem;
+
+      /*&:last-of-type {
+        margin-right: 0;
+      }*/
+    }
+  }
+}

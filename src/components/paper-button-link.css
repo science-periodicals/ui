@@ -1,0 +1,68 @@
+.paper-button-link {
+  border-spacing: 0;
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  text-decoration: none;
+  text-indent: 0;
+  appearance: none; /* for mobile safari */
+  box-sizing: border-box;
+  white-space: nowrap;
+  background: transparent;
+  border: none;
+  color: var(--link-color, #42a5f5);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.035em;
+  cursor: pointer;
+
+  min-width: 64px;
+  height: 36px;
+  padding: 8px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  transition: background-color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-around;
+  flex: 0 0 auto;
+
+  &--raised {
+    padding: 8px 16px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+    background-color: var(--accent-color, #42a5f5);
+    color: white;
+    transition: box-shadow 0.2s, background-color 0.2s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: var(--accent-color--dark, #42a5f5);
+      box-shadow: 0 2px 4px 1px rgba(0, 0, 0, 0.16),
+        0 2px 3px -1px rgba(0, 0, 0, 0.15);
+      outline: none;
+      color: white;
+      &:any-link {
+        color: white;
+      }
+      border-bottom: none !important; /* override the global a:focus style */
+    }
+  }
+
+  &--flat:hover,
+  &--flat:active,
+  &--flat:focus {
+    background-color: var(--accent-color--ghost, #42a5f5);
+    outline: none;
+    border-bottom: none !important;  /* override the global a:focus style */
+  }
+
+  &--capsule {
+    border-radius: 18px;
+  }
+  &--flat&--capsule {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}

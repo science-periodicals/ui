@@ -1,0 +1,32 @@
+.banner {
+  background-color: white;
+  background-position: 0 40%;
+  background-size: cover;
+
+  width: 100%;
+  box-sizing: border-box;
+
+  &--dark {
+    color: white;
+    background-color: black;
+  }
+
+  &--large {
+    min-height: 250px;
+  }
+  &--medium {
+    min-height: 96px;
+  }
+  &--small {
+    min-height: 96px;
+  }
+
+  & :any-link {
+    color: inherit;
+    transition: opacity 0.2s;
+    &:hover {
+      color: inherit;
+      opacity: 0.6;
+    }
+  }
+}

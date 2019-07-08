@@ -1,0 +1,6 @@
+.app-layout__sub-header {
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 99;
+}

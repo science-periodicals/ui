@@ -1,0 +1,116 @@
+.ds3-section-editor {
+  &__sections-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  & .divider {
+    margin: var(--sgrd) 0 var(--sgrd) 0;
+  }
+
+  &__sections-list-item[data-level='0'] > .ds3-custom-section {
+    border-radius: var(--xsgrd);
+    margin: var(--sgrd) 0;
+  }
+
+  &__add {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 var(--mgrd) var(--mgrd);
+  }
+
+  & .ds3-custom-section {
+    position: relative;
+    background-color: var(--grey-50);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    z-index: 0;
+    tab-index: -1;
+
+    &:focus,
+    &:hover {
+      box-shadow: var(--xhigh-shadow);
+      z-index: 10;
+    }
+
+    /* onyl for nrested children */
+    & .ds3-custom-section,
+    & .ds3-custom-section {
+      & .ds3-custom-section__controls-buttons {
+        opacity: 0;
+      }
+    }
+
+    & .ds3-custom-section:focus,
+    & .ds3-custom-section:hover {
+      background-color: var(--grey-50);
+      & .ds3-custom-section__controls-buttons {
+        opacity: 1;
+      }
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &__controls {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--sgrd) var(--mgrd) 0 var(--lgrd);
+      box-sizing: border-box;
+    }
+
+    &___controls-buttons {
+      transition: opacity 0.1s;
+    }
+
+    &__title {
+      font: var(--ui-type--subhead-1);
+      color: var(--ui-type--subhead-1__color);
+      letter-spacing: var(--ui-type--subhead-1__letter-spacing);
+    }
+
+    &__drag {
+      margin-left: var(--sgrd);
+    }
+    &__delete {
+    }
+
+    &__body {
+      padding: var(--mgrd) var(--lgrd) var(--lgrd) var(--lgrd);
+    }
+  }
+
+  & .ds3-custom-section--dnd-dragging {
+    background-color: var(--base-bg-color) !important;
+    box-shadow: var(--mid-inset-shadow);
+    &:focus,
+    &:hover {
+      box-shadow: var(--mid-inset-shadow);
+      background-color: var(--base-bg-color);
+    }
+    & .ds3-custom-section:focus,
+    & .ds3-custom-section:hover {
+      box-shadow: var(--mid-inset-shadow);
+      background-color: var(--base-bg-color);
+    }
+    & > * {
+      opacity: 0;
+    }
+  }
+
+  /* over self target */
+  & .ds3-custom-section--dnd-dragging.ds3-custom-section--dnd-is-over {
+    background-color: var(--grey-300);
+  }
+
+  /*& .ds3-custom-section--dnd-is-over.ds3-custom-section--dnd-can-drop {
+    background-color: darkgreen;
+  }
+
+  & .ds3-custom-section--dnd-can-drop {
+    background-color: green;
+  }*/
+}

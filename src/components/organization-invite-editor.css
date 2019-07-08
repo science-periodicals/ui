@@ -1,0 +1,65 @@
+.organization-invite-editor {
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+
+  & .paper-autocomplete__results {
+    z-index: 100;
+  }
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  min-width: 32rem;
+  max-width: 32rem; /* Need to bound for the subject */
+  flex: 1 1 32rem;
+
+  &__header {
+    font: var(--ui-type--subhead-2);
+    color: var(--ui-type--subhead-2__color);
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--mgrd);
+  }
+
+  &__user-info {
+    max-width:100%;
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+  }
+
+  & .user-badge {
+    margin-right: var(--sgrd);
+  }
+
+  &__user-info-icon {
+    color: var(--icon-status-color);
+  }
+
+  &__user-autocomplete-container {
+    padding: var(--mgrd);
+    padding-top: 0;
+  }
+
+  &__invite-sent {
+    font: var(--ui-type--caption);
+    color: var(--ui-type--caption__color);
+    letter-spacing: var(--ui-type--caption__letter-spacing);
+
+    padding: 0 var(--mgrd) var(--mgrd);
+    color: var(--text-color--light);
+    height: 72px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__body {
+    padding: var(--sgrd);
+  }
+
+}

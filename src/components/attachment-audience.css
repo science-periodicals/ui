@@ -1,0 +1,11 @@
+.attachment-audience {
+  display: flex;
+  align-items: center;
+  & .user-badge-menu {
+    margin-left: var(--xsgrd);
+  }
+
+  &__add-button {
+    height: var(--mgrd);
+  }
+}

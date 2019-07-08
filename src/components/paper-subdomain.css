@@ -1,0 +1,130 @@
+.paper-subdomain {
+  box-sizing: border-box;
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+
+  font-size: 13px;
+
+  &--large {
+    font: var(--ui-type--big);
+    color: var(--ui-type--big__color);
+    letter-spacing: var(--ui-type--big__letter-spacing);
+
+    /*line-height: 24px;*/
+    font-size: 16px;
+  }
+
+  &__form {
+    display: flex;
+    align-items: baseline;
+    background-color: white;
+    padding: var(--sgrd) 0;
+  }
+
+  &__scheme {
+    flex: 0 0 auto;
+  }
+
+  &__name-input-container {
+    position: relative;
+    border-bottom: 1px solid var(--grey-400);
+  }
+
+  &--disabled &__name-input-container {
+    border-bottom: 1px dashed var(--grey-400);
+  }
+
+  &__name-input-container {
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      width: 0;
+      left: 50%;
+      border-bottom: 2px solid var(--accent-color);
+      transition: all .15s;
+    }
+  }
+  &--focused &__name-input-container {
+    flex-shrink: 0;
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      width: 100%;
+      left: 0;
+      border-bottom: 2px solid var(--accent-color);
+    }
+  }
+
+  &--read-only &__name-input-container {
+    border-bottom: 0;
+    &:after {
+      border-bottom: 0;
+      transition: none;
+    }
+  }
+
+  &--focused&--read-only &__name-input-container {
+    &:after {
+      border-bottom: 0;
+    }
+  }
+
+  &__name-input {
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+
+    font-size: 13px;
+    border: 0;
+    background-color: transparent;
+    /*height: 24px;
+    line-height: 24px;*/
+    box-sizing: border-box;
+    text-align: center;
+    transition: width 0.2s;
+    text-align: center;
+
+    max-width: 100%;
+    &:focus {
+      outline: none;
+      text-align: center;
+    }
+  }
+
+  &--large &__name-input {
+    font: var(--ui-type--big);
+    color: var(--ui-type--big__color);
+    letter-spacing: var(--ui-type--big__letter-spacing);
+
+    font-size: 16px;
+    letter-spacing: 0;
+    box-sizing: content-box;
+  }
+
+  &--read-only &__name-input {
+    pointer-events: none;
+  }
+}
+
+.paper-subdomain__name-input--no-anim {
+  transition: none;
+}
+
+@keyframes paper-subdomain__underline-anim {
+  0% {
+    left: 50%;
+    width: 0;
+  }
+  100% {
+    left: 0;
+    width: 100%;
+  }
+}

@@ -1,0 +1,25 @@
+.anonymized-role-autocomplete {
+  &__results {
+
+  }
+
+  &__subjects {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: inline;
+  }
+
+  &__subject {
+    background-color: transparent !important;
+    display: inline !important;
+    &:after {
+      content: ', ';
+    }
+    &:last-of-type {
+      &:after {
+        content: '';
+      }
+    }
+  }
+}

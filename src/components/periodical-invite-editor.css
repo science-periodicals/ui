@@ -1,0 +1,143 @@
+.periodical-invite-editor {
+  /* clear list styles */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  /* ---------------- */;
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+
+  & .paper-autocomplete__results {
+    z-index: 100;
+  }
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  min-width: 32rem;
+  max-width: 32rem; /* Need to bound for the subject */
+  flex: 1 1 32rem;
+
+  &__header {
+    font: var(--ui-type--subhead-2);
+    color: var(--ui-type--subhead-2__color);
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--mgrd);
+  }
+
+  &__lock-button {
+    color: var(--button-color--disabled);
+  }
+
+  &__user-info {
+    max-width:100%;
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+  }
+
+  & .user-badge {
+    margin-right: var(--sgrd);
+  }
+
+  &__user-info-icon {
+    color: var(--icon-status-color);
+  }
+
+  &__user-autocomplete-container {
+    padding: var(--mgrd);
+    padding-top: 0;
+  }
+
+  &__invite-sent {
+    font: var(--ui-type--caption);
+    color: var(--ui-type--caption__color);
+    letter-spacing: var(--ui-type--caption__letter-spacing);
+
+    padding: 0 var(--mgrd) var(--mgrd);
+    color: var(--text-color--light);
+    height: 72px;
+    display: flex;
+    align-items: center;
+  }
+
+  &__body {
+    padding: var(--sgrd);
+  }
+
+  &__list {
+    /* clear list styles */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+
+  &__list-item {
+    margin-bottom: var(--sgrd);
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--mgrd);
+    padding-top: 0;
+  }
+
+  &__role {
+    padding: var(--xsgrd) var(--xsgrd) var(--xsgrd) var(--xsgrd);
+    position: relative;
+    background-color: var(--grey-50);
+    border-radius: 2px;
+
+    &__delete-button {
+      position: absolute !important;
+      z-index: 10;
+      right: 8px;
+    }
+
+    &__role-row {
+      padding-bottom: var(--xsgrd);
+      justify-content: space-between;
+      display: flex;
+      align-items: center;
+
+      & .paper-select,
+      & .paper-textarea-container {
+        width: 100%;
+      }
+
+      & .paper-autocomplete {
+        flex: 1 1 100%;
+      }
+
+      &__affiliations {
+      }
+
+      & .subject-editor {
+        width: 100%;
+      }
+    }
+
+    &__handle-submission {
+      padding-top: var(--sgrd);
+      padding-bottom: var(--sgrd);
+    }
+  }
+
+  &__add-role {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+}

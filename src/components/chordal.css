@@ -1,0 +1,59 @@
+.color-audio {
+  fill: #3f2860;
+  background: #3f2860;
+}
+.color-code {
+  fill: #3f6560;
+  background: #3f6560;
+}
+.color-data {
+  fill: #e3d800;
+  background: #e3d800;
+}
+.color-formula {
+  fill: #d5a427;
+  background: #d5a427;
+}
+.color-image {
+  fill: #33ace0;
+  background: #33ace0;
+}
+.color-other {
+  fill: #40b34f;
+  background: #40b34f;
+}
+.color-table {
+  fill: #ff6146;
+  background: #ff6146;
+}
+.color-text {
+  fill: #c0123f;
+  background: #c0123f;
+}
+.color-video {
+  fill: #3851cd;
+  background: #3851cd;
+}
+
+.chordal__tooltip {
+  font: normal normal 400 1.2rem/1.8rem var(--ui-type-face);
+  letter-spacing: 0.035em;
+  color: white;
+  position: absolute;
+  pointer-events: none;
+  background-color: var(--grey-700-7-a);
+  vertical-align: middle;
+  height: 2.2rem;
+  white-space: nowrap;
+  border-radius: 0.2rem;
+  padding: 0.3rem 0.8rem;
+  z-index: 9999999;
+  /* box-sizing: border-box; */
+  display: inline-block;
+
+  @media (--up-to-tablet) {
+    font-size: 1.4rem;
+    min-height: var(--lgrd);
+    padding: 0.8rem 1.6rem;
+  }
+}

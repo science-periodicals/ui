@@ -1,0 +1,64 @@
+
+.rating-stars {
+  display: inline-flex;
+  line-height: 0;
+
+  /* the following classes are fragile -
+  don't mess with unless you are sure you know what you are doing */
+
+  /* set default star color to grey */
+  &__star .iconoclass {
+    color: var(--grey-300);
+
+    &__svg {
+      opacity: 1!important;
+    }
+  }
+
+  &--read-only .rating-stars {
+    &__star {
+      &--on .iconoclass {
+        color: gold;
+      }
+    }
+  }
+
+  &--editable .rating-stars {
+    /* when hover over star array, set default to gold */
+
+    &:hover &__star .iconoclass {
+      color: gold;
+    }
+
+    &__star {
+      &:hover .iconoclass {
+        color: orange !important;
+      }
+
+      &--on .iconoclass {
+        color: gold;
+      }
+
+      /* turn off all stars after hover star */
+      &:hover ~ & {
+        & .iconoclass {
+          color: var(--grey-300) !important;
+        }
+      }
+    }
+    /* end of fragile color states */
+  }
+
+  &__star {
+    margin-left: -2px;
+    line-height: 0;
+    transition: transform .2s;
+    & .iconoclass {
+      transition: color .2s;
+    }
+  }
+  &--editable &__star:hover {
+    transform: scale(1.25, 1.25);
+    transform-origin: center center;
+  }
+}

@@ -1,0 +1,14 @@
+.divider {
+  border-bottom: 1px solid var(--ruling-color);
+  height: 1px;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+
+  &--major {
+    border-color: var(--ruling-color--major);
+  }
+  &--minor {
+    border-color: var(--ruling-color--minor);
+  }
+}

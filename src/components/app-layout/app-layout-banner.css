@@ -1,0 +1,8 @@
+.app-layout {
+  &__banner {
+    position: relative;
+    z-index: 100;
+    transition: transform 0.2s;
+    box-sizing: border-box;
+  }
+}

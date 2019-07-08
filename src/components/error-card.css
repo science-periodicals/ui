@@ -1,0 +1,24 @@
+.error-card{
+  font-family: var(--sans-body-type-face);
+  /*width: 400px;*/
+  margin: 100px auto;
+  width: 100%;
+  max-width: 700px;
+
+  & h1 {
+    margin-bottom: .25em;
+  }
+
+  &__card {
+    margin: 24px;
+    padding: var(--sgrd);
+    background-color: white;
+    color: black;
+    overflow: hidden;
+  }
+
+
+  &__message{
+    color: var(--text-color--light);
+  }
+}

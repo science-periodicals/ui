@@ -1,0 +1,13 @@
+.rdfa-license {
+  display: inline-flex !important;
+  align-items: center;
+
+  & abbr {
+    text-decoration: none;
+  }
+  & .iconoclass {
+    margin-right: 0.4em;
+    color: var(--text-color);
+    vertical-align: middle;
+  }
+}

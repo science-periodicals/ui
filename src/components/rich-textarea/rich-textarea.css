@@ -1,0 +1,175 @@
+.rich-textarea {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+  transition: height 0.2s;
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+
+  &:focus {
+    outline: none;
+  }
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  &__label {
+    width: 100%;
+    letter-spacing: 0.035em;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 24px;
+    height: 16px;
+    line-height: 16px;
+    color: var(--paper-label-color);
+    transform: scale(1) translate3d(0, 0, 0);
+    white-space: nowrap;
+    font-size: 13px;
+    font-family: var(--ui-type-face);
+  }
+  &--has-content &__label {
+    visibility: hidden;
+    color: var(--paper-transparent-color);
+  }
+
+  &__label--focused,
+  &--has-content &__label {
+    visibility: visible;
+    color: var(--paper-label-color);
+    transform-origin: top left;
+    transition: color 200ms ease-out, transform 200ms ease-out;
+    transform: scale(0.95) translate3d(0, -26px, 0);
+  }
+
+  &__label--focused {
+    color: var(--accent-color);
+  }
+
+  &--readonly &__label {
+    transition: none;
+  }
+
+  &__text {
+    padding: 20px 0 3px;
+
+    /* allow wrapping of long words and urls. See:
+    https://css-tricks.com/snippets/css/prevent-long-urls-from-breaking-out-of-container/ */
+
+    /* These are technically the same, but use both */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    /* This is the dangerous one in WebKit, as it breaks things wherever */
+    word-break: break-all;
+    /* Instead use this non-standard one: */
+    word-break: break-word;
+
+    /* Adds a hyphen where the word breaks, if supported (No Blink) */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  &__textarea {
+    resize: none;
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 14px;
+    border: none !important;
+    border-bottom: 1px solid var(--paper-border-color) !important;
+    border-radius: 0 !important;
+    overflow: hidden;
+    background-color: transparent;
+    box-shadow: none !important;
+    box-sizing: border-box;
+    min-height: 26px;
+    font: inherit;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__value {
+    min-height: 26px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--paper-border-color) !important;
+
+    & p:first-of-type {
+      margin-top: 0;
+    }
+    & p:last-of-type {
+      margin-bottom: 0;
+    }
+
+    & a[href^='#v'],
+    & a[href^='http'] {
+      display: inline;
+      padding-right: 16px;
+      margin-bottom: -3px;
+      position: relative;
+      &:after {
+        /* this is a trick to make the background image take css color.
+          the png is used as mask over the elements bg color. 
+        */
+
+        mask-position: right bottom -4px;
+        mask-repeat: no-repeat;
+        mask-size: 16px 16px;
+        background-color: var(--accent-color);
+        position: relative;
+        content: '';
+        width: 16px;
+        height: 10px; /* this needs to be as small as possible to prevent it from interfering with vertical alignment */
+        margin-right: -16px; /* compensate for padding in parent - used to keep from wrapping widow */
+        display: inline-block;
+        vertical-align: baseline;
+        outline: 1px solid red;
+      }
+    }
+
+    &--shell a[href^='#v']:after {
+      mask-image: url('/images/inline-icons__shell_black.svg');
+    }
+
+    &--scroll a[href^='#v']:after {
+      mask-image: url('/images/inline-icons__anchor_black.svg');
+    }
+
+    & a[href^='http']:after {
+      mask-image: url('/images/inline-icons__offsite_black.svg');
+      mask-position: right bottom -3px;
+    }
+  }
+
+  &--disabled &__value {
+    border-bottom: 1px dashed var(--paper-border-color) !important;
+  }
+
+  &--readonly &__value {
+    border-bottom: none !important;
+  }
+
+  &__border-line {
+    display: block;
+    position: relative;
+    top: -4px;
+    width: inherit;
+    height: 2px;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transition: color 200ms ease-in, transform 200ms ease-in;
+    &--focused {
+      transform: scaleX(1);
+      transition: color 200ms ease-out, transform 200ms ease-out;
+    }
+  }
+}

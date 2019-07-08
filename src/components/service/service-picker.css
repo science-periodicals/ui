@@ -1,0 +1,5 @@
+.service-picker {
+  &__control {
+    margin-right: var(--sgrd);
+  }
+}

@@ -1,0 +1,92 @@
+.create-graph-action-editor-modal {
+  &__contents {
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+    width: 100vw;
+    min-width: 32rem;
+    max-width: 800px;
+    max-height: calc(100vh - 56px);
+    box-sizing: border-box;
+
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+  }
+
+  &__header {
+    padding: var(--mgrd);
+    display: flex;
+    justify-content: space-between;
+    font: var(--ui-type--subhead-1);
+    color: var(--ui-type--subhead-1__color);
+    letter-spacing: var(--ui-type--subhead-1__letter-spacing);
+    padding-bottom: var(--xsgrd);
+  }
+
+  &__section {
+    padding: var(--mgrd);
+    border-bottom: 1px solid var(--ruling-color);
+  }
+
+  &__section-title {
+    font: var(--ui-type--subhead-2);
+    color: var(--text-color--light);
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+    padding-bottom: var(--xsgrd);
+  }
+
+  &__form-group {
+    display: block;
+    position: relative;
+    padding: var(--sgrd) 0;
+
+    & fieldset {
+      /* Fieldset has some strange properties that prevent it from sizing 
+      correctly even when set to display: block. display: contents forces it to
+      be ignored from the layout flow. */
+      display: contents;
+    }
+
+    & .layout-wrap-item {
+      padding-bottom: var(--xsgrd);
+      width: auto;
+    }
+    border-bottom: 1px solid var(--ruling-color--minor);
+
+    &:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+  }
+  &__form-group-title {
+    font: var(--ui-type--subhead-3);
+    color: var(--ui-type--subhead-3__color);
+    letter-spacing: var(--ui-type--subhead-3__letter-spacing);
+    padding-bottom: var(--xsgrd);
+    display: block;
+  }
+
+  &__justified-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & > * {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &__justified-row-group {
+    & > * {
+      margin-right: var(--xsgrd);
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  & .control-panel {
+    padding: var(--xsgrd) var(--sgrd);
+    &__controls {
+    }
+  }
+}

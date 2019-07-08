@@ -1,0 +1,127 @@
+.app-layout-widget-panel {
+  height: 100%;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+
+  /* 
+  The mini panel that holds the widget icons. 
+  on dekstop size the pane sticks to left side of AppLayoutRight
+  */
+  &__icon-pane {
+    flex: 0 0 56px;
+    width: 56px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: var(--xsgrd) 0;
+    box-sizing: border-box;
+    border-left: 1px solid var(--grey-300);
+    height: 100%;
+    overflow-y: auto;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    overflow-x: hidden;
+    background-color: var(--base-bg-color);
+  }
+
+  /* The main widget content panel */
+  &__widget-pane {
+    flex: 1 1 100%;
+    border-left: 1px solid var(--grey-300);
+    background-color: var(--base-bg-color);
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: var(--footer-height); /* make room for footer */
+    box-sizing: border-box;
+  }
+
+  &__widget {
+  }
+
+  &__widget-header {
+    height: 56px;
+    padding: var(--sgrd);
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__widget-title {
+    font: var(--ui-type--subhead-2);
+    color: var(--accent-color);
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+  }
+
+  &__widget-icon-container {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-bottom: var(--xsgrd);
+
+    /* add the right indicator border */
+    &--active:after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      border-top-left-radius: 3px;
+      border-bottom-left-radius: 3px;
+      background-color: var(--accent-color);
+    }
+  }
+
+  &__widget-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    border-radius: 28px;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: var(--grey-50-a);
+    }
+    &:active {
+      background-color: var(--hl-blue-5-a);
+    }
+    color: var(--grey-500);
+
+    &--active {
+      color: var(--accent-color);
+    }
+
+    &:focus {
+      outline: none;
+      background-color: var(--accent-color-2-a);
+    }
+  }
+}
+
+.app-layout--right-expanded {
+  & .app-layout-widget-panel {
+    right: unset;
+    left: 0;
+
+    &__icon-pane {
+      @media (--small-desktop) {
+        /* On small screens, the icon pane should go under panel and stick to right 
+      side of AppLayoutRight */
+        position: absolute;
+        right: 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+.share-menu {
+  & .iconoclass {
+    color: grey;
+  }
+  &__portal {
+    & .iconoclass {
+      color: grey;
+    }
+  }
+}

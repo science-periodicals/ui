@@ -1,0 +1,101 @@
+@import 'normalize.css';
+@import '@scienceai/resources';
+@import '@scienceai/iconoclass';
+@import '../src/index.css';
+@import './components/paged-media-example.css';
+
+html {
+  height: 100%;
+}
+
+body {
+  background-color: whitesmoke;
+  font: var(--ui-type);
+  letter-spacing: 0.035em;
+  min-height: 100%;
+}
+
+#app {
+  min-height: 100%;
+}
+
+.example-list,
+.example__list {
+  padding: var(--lgrd) var(--sgrd) 5.6rem;
+  box-sizing: border-box;
+  max-height: 100%;
+  overflow-y: auto;
+}
+
+.example__list-item {
+  padding-bottom: var(--sgrd);
+}
+
+.example {
+  padding: 50px;
+  box-sizing: border-box;
+  background-color: white;
+  margin: var(--lgrd);
+
+  @media (--tablet) {
+    padding: var(--sgrd);
+    margin: 0;
+  }
+
+  &__block {
+    margin-bottom: var(--lgrd);
+  }
+}
+
+.example__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.example__row-item {
+  padding: 0 var(--mgrd);
+  flex: 1 1 auto;
+}
+
+.example > li {
+  display: block;
+}
+
+.link-interceptor {
+}
+
+.reddish {
+  color: red !important;
+}
+
+.feed-item-example ul {
+  /* clear list styles */
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+span[role='math'] math {
+  display: none;
+}
+
+.app-layout__sticky-list-item {
+  & .app-layout-sticky-list-example__shrinking-banner {
+    background-color: lime;
+    padding: 32px;
+  }
+}
+
+.app-layout__sticky-list-item--sticking {
+  & .app-layout-sticky-list-example__shrinking-banner {
+    background-color: green;
+    padding: 32px;
+    transition: padding 1s;
+    @media (height < 800px) {
+      padding: 8px;
+      background-color: aquamarine;
+    }
+  }
+}

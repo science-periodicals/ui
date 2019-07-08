@@ -1,0 +1,41 @@
+.flex-packer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  @media print {
+    /* chrome only honors page-break-inside on block elements */
+    page-break-inside: auto;
+    display: block;
+  }
+
+  & figure {
+    margin: var(--xsgrd);
+  }
+
+  &__row {
+    display: flex;
+    page-break-inside: avoid;
+    width: 100%;
+    justify-content: space-around;
+    overflow: hidden;
+
+    & figure {
+      overflow: hidden;
+      flex: 1 1 auto;
+      & img {
+        object-fit: scale-down;
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+    & .image-object {
+      overflow: hidden;
+      flex: 1 1 auto;
+    }
+  }
+}
+.flex-packer > figcaption,
+.flex-packer > .flex-packer__caption {
+  width: 100%;
+}

@@ -1,0 +1,12 @@
+.git
+.gitignore
+circle.yml
+scratch/
+blobs/
+.circleci
+design/
+ffmpeg-release-64bit-static.tar.xz
+ffmpeg-release-amd64-static.tar.xz
+ffmpeg-static/
+backstop-artifacts.zip
+backstop_data/

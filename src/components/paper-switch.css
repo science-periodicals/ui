@@ -1,0 +1,101 @@
+.paper-switch {
+  height: 15px;
+  width: 32px;
+  /* margin-right: 8px; */
+  border-radius: 12px;
+  position: relative;
+  transition: background-color 400ms ease;
+  display: inline-block;
+
+  &--on {
+    background-color: var(--accent-color-5-a);
+    color: white;
+  }
+
+  &--off {
+    background-color: rgba(0, 0, 0, 0.38);
+  }
+
+  &--disabled {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+
+  &__button {
+    background: var(--accent-color);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: -3px;
+    left: 12px;
+    width: 21px;
+    height: 21px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease, left 0.2s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  &__button--focused {
+    &:after {
+        content: '';
+        position: absolute;
+        left: -12px;
+        top: -12px;
+        bottom: -12px;
+        right: -12px;
+        background-color: var(--accent-color-2-a);
+        border-radius: 50%;
+        transition: background-color 0.2s ease;
+      }
+  }
+
+  &--on &__button {
+    & .iconoclass {
+      color: white;
+    }
+  }
+
+  &--off &__button {
+    background: var(--grey-100);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    left: -3px;
+  }
+
+  &--disabled &__button {
+    background-color: #bdbdbd;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.7);
+    cursor: default;
+  }
+}
+
+/* handle focus styling for key vs mouse focus */
+/* 
+html[data-focus-source='key'] .paper-switch__button:focus:after {
+  content: '';
+  position: absolute;
+  left: -12px;
+  top: -12px;
+  bottom: -12px;
+  right: -12px;
+  background-color: var(--accent-color-2-a);
+  border-radius: 50%;
+  transition: background-color 0.2s ease;
+}
+
+html[data-focus-source='key']
+  .paper-switch--off
+  .paper-switch__button:focus:after {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+html[data-focus-source='key']
+  .paper-switch--disabled
+  .paper-switch__button:focus:after {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+ */

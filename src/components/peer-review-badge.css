@@ -1,0 +1,24 @@
+.peer-review-badge {
+  box-sizing: border-box;
+  height: var(--mgrd);
+  line-height: var(--mgrd);
+  background-color: var(--grey-100);
+  border: 1px solid var(--grey-200);
+  padding: 0 0.4rem;
+  text-transform: uppercase;
+  color: var(--text-color--light);
+  border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+
+  &__text {
+    font: var(--ui-type--small);
+    line-height: 1em;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

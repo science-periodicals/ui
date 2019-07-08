@@ -1,0 +1,108 @@
+.paged-media-example {
+  padding: 0;
+  width: 20in;
+  /* overflow: auto; */
+
+  /**
+   * grid layout requires each element to be uniform height so won't work here
+   * see:
+   * https://github.com/w3c/csswg-drafts/issues/1373
+   */
+  /*
+  &__pages-grid-layout {
+    min-width: 17in;
+    height: 11in;
+    outline: 1px solid lightpink;
+    background: white;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-columns: single-page 8.5in;
+    grid-template-rows: repeat(auto-fill, 0.5in);
+    grid-auto-rows: auto;
+    box-sizing: border-box;
+  }
+  &__page {
+    background-color: lightblue;
+    width: 8.5in;
+    height: 11in;
+    outline: 1px solid lightgreen;
+    box-sizing: border-box;
+    position: relative;
+  }
+  &__content {
+    width: 8.5in;
+    background-color: lightcyan;
+  }
+  &__margin {
+    background-color: lightgrey;
+  }
+
+  &__space-filler {
+    background-color: lightcoral;
+    opacity: 0.3;
+    outline: 2px solid white;
+    height: 6.5in;
+    width: 8.5in;
+  }
+  */
+
+  &__pages-grid-layout {
+    columns: 8.5in;
+    column-gap: 0;
+    column-fill: auto;
+
+    outline: 1px solid lightpink;
+    background: white;
+    box-sizing: border-box;
+
+    width: 8.5in;
+    position: absolute;
+    top: 0.5in;
+    left: 0;
+  }
+  &__content {
+    width: 8.5in;
+    background-color: lightcyan;
+    box-sizing: border-box;
+    /* position: relative; */ /* note: setting position seems to cause sliced content to be hidden */
+    break-inside: auto;
+  }
+  &__space-filler {
+    background-color: lightcoral;
+    opacity: 0.3;
+    outline: 2px solid lightsalmon;
+    height: 4.5in;
+    width: 6.5in;
+    box-sizing: border-box;
+    box-decoration-break: clone;
+  }
+
+  &__child {
+    width: 6.5in;
+    background: rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    padding: 20px;
+  }
+  &__margin {
+    float: right;
+    width: 2in;
+    height: 100%;
+    outline: 1px solid green;
+  }
+
+  &__header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8.5in;
+    height: 0.5in;
+    outline: 1px solid orange;
+  }
+
+  &__table {
+    border: 1px solid black;
+    width: 6.5in;
+    box-sizing: border-box;
+    font-size: 8pt;
+  }
+}

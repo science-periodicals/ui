@@ -1,0 +1,11 @@
+.audience-autocomplete {
+  &__item--role-name {
+    font-weight: bold;
+  }
+
+  &__item {
+    &__text {
+      margin-left: 0em;
+    }
+  }
+}

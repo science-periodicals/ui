@@ -1,0 +1,99 @@
+.create-graph-action-editor {
+  position: relative; /* needed for the link bar */
+
+  & .stage {
+    position: relative;
+  }
+
+  &__role-header {
+    display: flex;
+    text-transform: capitalize;
+    align-items: center;
+    & .iconoclass {
+      color: var(--text-color--light);
+      margin-right: var(--xsgrd);
+    }
+  }
+  &__role-title {
+    font: var(--ui-type--subhead-2);
+    color: var(--text-color--light);
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+  }
+
+  &__node-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--grey-300);
+    margin: 20px var(--sgrd) 20px 0;
+    border-radius: 4px;
+    flex: 0 0 8px;
+  }
+
+  &__action-icons {
+    /* clear list styles */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    /* ---------------- */
+
+    flex: 0 0 auto;
+    padding-left: var(--xsgrd);
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+
+  &__action-icon {
+    padding: 4px;
+    color: var(--icon-status-color);
+
+    flex: 0 0 auto;
+
+    &--delete {
+      color: var(--button-color);
+    }
+  }
+
+  & .expansion-panel__preview {
+    height: 48px;
+    overflow: hidden;
+    align-items: flex-start;
+
+    &__spacer {
+      flex: 1 1 50%;
+    }
+
+    & .paper-input {
+      margin-top: 10px;
+      flex: 1 1 auto;
+
+      & input {
+        border-bottom: 1px solid transparent !important;
+        transition: border 0.2s;
+
+        &:hover {
+          border-bottom: 1px solid var(--paper-border-color) !important;
+        }
+      }
+    }
+  }
+
+  &__add-stage {
+    padding: var(--sgrd);
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__unconnected-stages {
+    padding-bottom: var(--mgrd);
+    padding-top: var(--mgrd);
+
+    &__title {
+      font: var(--ui-type--subhead-2);
+      color: var(--ui-type--subhead-2__color);
+      letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+
+      padding-bottom: var(--sgrd);
+    }
+  }
+}

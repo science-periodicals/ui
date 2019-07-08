@@ -1,0 +1,14 @@
+.publication-type-picker {
+  &__preview {
+    display: flex;
+    &__name {
+      margin-left: var(--sgrd);
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  &__body {
+    padding: var(--mgrd);
+  }
+}

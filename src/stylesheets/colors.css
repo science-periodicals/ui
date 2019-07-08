@@ -1,0 +1,41 @@
+/* this is used by chordal and graph overview (need to work with SVG) */
+.color-audio {
+  fill: #3f2860;
+  background: #3f2860;
+}
+.color-code {
+  fill: #3f6560;
+  background: #3f6560;
+}
+.color-data {
+  fill: #e3d800;
+  background: #e3d800;
+}
+.color-formula {
+  fill: #d5a427;
+  background: #d5a427;
+}
+.color-image {
+  fill: #33ace0;
+  background: #33ace0;
+}
+.color-other {
+  fill: #40b34f;
+  background: #40b34f;
+}
+.color-table {
+  fill: #ff6146;
+  background: #ff6146;
+}
+.color-text {
+  fill: #c0123f;
+  background: #c0123f;
+}
+.color-video {
+  fill: #3851cd;
+  background: #3851cd;
+}
+
+bg-pattern__diag {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+DQogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+DQogICAgICAgIDxwYXRoIGQ9Ik0xLjI5Mjg5MzIyLDcuNjU2NjM1NzRlLTE2IEwyLjcwNzEwNjc4LDcuNjU2NjM1NzRlLTE2IEwyNCwyMS4yOTI4OTMyIEwyNCwyMi43MDcxMDY4IEwxLjY0MTAxMjQ3LDAuMzQ4MTE5MjUgTDEuMjkyODkzMjIsNy41NDgyMTU1MmUtMTYgWiBNOS4yOTI4OTMyMiw3LjY1NjYzNTc0ZS0xNiBMMTAuNzA3MTA2OCw3LjY1NjYzNTc0ZS0xNiBMMjQsMTMuMjkyODkzMiBMMjQsMTQuNzA3MTA2OCBMMjMuNjU1MzY3LDE0LjM2MjQ3MzggTDkuNjM4MTE5OTIsMC4zNDUyMjY3MDQgTDkuMjkyODkzMjIsMS4zNjg5MTM2NmUtMTUgWiBNLTQuODQ4NTUyMTJlLTE2LDUuMjkyODkzMjIgTDAuMzQ2MjAyMDM5LDUuNjM5MDk1MjYgTDE4LjM2MDQ5MzcsMjMuNjUzMzg2OSBMMTguNzA3MTA2OCwyNCBMMTcuMjkyODkzMiwyNCBMLTMuODQ2NzQ5MzFlLTE2LDYuNzA3MTA2NzggTC0zLjE1Mjg1OTkyZS0xNiw1LjI5Mjg5MzIyIFogTTE3LjI5Mjg5MzIsNy42NTY2MzU3NGUtMTYgTDE4LjcwNzEwNjgsNy42NTY2MzU3NGUtMTYgTDI0LDUuMjkyODkzMjIgTDI0LDYuNzA3MTA2NzggTDIzLjY2NzE4MjYsNi4zNzQyODkzOSBMMTcuNjI4NjUxOCwwLjMzNTc1ODU0OCBMMTcuMjkyODkzMiwxLjQ1MzQ4MTQzZS0xNSBaIE0tNC4yNjMwODI5NGUtMTYsMjEuMjkyODkzMiBMMC4zNTM1NTMzOTEsMjEuNjQ2NDQ2NiBMMi40MTUxMDYyLDIzLjcwNzk5OTQgTDIuNzA3MTA2NzgsMjQgTDEuMjkyODkzMjIsMjQgTC00LjI2MzA4Mjk0ZS0xNiwyMi43MDcxMDY4IEwtMy4xNTI4NTk5MmUtMTYsMjEuMjkyODkzMiBaIE0tNS43NjM2MTg3NWUtMTYsMTMuMjkyODkzMiBMMC4zNDE2NTUzNywxMy42MzQ1NDg2IEwxMC4zNjYwMzA4LDIzLjY1ODkyNCBMMTAuNzA3MTA2OCwyNCBMOS4yOTI4OTMyMiwyNCBMMS4xMDAyNDgzNmUtMTUsMTQuNzA3MTA2OCBMLTMuMTUyODU5OTJlLTE2LDEzLjI5Mjg5MzIgWiIgaWQ9IkNvbWJpbmVkLVNoYXBlIiBmaWxsPSIjZWVlIj48L3BhdGg+DQogICAgPC9nPg0KPC9zdmc+');
+}

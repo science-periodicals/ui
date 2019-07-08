@@ -1,0 +1,3 @@
+--ignore-dir=static
+--ignore-dir=dist
+--ignore-dir=design

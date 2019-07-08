@@ -1,0 +1,26 @@
+.text-logo {
+  text-decoration: none !important;
+  font-weight: bolder;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-transform: lowercase;
+
+  &__first-letter--cap {
+    /* Note that ::first-letter doesn't work outside of block elements */
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    text-decoration: underline !important;
+    text-decoration-skip-ink: none;
+
+    /* text-decoration-style: dotted  !important; */ /* chromes seems to be buggy with dotted underline */
+    text-decoration-color: var(--grey-300) !important;
+  }
+
+  &__kern-small {
+    letter-spacing: -0.05em;
+    margin-left: -0.06em;
+    text-decoration: none !important;
+  }
+}

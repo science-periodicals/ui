@@ -1,0 +1,18 @@
+.organization-badge {
+  color: var(--grey-400);
+}
+
+.organization-badge--link {
+  cursor: pointer;
+}
+
+.organization-badge:hover,
+.organization-badge:link,
+.organization-badge:visited {
+  color: var(--grey-400);
+}
+
+.organization-badge:hover,
+.organization-badge:active {
+  color: var(--grey-400);
+}

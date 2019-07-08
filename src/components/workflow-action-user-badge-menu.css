@@ -1,0 +1,55 @@
+.workflow-action-user-badge-menu {
+  &__assignment-warning {
+    padding: var(--sgrd);
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+
+    &__header {
+      display: flex;
+      align-items: flex-start;
+      min-width: 24ch;
+      color: var(--error-color);
+      &__icon {
+        padding-right: var(--xsgrd);
+      }
+    }
+
+    &__body {
+      margin-top: var(--xsgrd);
+      hyphens: auto;
+    }
+  }
+
+  &__menu__portal {
+    & .workflow-action-user-badge-menu__multi-line-menu-item {
+      padding: var(--sgrd) 0;
+    }
+    & .workflow-action-user-badge-menu__menu-item-name {
+    }
+    & .workflow-action-user-badge-menu__menu-item-assigner {
+      padding-top: 0.4rem;
+      color: var(--text-color--light);
+    }
+
+    & .menu {
+      &__item-text {
+        &--right-icon {
+          display: flex;
+          width: 100%;
+          justify-content: space-between;
+          align-items: center;
+
+          & .iconoclass {
+            color: var(--button-color);
+          }
+        }
+
+        &__left {
+          padding-right: var(--sgrd);
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

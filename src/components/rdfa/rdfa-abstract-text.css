@@ -1,0 +1,44 @@
+.rdfa-abstract-text {
+  position: relative;
+
+  & ul,
+  & ol {
+    margin: 0;
+    padding-left: var(--sgrd);
+    padding-bottom: 1em;
+  }
+  & p {
+    padding: revert;
+    padding: 0 0 0.5em 0;
+  }
+
+  & h1,
+  & h2,
+  & h3,
+  & h4,
+  & h5,
+  & h6 {
+    padding-top: var(--mgrd);
+    padding-bottom: 1em !important;
+    margin: 0 !important;
+
+    /* avoid stacking white space after titles */
+    & ~ p {
+      padding-top: 0 !important;
+    }
+  }
+  & section {
+    padding-bottom: var(--sgrd);
+  }
+
+  & img {
+    max-width: 100%;
+    display: block;
+    object-fit: contain;
+    margin: var(--sgrd) 0;
+  }
+
+  & section {
+    padding: 0 0 var(--sgrd) 0 !important;
+  }
+}

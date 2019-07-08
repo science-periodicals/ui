@@ -1,0 +1,51 @@
+.modal-portal {
+  width: 100%;
+  height: 100%;
+  z-index: 20000; /* make sure modal is above menu portal */
+}
+
+.modal {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  outline: 1px solid pink;
+
+  &__content {
+    width: 100%;
+    height: 100%;
+    max-width: 100vw;
+    max-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    &:focus {
+      outline: none;
+    }
+    & > * {
+      pointer-events: auto;
+      /* max-height: calc(100vh - 48px);
+      max-width: calc(100vw - 48px); */
+    }
+  }
+
+  &__background {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: 100%;
+    animation: fade-in-keyframes 0.2s;
+    &--no-animation {
+      animation: none;
+    }
+  }
+}
+
+/* added to body or parent to prevent scrolling */
+.sa-modal-no-scroll {
+  overflow: hidden !important;
+}

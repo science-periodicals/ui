@@ -1,0 +1,69 @@
+html {
+  /**
+ * Sans Serif Print Styles
+ */
+
+  --sans-body-print-type-face: 'Roboto', sans-serif;
+
+  /*
+   Standard Sans-serif body type
+   font: var(--sans-body-print-type);
+   color: var(--sans-body-print-type__color);
+   letter-spacing: var(--sans-body-print-type__letter-spacing);
+ */
+
+  --sans-body-print-type: normal normal 400 11pt/1.5em
+    var(--sans-body-print-type-face);
+  --sans-body-print-type__color: black;
+  --sans-body-print-type__letter-spacing: 0.035em;
+
+  /*
+   Condensed Sans-serif body type
+   font: var(--sans-body-print-type--condensed);
+   color: var(--sans-body-print-type--condensed__color);
+   letter-spacing: var(--sans-body-print-type--condensed__letter-spacing);
+   font-stretch: condensed;
+   Note: IE Edge does not allow font-stretch property in font shorthand
+ */
+  --sans-body-print-type--condensed: normal normal 400 11pt/1.5em
+    var(--sans-body-print-type-face);
+  --sans-body-print-type--condensed__font-stretch: condensed;
+  --sans-body-print-type--condensed__color: black;
+  --sans-body-print-type--condensed__letter-spacing: 0.035em;
+
+  /*
+   Standard Sans-serif extra small body type
+   font: var(--sans-body-print-type--xsmall);
+   color: var(--sans-body-print-type--xsmall__color);
+   letter-spacing: var(--sans-body-print-type--xsmall__letter-spacing);
+  */
+
+  --sans-body-print-type--xsmall: normal normal 400 6pt/1.25em
+    var(--sans-body-print-type-face);
+  --sans-body-print-type--xsmall__color: black;
+  --sans-body-print-type--xsmall__letter-spacing: 0.035em;
+
+  /*
+   Standard Sans-serif small body type
+   font: var(--sans-body-print-type--small);
+   color: var(--sans-body-print-type--small__color);
+   letter-spacing: var(--sans-body-print-type--small__letter-spacing);
+ */
+
+  --sans-body-print-type--small: normal normal 400 8pt/1.25em
+    var(--sans-body-print-type-face);
+  --sans-body-print-type--small__color: black;
+  --sans-body-print-type--small__letter-spacing: 0.035em;
+
+  /*
+   Small Condensed Sans-serif body type
+   font: var(--sans-body-print-type--small-condensed);
+   color: var(--sans-body-print-type--small-condensed__color);
+   letter-spacing: var(--sans-body-print-type--small-condensed__letter-spacing);
+  */
+
+  --sans-body-print-type--small-condensed: condensed normal normal 400 8pt/1.5em
+    var(--sans-body-print-type-face);
+  --sans-body-print-type--small-condensed__color: black;
+  --sans-body-print-type--small-condensed__letter-spacing: 0.035em;
+}

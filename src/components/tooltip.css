@@ -1,0 +1,49 @@
+.tooltip {
+  position: relative;
+
+  & .react-portal__placeholder {
+    width: 0;
+    height: 0;
+    pointer-events: none;
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+  }
+
+  &__portal {
+    pointer-events: none;
+  }
+
+  &__tip {
+    font: normal normal 400 1.2rem/1.8rem var(--ui-type-face);
+    letter-spacing: 0.035em;
+    color: white;
+    position: relative;
+    top: var(--lgrd);
+    right: 50%;
+    background-color: var(--grey-700-7-a);
+
+    min-height: 2.2rem;
+    white-space: nowrap;
+    border-radius: 0.2rem;
+    padding: 0.2rem 0.8rem;
+    z-index: 9999999;
+    box-sizing: border-box;
+
+    animation: fade-in-keyframes 0.3s;
+    animation-fill-mode: both;
+
+    &--wrap {
+      white-space: normal;
+      max-width: 220px;
+      line-height: 18px;
+      padding: 16px 16px 16px 16px;
+    }
+
+    @media (--up-to-tablet) {
+      font-size: 1.4rem;
+      min-height: var(--lgrd);
+      padding: 0.8rem 1.6rem;
+    }
+  }
+}

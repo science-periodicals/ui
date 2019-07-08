@@ -1,0 +1,39 @@
+.rdfa-role-contact-points {
+  margin-top: 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    padding-bottom: 0.5em;
+  }
+  &__term {
+    display: inline-block;
+    font: var(--sans-body-type--small--short);
+    color: var(--text-color--light);
+    letter-spacing: var(--sans-body-type--small--short__letter-spacing);
+    text-transform: lowercase;
+    font-variant: small-caps;
+    vertical-align: middle;
+
+    @media print {
+      color: black;
+
+      font: var(--sans-body-print-type--small);
+      line-height: 1.25em;
+      letter-spacing: var(--sans-body-print-type--condensed__letter-spacing);
+      font-stretch: condensed;
+      font-weight: 600;
+    }
+  }
+
+  &__def {
+    display: inline;
+    margin-left: 1ch;
+    & value {
+      display: inline;
+      & > p:first-child {
+        display: inline;
+      }
+    }
+  }
+}

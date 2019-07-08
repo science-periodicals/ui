@@ -1,0 +1,28 @@
+.sa__draggable:not(.sa__draggable--dnd-is-dragging) {
+  &:hover {
+    box-shadow: var(--mid-shadow);
+  }
+}
+
+.sa__draggable--dnd-is-dragging {
+  background-color: var(--base-bg-color) !important;
+  box-shadow: var(--mid-inset-shadow);
+  &:focus,
+  &:hover {
+    box-shadow: var(--mid-inset-shadow);
+    background-color: var(--base-bg-color);
+  }
+  & .sa__draggable:focus,
+  & .sa__draggable:hover {
+    box-shadow: var(--mid-inset-shadow);
+    background-color: var(--base-bg-color);
+  }
+  & > * {
+    opacity: 0;
+  }
+}
+
+/* over self target */
+.sa__draggable--dnd-is-dragging.sa__draggable--dnd-is-over {
+  background-color: var(--grey-300);
+}

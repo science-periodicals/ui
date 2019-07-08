@@ -1,0 +1,59 @@
+
+.time-picker {
+  width: fit-content;
+  padding: 2px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.time-picker__inputs {
+
+}
+
+.time-picker__hours,
+.time-picker__minutes {
+  font: var(--ui-type);
+color: var(--ui-type__color);
+letter-spacing: var(--ui-type__letter-spacing);
+
+
+  width: 2.5ch;
+  line-height: 20px;
+  box-sizing: content-box;
+  border: none;
+  border-bottom: 1px solid var(--ruling-color);
+  padding: 2px 4px 3px 4px;
+  overflow: visible;
+  box-sizing: content-box;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+}
+
+.time-picker__focus-line {
+  width: 0;
+  left: 50%;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: all 0.1s;
+  position: absolute;
+  bottom: 1px;
+}
+
+.time-picker__hours:focus ~ .time-picker__focus-line {
+  width: 50%;
+  left: 0;
+}
+
+.time-picker__minutes:focus ~ .time-picker__focus-line {
+  width: 50%;
+  left: calc(50% + 2px);
+}
+
+/* for when you need to center the picker but text-align does nothing */
+.time-picker__container {
+  display: flex;
+  justify-content: space-around;
+}

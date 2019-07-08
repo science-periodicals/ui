@@ -1,0 +1,44 @@
+.periodical-application-handler {
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+  min-width: 32rem;
+  max-width: 32rem; /* Need to bound for the subject */
+
+  &__header {
+    max-width: 100%;
+    font: var(--ui-type--subhead-2);
+    color: var(--ui-type--subhead-2__color);
+    letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+    padding: var(--mgrd);
+  }
+
+  &__user-info {
+    max-width:100%;
+    display: flex;
+    align-items: center;
+    flex: 1 1 auto;
+  }
+
+  & .user-badge {
+    margin-right: var(--sgrd);
+  }
+
+  &__link {
+    margin-left: var(--sgrd);
+    display: flex;
+    align-items: center;
+  }
+
+  &__body {
+    padding: var(--sgrd);
+  }
+
+  &__role {
+    padding: var(--xsgrd) var(--xsgrd) var(--xsgrd) var(--xsgrd);
+    position: relative;
+    background-color: var(--grey-50);
+    border-radius: 2px;
+  }
+
+}

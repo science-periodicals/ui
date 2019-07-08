@@ -1,0 +1,199 @@
+.paper-textarea {
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  min-height: 40px;
+  transition: height 0.2s;
+
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+.paper-textarea--read-only {
+  font-family: inherit;
+}
+
+.paper-textarea.float-label {
+  min-height: 48px;
+}
+
+.paper-textarea.big {
+  min-height: 40px;
+  padding: 0 0 8px 0;
+}
+
+.paper-textarea textarea {
+  resize: none;
+  width: 100%;
+  display: block;
+  margin: 0;
+  border: none !important;
+  border-bottom: 1px solid var(--paper-border-color) !important;
+  border-radius: 0 !important;
+  padding: 2px 0 3px 0;
+  overflow: hidden;
+  background-color: var(--paper-transparent-color);
+  box-shadow: none !important;
+  letter-spacing: 0.035em;
+  box-sizing: border-box;
+  line-height: 20px;
+  min-height: 26px;
+  font-family: inherit;
+}
+
+.paper-textarea.float-label textarea {
+  padding-top: 20px;
+  min-height: 44px;
+}
+
+.paper-textarea.big textarea {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.035em;
+}
+.paper-textarea.big.float-label textarea {
+  padding-top: 20px;
+  min-height: 48px;
+}
+
+.paper-textarea textarea[disabled] {
+  border-bottom: 1px dashed var(--ruling-color) !important;
+  background-color: transparent;
+}
+
+.paper-textarea textarea[readonly] {
+  border-bottom: none !important;
+  background-color: var(--paper-transparent-color);
+  pointer-events: none;
+}
+
+.paper-textarea textarea ~ label {
+  width: 100%;
+  letter-spacing: 0.035em;
+  position: absolute;
+  pointer-events: none;
+  left: 0;
+  top: 4px;
+  height: 16px;
+  line-height: 16px;
+  color: var(--paper-label-color);
+  transform: scale(1) translate3d(0, 0, 0);
+  transform-origin: top left;
+  transition: color 200ms ease-in, transform 200ms ease-in;
+  white-space: nowrap;
+  font-size: 13px;
+  font-family: var(--ui-type-face);
+}
+
+.paper-textarea.float-label textarea ~ label {
+  top: 20px;
+}
+
+.paper-textarea.big textarea ~ label {
+  font-size: 16px;
+  top: 6px;
+}
+
+.paper-textarea.big.float-label textarea ~ label {
+  top: 24px;
+}
+
+.paper-textarea textarea:focus {
+  outline: none;
+}
+
+.paper-textarea textarea.dirty ~ label {
+  /* hide the label when dirty */
+  visibility: hidden;
+  color: var(--paper-transparent-color);
+}
+
+.paper-textarea.float-label textarea:focus ~ label,
+.paper-textarea.float-label textarea.dirty ~ label {
+  visibility: visible;
+  transform-origin: top left;
+  transition: color 200ms ease-out, transform 200ms ease-out;
+  transform: scale(0.95) translate3d(0, -17px, 0);
+}
+
+.paper-textarea.big.float-label textarea:focus ~ label,
+.paper-textarea.big.float-label textarea.dirty ~ label {
+  transform: scale(0.77) translate3d(0, -24px, 0);
+}
+
+.paper-textarea.float-label textarea[readonly] ~ label,
+.paper-textarea.float-label textarea.dirty ~ label {
+  color: var(--paper-label-color);
+}
+
+.paper-textarea.float-label textarea[readonly]:focus ~ label {
+  color: var(--paper-label-color);
+  transform: none;
+}
+
+.paper-textarea.float-label textarea:focus ~ label {
+  color: var(--accent-color);
+}
+
+.paper-textarea.float-label textarea.touched:focus:invalid ~ label {
+  color: var(--paper-error-color);
+}
+
+.paper-textarea textarea ~ .border-line {
+  display: block;
+  position: relative;
+  top: -1px;
+  width: inherit;
+  height: 2px;
+  background-color: var(--accent-color);
+  transform: scaleX(0);
+  transition: color 200ms ease-in, transform 200ms ease-in;
+}
+
+.paper-textarea.big textarea ~ .border-line {
+  bottom: 8px;
+}
+
+.paper-textarea textarea:invalid ~ .border-line {
+  background-color: var(--paper-error-color);
+}
+
+.paper-textarea textarea:focus ~ .border-line {
+  transform: scaleX(1);
+  transition: color 200ms ease-out, transform 200ms ease-out;
+}
+
+.paper-textarea textarea[readonly] ~ .border-line {
+  background-color: var(--paper-transparent-color);
+  transform: none;
+}
+
+.paper-textarea .error {
+  display: block;
+  padding-top: 6px;
+  color: var(--paper-error-color);
+  font-size: 12px;
+  font-family: var(--ui-type-face);
+  line-height: 16px;
+  height: 16px;
+  white-space: nowrap;
+  letter-spacing: normal;
+  transition: height 0.2s;
+}
+
+.paper-textarea .error--inactive {
+  font-size: 0;
+  height: 0;
+  line-height: 0;
+  padding: 0;
+}
+
+.paper-textarea textarea.touched:focus:invalid {
+  box-shadow: none;
+  border-color: var(--paper-error-color);
+}

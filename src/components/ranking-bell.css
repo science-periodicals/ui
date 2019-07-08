@@ -1,0 +1,7 @@
+.ranking-bell {
+  display: inline-block;
+
+  &__svg {
+    vertical-align: top;
+  }
+}

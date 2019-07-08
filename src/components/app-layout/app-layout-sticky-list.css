@@ -1,0 +1,111 @@
+.app-layout {
+  &__sticky-list {
+    padding-bottom: var(--sgrd);
+    margin-bottom: var(--mgrd);
+  }
+
+  &__sticky-list-item {
+    position: relative;
+    width: 100%;
+
+    &--sticking {
+      animation-duration: 0.3s;
+      animation-fill-mode: forwards;
+
+      position: fixed;
+      top: 0;
+
+      z-index: 1000;
+    }
+
+    &--measuring {
+      animation: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      /* visibility: hidden; */
+    }
+  }
+
+  &__unsticky-list-item {
+    transition: opacity 0.2s;
+    margin-bottom: var(--mgrd);
+
+    &--sticking {
+      /* opacity: 0.75; */
+    }
+  }
+}
+
+.app-layout--left-expanded:not(.app-layout--right-expanded)
+  .app-layout__sticky-list-item--sticking {
+  animation-name: scaleBannerLeft;
+}
+
+.app-layout--right-expanded:not(.app-layout--left-expanded)
+  .app-layout__sticky-list-item--sticking {
+  animation-name: scaleBannerRight;
+  position: fixed;
+}
+
+.app-layout--left-expanded.app-layout--right-expanded
+  .app-layout__sticky-list-item--sticking {
+  animation-name: scaleBannerBothSides;
+  position: fixed;
+  width: auto;
+}
+
+.app-layout--left-collapsed.app-layout--right-collapsed
+  .app-layout__sticky-list-item--sticking {
+  /* make sure that even if both left and right are collapsed, the banner sticks to the sides */
+  left: 0;
+  right: 0;
+  position: fixed;
+}
+
+@keyframes scaleBannerLeft {
+  0% {
+    position: fixed;
+    left: 240px;
+    right: 0px;
+  }
+
+  100% {
+    position: fixed;
+
+    left: 0px;
+  }
+}
+
+@keyframes scaleBannerBothSides {
+  0% {
+    position: fixed;
+    left: 240px;
+    right: 240px;
+  }
+
+  100% {
+    position: fixed;
+
+    left: 0px;
+    right: 0px;
+    width: 100vw;
+  }
+}
+
+@keyframes scaleBannerRight {
+  0% {
+    position: fixed;
+    left: 0px;
+    right: 240px;
+    width: calc(100vw - 240px);
+  }
+
+  100% {
+    position: fixed;
+    left: 0px;
+    right: 0px;
+    width: 100vw;
+  }
+}

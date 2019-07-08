@@ -1,0 +1,25 @@
+.workflow-participants {
+  position: relative;
+  padding: var(--xsgrd) var(--sgrd);
+  border-bottom: 1px solid var(--ruling-color);
+  border-left: 2px solid transparent;
+  background-color: var(--grey-50);
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  box-sizing: border-box;
+
+  &--no-participant-needed {
+    align-items: center;
+    justify-content: center;
+    color: var(--text-color--light);
+  }
+
+  & .react-portal__placeholder {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+}

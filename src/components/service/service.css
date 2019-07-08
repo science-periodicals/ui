@@ -1,0 +1,85 @@
+/* Don't show header inside of picker - we'll use the preview to do that instead */
+.service-picker .service__header {
+  display: none;
+}
+
+.service {
+  padding: var(--sgrd);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    flex: 1 0 auto;
+    padding-bottom: var(--sgrd);
+
+    &__org-badge {
+      margin-right: var(--xsgrd);
+    }
+
+    &__name {
+      font: var(--ui-type--subhead-2);
+      color: var(--ui-type--subhead-2__color);
+      letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+
+      margin-right: var(--sgrd);
+    }
+
+    &__service-badge {
+      margin-left: auto;
+    }
+  }
+
+  &__text {
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+    padding-bottom: var(--sgrd);
+  }
+
+  &__row {
+    padding-bottom: var(--xsgrd);
+  }
+
+  &__data {
+    margin: 0;
+    &__datum {
+      padding: 0.4rem 0;
+    }
+    &__datum-group {
+      display: flex;
+      align-items: center;
+    }
+
+    &__label {
+      display: block;
+      margin: 0;
+      padding-right: var(--xsgrd);
+      padding-bottom: 0.4rem;
+      font: var(--ui-type--label);
+      color: var(--ui-type--label__color);
+      letter-spacing: var(--ui-type--label__letter-spacing);
+
+      &--website {
+        /* display: none; */
+      }
+    }
+    &__info {
+      display: block;
+      margin: 0;
+      min-height: var(--mgrd);
+      display: flex;
+      align-items: center;
+
+      &--rating {
+        font: var(--ui-type--small);
+        line-height: 1.1rem;
+        color: var(--ui-type--label__color);
+        letter-spacing: var(--ui-type--label__letter-spacing);
+        & .rating-stars {
+          margin: 0 0.4rem;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,103 @@
+html {
+  --sans-body-type-face: 'Roboto', sans-serif;
+
+  /**
+   * Basic Sans Serif Body Type for Screen
+   */
+
+  /*
+  Standard Sans-serif body type
+  font: var(--sans-body-type);
+  color: var(--sans-body-type__color);
+  letter-spacing: var(--sans-body-type__letter-spacing);
+*/
+  --sans-body-type: normal normal 400 1.3rem/1.75em var(--sans-body-type-face);
+  --sans-body-type__color: var(--text-color);
+  --sans-body-type__letter-spacing: 0.035em;
+
+  /*
+  Standard Sans-serif small body type
+  font: var(--sans-body-type--small);
+  color: var(--sans-body-type--small__color);
+  letter-spacing: var(--sans-body-type--small__letter-spacing);
+*/
+
+  --sans-body-type--small: normal normal 400 1.1rem/1.75em
+    var(--sans-body-type-face);
+  --sans-body-type--small__color: var(--text-color);
+  --sans-body-type--small__letter-spacing: 0.035em;
+
+  /*
+  Standard Sans-serif small, short line body type
+  font: var(--sans-body-type--small--short);
+  color: var(--sans-body-type--small--short__color);
+  letter-spacing: var(--sans-body-type--small--short__letter-spacing);
+*/
+
+  --sans-body-type--small--short: normal normal 400 1.1rem/1.5em
+    var(--sans-body-type-face);
+  --sans-body-type--small--short__color: var(--text-color);
+  --sans-body-type--small--short__letter-spacing: 0.035em;
+
+  /*
+  Standard Sans-serif big body type
+  font: var(--sans-body-type--big);
+  color: var(--sans-body-type--big__color);
+  letter-spacing: var(--sans-body-type--big__letter-spacing);
+*/
+
+  --sans-body-type--big: normal normal 400 1.7rem/1.85em
+    var(--sans-body-type-face);
+  --sans-body-type--big__color: var(--text-color);
+  --sans-body-type--big__letter-spacing: 0.035em;
+
+  /*
+   Sans Body Headline
+   font: var(--sans-body-type--headline);
+   color: var(--sans-body-type--headline__color);
+   letter-spacing: var(--sans-body-type--headline__letter-spacing);
+  */
+  --sans-body-type--headline: normal normal 400 2.4rem/3.2rem
+    var(--sans-body-type-face);
+  --sans-body-type--headline__color: var(--text-color);
+  --sans-body-type--headline__letter-spacing: 0.035em;
+
+  /*
+  Sans Body Subhead 1
+  font: var(--sans-body-type--subhead-1);
+  color: var(--sans-body-type--subhead-1__color);
+  letter-spacing: var(--sans-body-type--subhead-1__letter-spacing);
+*/
+
+  /**
+   * Sans Body Headlines for Screen
+   */
+
+  --sans-body-type--subhead-1: normal normal 400 1.8rem/2.4rem
+    var(--sans-body-type-face);
+  --sans-body-type--subhead-1__color: var(--text-color);
+  --sans-body-type--subhead-1__letter-spacing: 0.035em;
+
+  /*
+    Sans Body Subhead 2
+    font: var(--sans-body-type--subhead-2);
+    color: var(--sans-body-type--subhead-2__color);
+    letter-spacing: var(--sans-body-type--subhead-2__letter-spacing);
+  */
+
+  --sans-body-type--subhead-2: normal normal 400 1.6rem/1.5em
+    var(--sans-body-type-face);
+  --sans-body-type--subhead-2__color: var(--text-color);
+  --sans-body-type--subhead-2__letter-spacing: 0.035em;
+
+  /*
+  Sans Body Subhead 3
+  font: var(--sans-body-type--subhead-3);
+  color: var(--sans-body-type--subhead-3__color);
+  letter-spacing: var(--sans-body-type--subhead-3__letter-spacing);
+*/
+  --sans-body-type--subhead-3: normal normal 500 1.3rem/1.8rem
+    var(--sans-body-type-face);
+  --sans-body-type--subhead-3__color: var(--text-color);
+  --sans-body-type--subhead-3__letter-spacing: 0.035em;
+}

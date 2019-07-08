@@ -1,0 +1,189 @@
+html {
+  /* ui type vars */
+
+  --ui-type-face: 'Roboto', sans-serif;
+
+  /**
+   * Basic UI Type
+   */
+
+  /*
+    basic ui type intended for paragraph text blocks
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+  */
+
+  --ui-type: normal normal 400 1.3rem/1.75rem var(--ui-type-face);
+  --ui-type__color: var(--text-color);
+  --ui-type__letter-spacing: 0.025em;
+
+  /*
+    condensed ui type intended for tables,e tc
+    font: var(--ui-type--condensed);
+    color: var(--ui-type--condensed__color);
+    letter-spacing: var(--ui-type--condensed__letter-spacing);
+    font-stretch: condensed;
+    Note: IE Edge does not allow font-stretch property in font shorthand
+  */
+  --ui-type--condensed: normal normal 400 1.3rem/1.75rem var(--ui-type-face);
+  --ui-type--condensed__font-stretch: condensed;
+  --ui-type--condensed__color: var(--text-color);
+  --ui-type--condensed__letter-spacing: 0.025em;
+
+  /*
+    basic ui type intended for short lines of text
+    font: var(--ui-type--short);
+    color: var(--ui-type--short__color);
+    letter-spacing: var(--ui-type--short__letter-spacing);
+   */
+
+  --ui-type--short: normal normal 400 1.3rem/1.5rem var(--ui-type-face);
+  --ui-type--short__color: var(--text-color);
+  --ui-type--short__letter-spacing: 0.035em;
+
+  /*
+  UI Big Type
+   font: var(--ui-type--big);
+   color: var(--ui-type--big__color);
+   letter-spacing: var(--ui-type--big__letter-spacing);
+  */
+  --ui-type--big: normal normal 400 1.6rem/2rem var(--ui-type-face);
+  --ui-type--big__color: var(--text-color);
+  --ui-type--big__letter-spacing: 0.025em;
+
+  /*
+  UI Small Type
+   font: var(--ui-type--small);
+   color: var(--ui-type--small__color);
+   letter-spacing: var(--ui-type--small__letter-spacing);
+  */
+  --ui-type--small: normal normal 400 1.1rem/1.4rem var(--ui-type-face);
+  --ui-type--small__color: var(--text-color);
+  --ui-type--small__letter-spacing: 0.025em;
+
+  /*
+    Ui Caption
+    font: var(--ui-type--caption);
+    color: var(--ui-type--caption__color);
+    letter-spacing: var(--ui-type--caption__letter-spacing);
+  */
+  --ui-type--caption: normal normal 400 1.3rem/1.75rem var(--ui-type-face);
+  --ui-type--caption__color: var(--text-color);
+  --ui-type--caption__letter-spacing: 0.035em;
+
+  /*
+    UI Label
+    font: var(--ui-type--label);
+    color: var(--ui-type--label__color);
+    letter-spacing: var(--ui-type--label__letter-spacing);
+  */
+  --ui-type--label: normal normal 400 1.3rem/1.5rem var(--ui-type-face);
+  --ui-type--label__color: var(--text-color--light);
+  --ui-type--label__letter-spacing: 0.025em;
+
+  /*
+    UI Light Type
+    font: var(--ui-type--light);
+    color: var(--ui-type--light__color);
+    letter-spacing: var(--ui-type--light__letter-spacing);
+  */
+
+  --ui-type--light: normal normal 300 1.3rem/1.5rem var(--ui-type-face);
+  --ui-type--light__color: var(--text-color--light);
+  --ui-type--light__letter-spacing: 0.025em;
+
+  /*
+    Mono Type
+    font: var(--mono-type);
+    color: var(--mono-type__color);
+    letter-spacing: var(--mono-type__letter-spacing);
+   */
+
+  /* monospace */
+  --mono-type-face: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+  --mono-type: normal normal 400 1.3rem/1.5em var(--mono-type-face);
+  --mono-type__color: var(--text-color);
+  --mono-type__letter-spacing: 0;
+
+  /**
+   * HEADLINE TYPE
+   */
+
+  /*
+  UI Headline
+   font: var(--ui-type--headline);
+   color: var(--ui-type--headline__color);
+   letter-spacing: var(--ui-type--headline__letter-spacing);
+  */
+  --ui-type--headline: normal normal 400 2.4rem/3.2rem var(--ui-type-face);
+  --ui-type--headline__color: var(--text-color);
+  --ui-type--headline__letter-spacing: 0.035em;
+
+  /*
+   UI Big Headline
+   font: var(--ui-type--big--headline);
+   color: var(--ui-type--big--headline__color);
+   letter-spacing: var(--ui-type--big--headline__letter-spacing);
+  */
+  --ui-type--big--headline: normal normal 400 3rem/4rem var(--ui-type-face);
+  --ui-type--big--headline__color: var(--text-color);
+  --ui-type--big--headline__letter-spacing: 0.035em;
+
+  /*
+    UI Subhead 1
+    font: var(--ui-type--subhead-1);
+    color: var(--ui-type--subhead-1__color);
+    letter-spacing: var(--ui-type--subhead-1__letter-spacing);
+  */
+  --ui-type--subhead-1: normal normal 400 1.8rem/2.4rem var(--ui-type-face);
+  --ui-type--subhead-1__color: var(--text-color);
+  --ui-type--subhead-1__letter-spacing: 0.035em;
+
+  /*
+     UI Subhead 2
+     font: var(--ui-type--subhead-2);
+     color: var(--ui-type--subhead-2__color);
+     letter-spacing: var(--ui-type--subhead-2__letter-spacing);
+   */
+
+  --ui-type--subhead-2: normal normal 400 1.6rem/2rem var(--ui-type-face);
+  --ui-type--subhead-2__color: var(--text-color);
+  --ui-type--subhead-2__letter-spacing: 0.035em;
+
+  /*:
+     UI Subhead 3
+     font: var(--ui-type--subhead-3);
+     color: var(--ui-type--subhead-3__color);
+     letter-spacing: var(--ui-type--subhead-3__letter-spacing);
+   */
+  --ui-type--subhead-3: normal normal 500 1.3rem/1.8rem var(--ui-type-face);
+  --ui-type--subhead-3__color: var(--text-color);
+  --ui-type--subhead-3__letter-spacing: 0.035em;
+
+  /**
+   * Display Type
+   * @type {[type]}
+   */
+
+  /*
+   UI Display 1
+   font: var(--ui-type--display-1);
+   color: var(--ui-type--display-1__color);
+   letter-spacing: var(--ui-type--display-1__letter-spacing);
+  */
+
+  --ui-type--display-1: normal normal 400 3.4rem/4rem var(--ui-type-face);
+  --ui-type--display-1__color: var(--text-color);
+  --ui-type--display-1__letter-spacing: 0.035em;
+
+  /*
+   UI Display 2
+   font: var(--ui-type--display-2);
+   color: var(--ui-type--display-2__color);
+   letter-spacing: var(--ui-type--display-2__letter-spacing);
+  */
+  --ui-type--display-2: normal normal 400 4.5rem/4.8rem var(--ui-type-face);
+  --ui-type--display-2__color: var(--text-color);
+  --ui-type--display-2__letter-spacing: 0.035em;
+}

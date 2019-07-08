@@ -1,0 +1,10 @@
+.rdfa-person [property="schema:name"] ~ [property="schema:givenName"],
+.rdfa-person [property="schema:name"] ~ [property="schema:additionalName"],
+.rdfa-person [property="schema:name"] ~ [property="schema:familyName"] {
+   display: none;
+ }
+
+.rdfa-person [property="schema:additionalName"]::before,
+.rdfa-person [property="schema:familyName"]::before {
+  content: ' ';
+}

@@ -1,0 +1,92 @@
+.paper-autocomplete {
+  position: relative;
+
+  & * {
+    box-sizing: border-box;
+  }
+}
+
+.paper-autocomplete .paper-input {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.paper-autocomplete__results {
+  position: absolute;
+  z-index: 5;
+  min-height: 40px;
+  max-height: 240px;
+  overflow-y: auto;
+  -ms-overflow-style: -ms-autohiding-scrollbar;
+  width: 100%;
+  padding: 0;
+  font-size: 12px;
+  font-family: var(--ui-type-face);
+  box-shadow: 1px 1px 3px lightgrey;
+  background-color: white;
+  margin: 0;
+  top: 27px;
+}
+
+.paper-autocomplete .float-label ~ .paper-autocomplete__results {
+  top: 45px;
+}
+
+.paper-autocomplete__results:empty {
+  min-height: 0;
+  max-height: 0;
+  box-shadow: none;
+}
+
+.paper-autocomplete__results li {
+  box-sizing: border-box;
+  text-align: left;
+  padding: 0 8px;
+  min-height: 32px;
+  background-color: white;
+  transition: background-color 0.2s ease-out;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.paper-autocomplete__results li > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+.paper-autocomplete__results li.highlighted {
+  background-color: var(--card-bg-color--inactive);
+  cursor: pointer;
+}
+
+.paper-autocomplete__results li.selected {
+  background-color: var(--hl-blue-3);
+}
+
+.paper-autocomplete__results li img {
+  max-height: 50px;
+}
+
+.icon-autocomplete-loading--16px {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  height: 16px;
+  width: 16px;
+  vertical-align: middle;
+  opacity: 1;
+  margin: auto;
+  background-image: url('/images/icons/icon_loading_16px.gif');
+}
+
+.icon-autocomplete-loading--24px {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  border: none;
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
+  opacity: 1;
+  margin: auto;
+  background-image: url('/images/icons/icon_loading_24px.gif');
+}

@@ -1,0 +1,117 @@
+.menu__item {
+  padding: 0;
+  margin: 0;
+  color: var(--text-color);
+
+  &--fixed-height {
+    & > button,
+    & > a,
+    & > button > span,
+    & > span,
+    & > div,
+    &__item-text {
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+
+  &:focus {
+    background-color: var(--accent-color-2-a);
+    outline: none;
+  }
+  & > button {
+    padding: 0;
+    margin: 0;
+    vertical-align: middle;
+    box-sizing: border-box;
+
+    border: none;
+    background: transparent;
+    text-align: left;
+    width: 100%;
+    cursor: inherit;
+  }
+
+  & > a,
+  & > button > span,
+  & > span,
+  & > div {
+    white-space: nowrap;
+    padding: 0 20px 0 16px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    font: var(--ui-type);
+    vertical-align: middle;
+    box-sizing: border-box;
+
+    border: none;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    width: 100%;
+    cursor: inherit;
+    overflow: hidden; /* fix for firefox issue */
+  }
+
+  & :any-link {
+    color: inherit;
+  }
+
+  & > button::-moz-focus-inner {
+    /* this is specifically for the weird internal extra padding in Gecko */
+    padding: 0;
+    border: 0;
+  }
+
+  &--divider {
+    border-top: 1px solid var(--ruling-color);
+  }
+
+  &--disabled,
+  &--disabled:hover {
+    color: var(--grey-400);
+  }
+
+  &:hover:not(&--disabled) {
+    background-color: var(--grey-100-a);
+  }
+} /* end of item */
+
+.menu__item-label {
+  color: var(--text-color--light);
+  padding: var(--xsgrd) var(--sgrd) 0.4rem var(--sgrd);
+}
+
+.menu__item-divider {
+  height: 1px;
+  background-color: var(--ruling-color);
+  width: 100%;
+}
+
+.menu__card-item {
+  &--divider {
+    border-top: 1px solid var(--grey-200);
+  }
+}
+
+.menu__item-icon {
+  box-sizing: border-box;
+  height: 40px;
+  padding: 9px 8px 9px 0;
+  flex-grow: 0;
+  display: flex;
+  align-items: center;
+}
+
+.menu__item-text {
+  flex-grow: 1;
+  color: var(--text-color);
+}
+
+.menu__item--disabled,
+.menu__item--disabled:hover {
+  & .menu__item-text {
+    color: var(--grey-400);
+  }
+}

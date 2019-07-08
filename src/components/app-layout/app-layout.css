@@ -1,0 +1,443 @@
+html {
+  --app-sidebar-width: 25vw;
+  --app-sidebar-width--min: 24rem;
+  --app-sidebar-width--max: 28rem;
+  --widget-icon-pane-width: 5.6rem;
+}
+
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+
+  @media print {
+    /* Firefox can not handle flex-box for print page-layout and will only print one-page.
+    We do not need flexbox in print as the margins are hidden */
+    display: block;
+  }
+  /**
+   * Header
+   */
+  &__header {
+    transition: top 0.2s;
+
+    & .header {
+      position: relative; /* header component is fixed position by default so override that here */
+    }
+    width: 100%;
+
+    z-index: 200;
+  }
+
+  /**
+   * content from the right panel that get's inlined into the middle content on mobile
+   * - we turn this content into a scrolling gallery view.
+   */
+
+  &__mobile-inlined-right {
+    overflow-x: auto;
+  }
+  /**
+   * Left sidebar
+   * note: not in flexbox flow
+   */
+  &__left {
+    /* the padding on top can interfere with sticky banners so make sure it doesn't receive click events. */
+    pointer-events: none;
+
+    & > * {
+      pointer-events: all;
+    }
+
+    position: absolute;
+    width: var(--app-sidebar-width);
+    min-width: var(--app-sidebar-width--min);
+    max-width: var(--app-sidebar-width--max);
+    overflow-y: hidden;
+    overflow-x: hidden;
+    padding-top: 5.6rem;
+    /* padding-bottom: 5.6rem; */ /* this creates a problem with scrolling content if the footer is not visible */
+    top: 0;
+    height: 100%;
+    left: 0;
+    box-sizing: border-box;
+    z-index: 10;
+    transition: left 0.2s, padding-top 0.1s;
+
+    /* make overlay for small-desktop */
+    @media (--small-desktop) {
+      position: fixed;
+      background-color: white;
+      box-shadow: var(--mid-shadow);
+      z-index: 100;
+    }
+
+    @media (--tablet) {
+      min-width: 50%;
+    }
+
+    @media (--small-tablet) {
+      min-width: 100%;
+    }
+
+    &--stickyOnDesktop {
+      position: fixed;
+    }
+
+    &--backgroundOnDesktop {
+      background-color: var(--card-bg-color);
+    }
+
+    @media print {
+      display: none;
+    }
+  }
+
+  &--left-collapsed &__left {
+    left: calc(var(--app-sidebar-width--max) * -1);
+
+    /*@media (--small-desktop) {
+      left: calc(var(--app-sidebar-width--min) * -1);
+    }*/
+
+    @media (--tablet) {
+      left: -50%;
+    }
+
+    @media (--small-tablet) {
+      left: -100%;
+    }
+    & > * {
+      visibility: hidden;
+    }
+  }
+
+  /**
+   * Middle
+   * This contains the main body content and scrolls on the html body to optimize performance.
+   * it contains left and right spacers to accomodate any visible side panels.
+   */
+
+  &__middle {
+    flex: 1 0 auto;
+    box-sizing: border-box;
+    z-index: 1;
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+
+    padding-top: 5.6rem; /* account for header when header is fixed position */
+
+    @media print {
+      /* Firefox can not handle flex-box for print page-layout and will only print one-page.
+        We do not need flexbox in print as the margins are hidden */
+      display: block;
+
+      padding-top: 0;
+    }
+  }
+
+  /* Middle Left Spacer */
+
+  /* middle-left-spacer makes room for left panel*/
+  &__middle-left-spacer {
+    flex: 1 0 var(--app-sidebar-width);
+    transition: all 0.2s;
+    min-width: var(--app-sidebar-width--max);
+    pointer-events: none;
+    /* overlay left sidebar on small-desktop */
+    @media (--small-desktop) {
+      min-width: 0;
+      flex: 0 0 0;
+    }
+
+    @media print {
+      display: none;
+    }
+  }
+
+  /* in maxmimize middle mode, the left spacer still has to hold space for panel when it's open */
+  &__middle--maximize &__middle-left-spacer {
+    flex: 1 0 var(--app-sidebar-width);
+    min-width: var(--app-sidebar-width--max);
+    max-width: var(--app-sidebar-width--max);
+
+    /* overlay left sidebar on small-desktop */
+    @media (--small-desktop) {
+      min-width: 0;
+      flex: 0 0 0;
+    }
+  }
+
+  /* in maxmimize middle mode, when left panel is closed, allow more space for middle content */
+  &--left-collapsed &__middle--maximize &__middle-left-spacer {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 0;
+  }
+
+  &--left-collapsed &__middle-left-spacer {
+    width: 0;
+
+    @media (--up-to-xlarge-desktop) {
+      min-width: auto;
+    }
+  }
+
+  /* Middle Content */
+  /* Middle content takes up the space left between left and right spacers */
+  &__middle-content {
+    flex: 2 1 100%;
+    /* this must be set to hidden to prevent chrome performance issue. 
+    see: https://www.reddit.com/r/webdev/comments/alg8az/anyone_experiencing_issues_with_flexbox_and/ */
+    overflow-x: hidden;
+  }
+
+  /* in maximize mode, the middle content is given higher flex grow value to expand more */
+  &__middle--maximize &__middle-content {
+    flex: 3 1 100%;
+  }
+
+  /* Middle Right Spacer */
+
+  &__middle-right-spacer {
+    flex: 1 0 var(--app-sidebar-width);
+    transition: all 0.2s;
+    min-width: var(--app-sidebar-width--min);
+
+    @media (--small-desktop) {
+      min-width: 0;
+      max-width: 0;
+    }
+
+    @media print {
+      display: none;
+    }
+  }
+
+  &__middle--maximize &__middle-right-spacer {
+    flex: 1 0 var(--app-sidebar-width);
+    min-width: var(--app-sidebar-width--max);
+    max-width: var(--app-sidebar-width--max);
+
+    /* we might want to hide right panel on small screens, but this should be managed in the jS to maintain app-layout context*/
+    /*@media (--small-desktop) {
+    }*/
+  }
+
+  &--right-collapsed &__middle--maximize &__middle-right-spacer {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: 0;
+  }
+
+  &--right-collapsed &__middle-right-spacer {
+    width: 0;
+
+    @media (--up-to-xlarge-desktop) {
+      min-width: auto;
+    }
+  }
+
+  /* make room if widget panel is present */
+
+  &--widget-panel &__middle-right-spacer {
+    width: calc(var(--app-sidebar-width) + var(--widget-icon-pane-width));
+    min-width: calc(
+      var(--app-sidebar-width--max) + var(--widget-icon-pane-width)
+    );
+    max-width: calc(
+      var(--app-sidebar-width--max) + var(--widget-icon-pane-width)
+    );
+
+    /* widget panel overlays on mobile views */
+    @media (--small-desktop) {
+      min-width: var(--widget-icon-pane-width);
+      max-width: var(--widget-icon-pane-width);
+    }
+  }
+
+  &--widget-panel&--right-collapsed &__middle-right-spacer {
+    width: var(--widget-icon-pane-width);
+    min-width: var(--widget-icon-pane-width);
+  }
+
+  &--widget-panel&--right-collapsed &__middle--maximize &__middle-right-spacer {
+    flex: 1 1 0;
+    min-width: var(--widget-icon-pane-width);
+    max-width: var(--widget-icon-pane-width);
+  }
+
+  /* Virtual Right Spacer */
+  /* only make space if the right-margin expanded prop is true*/
+  &__virtual-right-spacer {
+  }
+  &--right-expanded &__virtual-right-spacer {
+    flex: 1 0 var(--app-sidebar-width);
+    transition: all 0.2s;
+    min-width: var(--app-sidebar-width--min);
+  }
+
+  &--right-expanded &__middle--maximize &__virtual-right-spacer {
+    min-width: var(--app-sidebar-width--max);
+    max-width: var(--app-sidebar-width--max);
+  }
+
+  /*
+  a sticky footer for the middle content - primarily for use by action buttons.
+  The AppLayoutMiddleFooter contains middle-left-spacer and middle-right-spacer
+  that recieve the same css class as used in the app-layout-middle above so that
+  the widths stay in sync.
+  */
+  &__middle-footer {
+    position: fixed;
+    bottom: 56px;
+    width: 100vw;
+    display: flex;
+    left: 0;
+    z-index: 1000;
+    /* the sticky footer can interfere with pointer events for elements behind it - make sure only children receive them */
+    pointer-events: none;
+    & > * {
+      pointer-events: auto;
+    }
+  }
+
+  /* we don't need to add space for the headerbar if the banner is there */
+  &__banner ~ &__middle {
+    padding-top: 2.4rem;
+  }
+
+  /*----------- right -----------*/
+  /* note: not in flexbox flow */
+  &__right {
+    transition: left 0.2s, top 0.1s;
+    position: absolute;
+    width: var(--app-sidebar-width);
+    max-width: var(--app-sidebar-width--max);
+    min-width: var(--app-sidebar-width--min);
+    overflow-y: auto;
+    overflow-x: hidden;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    padding-top: 5.6rem;
+    top: 0;
+    height: 100%;
+    right: 0;
+    box-sizing: border-box;
+    z-index: 50;
+    display: flex;
+    z-index: 2;
+
+    @media print {
+      display: none;
+    }
+
+    &--stickyOnDesktop {
+      position: fixed;
+    }
+
+    &--backgroundOnDesktop {
+      background-color: white;
+    }
+
+    &--stickyOnMobile {
+      /* make overlay for small-desktop */
+      @media (--small-desktop) {
+        position: fixed;
+        background-color: white;
+        box-shadow: var(--mid-shadow);
+        z-index: 100;
+      }
+    }
+  }
+
+  &--widget-panel &__right {
+    width: calc(var(--app-sidebar-width) + var(--widget-icon-pane-width));
+    min-width: calc(
+      var(--app-sidebar-width--min) + var(--widget-icon-pane-width)
+    );
+    max-width: calc(
+      var(--app-sidebar-width--max) + var(--widget-icon-pane-width)
+    );
+  }
+
+  &--right-collapsed &__right {
+    /*right: calc(var(--app-sidebar-width--max) * -1);*/
+    left: 100%;
+  }
+
+  &--widget-panel&--right-collapsed &__right {
+    left: calc(100% - 56px);
+  }
+
+  /**
+   * Virtual Right Margin
+   */
+
+  &--right-expanded &__virtual-right-margin-content--expanded {
+    box-sizing: border-box;
+    /* assuming parent is centered, this will position element to right side of screen */
+    right: calc(50% - 50vw);
+    position: absolute;
+    top: 0;
+    width: var(--app-sidebar-width);
+    min-width: var(--app-sidebar-width--min);
+    /*max-width: var(--app-sidebar-width--max);*/
+
+    @media (--small-desktop) {
+      /* left panel converts to overlay mode in small-desktop. need to adjust position */
+      right: calc((33% - 32px) - 50vw);
+    }
+  }
+
+  /* maximized layout */
+
+  &--right-expanded
+    &__middle--maximize
+    &__virtual-right-margin-content--expanded {
+    min-width: var(--app-sidebar-width--max);
+    max-width: var(--app-sidebar-width--max);
+    padding-right: var(--sgrd);
+
+    @media (--small-desktop) {
+      /*
+      left panel converts to overlay mode in small-desktop. need to adjust position.
+      To get to the right margin, the calcs takes center of the parent and subtracts half the width of card body.
+      It then subtracts the width of the sidebar
+      */
+      /* right: calc((50% - (50vw - 140px)) - 280px); */
+      /* calc above get's mis-optimized by css next. below is a workarount
+      see: https://github.com/postcss/postcss-calc/issues/41 */
+      right: calc((0px - (50vw - 140px) + 50%) - 280px);
+    }
+  }
+
+  /* maximized layout and left sidebar collapsed */
+  &--right-expanded&--left-collapsed
+    &__middle--maximize
+    &__virtual-right-margin-content--expanded {
+    right: calc((0px - (50vw - 140px) + 50%) - 280px);
+  }
+
+  /*----------- footer -----------*/
+
+  &__footer {
+    position: relative;
+    z-index: 100;
+
+    @media print {
+      display: none;
+    }
+
+    &--sticky {
+      @media (--beyond-tablet) {
+        position: fixed;
+        bottom: 0;
+        width: 100vw;
+      }
+    }
+  }
+}

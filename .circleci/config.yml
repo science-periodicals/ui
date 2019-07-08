@@ -1,0 +1,120 @@
+version: 2
+jobs:
+  test:
+    working_directory: ~/ui
+    docker:
+      - image: circleci/node:dubnium
+      - image: ibmcom/cloudant-developer
+      - image: redis
+    environment:
+      COUCH_PROTOCOL: 'http:'
+      COUCH_HOST: 127.0.0.1
+      COUCH_PORT: 5984
+      COUCH_PORT_HTTP: 5984
+      COUCH_ADMIN_USERNAME: admin
+      COUCH_ADMIN_PASSWORD: pass
+      COUCH_AUTH_DB: _users
+      DB_NAME: test-ui
+      COUCH_LOG_DB: test-ui-log
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ''
+    steps:
+      - checkout
+      - run: echo '//registry.npmjs.org/:_authToken='$NPM_PRIVATE_AUTH_TOKEN > $HOME/.npmrc
+      - restore_cache:
+          keys:
+            - v2-node_modules-{{ checksum "package.json" }}
+            - v2-node_modules-
+      - run: npm install
+      - save_cache:
+          key: v2-node_modules-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: npm test
+      - persist_to_workspace:
+          root: ~/ui
+          paths: .
+
+  backstop:
+    resource_class: large
+    working_directory: ~/ui
+    docker:
+      - image: circleci/node:dubnium-browsers
+      - image: ibmcom/cloudant-developer
+      - image: redis
+    environment:
+      COUCH_PROTOCOL: 'http:'
+      COUCH_HOST: 127.0.0.1
+      COUCH_PORT: 5984
+      COUCH_ADMIN_USERNAME: admin
+      COUCH_ADMIN_PASSWORD: pass
+      COUCH_AUTH_DB: _users
+      DB_NAME: test-ui
+      COUCH_LOG_DB: log
+      REDIS_HOST: 127.0.0.1
+      REDIS_PORT: 6379
+      REDIS_PASSWORD: ''
+      AWS_REGION: us-east-1
+    steps:
+      - attach_workspace:
+          at: ~/ui
+      - run: echo '//registry.npmjs.org/:_authToken='$NPM_PRIVATE_AUTH_TOKEN > $HOME/.npmrc
+      - run:
+          name: start
+          command: npm start
+          background: true
+          no_output_timeout: 2h
+      - run:
+          name: wait for the server to start responding.
+          command: wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t inf http://127.0.0.1:3030
+      - run:
+          name: backstop
+          command: npm run backstop:test # -- --filter create-release-ctx3-1
+          no_output_timeout: 3m
+      - run:
+          name: prepare artifacts
+          command: (cd backstop_data && zip -r ../backstop-artifacts.zip bitmaps_test ci_report html_report)
+          when: always # need to run even if backstop failed
+          no_output_timeout: 10m
+      - store_artifacts:
+          path: ~/ui/backstop-artifacts.zip
+
+  publish:
+    working_directory: ~/ui
+    docker:
+      - image: circleci/node:dubnium
+    steps:
+      - attach_workspace:
+          at: ~/ui
+      - run:
+          name: Authenticate with registry
+          command: echo '//registry.npmjs.org/:_authToken='$NPM_PRIVATE_AUTH_TOKEN > $HOME/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+
+workflows:
+  version: 2
+  test-publish:
+    jobs:
+      - test:
+          filters: # required since `publish` has tag filters AND requires `test`
+            tags:
+              only: /.*/
+
+      - backstop:
+          requires:
+            - test
+          filters:
+            branches:
+              only: /.*/
+
+      - publish:
+          requires:
+            - test
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v.*/

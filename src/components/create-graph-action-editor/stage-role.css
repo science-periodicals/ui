@@ -1,0 +1,57 @@
+.stage-role {
+  height: 100%;
+  background-color: var(--grey-50);
+  display: flex;
+  flex-direction: column;
+  flex: 1 0 auto;
+  margin-bottom: var(--xsgrd);
+
+  & * {
+    box-sizing: border-box;
+  }
+
+  &__add-stage {
+    padding: 0 var(--sgrd);
+
+    width: 100%;
+    justify-content: space-between;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--grey-25);
+    height: 32px;
+    box-sizing: border-box;
+    transition: height 0.2s;
+
+    &__button {
+      flex: 0 0 24px;
+    }
+
+    & .action-autocomplete {
+      transition: opacity 0.2s;
+      flex: 1 1 auto;
+    }
+
+    &--inactive .action-autocomplete .paper-input {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    &--inactive &__button {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    &--active {
+      height: 56px;
+    }
+    &--active .action-autocomplete .paper-input {
+      opacity: 1;
+    }
+
+    /*&--active &__button {
+      opacity: 0;
+    }*/
+  }
+}

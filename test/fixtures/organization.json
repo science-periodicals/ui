@@ -1,0 +1,27 @@
+{
+  "@context": "https://science.ai",
+  "@id": "org:wolfram-hart",
+  "@type": "Organization",
+  "name": "Wolf, Ram, & Hart",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "email": "mailto:hellmouth@wolfram-hart.com"
+  },
+  "member": [
+    {
+      "@type": "Role",
+      "roleName": "member",
+      "member": "user:robin"
+    },
+    {
+      "@type": "Role",
+      "roleName": "member",
+      "member": "user:buffy"
+    },
+    {
+      "@type": "Role",
+      "roleName": "member",
+      "member": "user:spike"
+    }
+  ]
+}

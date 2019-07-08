@@ -1,0 +1,50 @@
+.roles-column-layout {
+  padding: 0 var(--sgrd) var(--sgrd) var(--sgrd);
+
+  @media (--small-tablet) {
+    padding: 0 var(--xsgrd) var(--xsgrd) var(--xsgrd);
+  }
+
+  &--multi-column {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  &__multi-column {
+    width: 100%;
+
+    &__header-row {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    &__header-col {
+      flex-basis: 25%;
+      max-width: 25%;
+      margin: 0 4px;
+      position: relative;
+    }
+
+    &__body-row {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: stretch;
+    }
+
+    &__body-col {
+      flex-basis: 25%;
+      max-width: 25%;
+      margin: 0 4px;
+      position: relative;
+    }
+  }
+
+  &__header {
+    padding: 4px 0;
+    min-height: var(--lgrd);
+    display: flex;
+    align-items: center;
+  }
+}

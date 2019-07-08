@@ -1,0 +1,120 @@
+.footer-container.footer--sticky,
+.footer-container.footer--sticky.footer--short-body {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 300;
+  box-sizing: border-box;
+  height: 5.6rem;
+}
+
+.app-layout .footer-container.footer--sticky,
+.app-layout .footer-container.footer--sticky.footer--short-body {
+  position: relative;
+}
+
+.footer {
+  padding: 16px;
+  background-color: var(--card-bg-color);
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-color--light);
+  align-items: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  hyphens: none;
+  box-shadow: 0px 0px 4px var(--grey-300-a);
+  border-top: 1px solid var(--ruling-color);
+
+  & .iconoclass {
+    color: var(--text-color--light);
+  }
+  @media print {
+    display: none;
+  }
+}
+
+.footer.footer--padding_large {
+  padding: 32px;
+}
+
+.footer img {
+  width: 24px;
+  height: 24px;
+  margin: 0 8px;
+  opacity: 0.5;
+}
+.footer img:hover {
+  opacity: 1;
+}
+.footer a,
+.footer :link,
+.footer :visited {
+  color: var(--text-color--light);
+}
+.footer .footer__made-by a {
+  color: black;
+}
+.footer a:hover {
+  color: var(--accent-color);
+}
+.footer__item {
+  margin: 0 8px;
+  text-align: center;
+  line-height: 24px;
+  padding: 0;
+}
+.footer__as {
+  margin: 0 8px;
+  display: flex;
+}
+.footer__copyright {
+  text-align: center;
+  text-transform: uppercase;
+  height: 56px;
+  box-sizing: border-box;
+  padding: 16px 24px;
+  color: var(--text-color--light);
+  letter-spacing: 0.1em;
+  position: relative;
+  font: normal normal 400 11px/15px var(--ui-type);
+  vertical-align: middle;
+}
+
+.footer__links {
+  height: 24px;
+}
+
+.footer__link {
+  margin-left: var(--sgrd);
+  &:first-child {
+    margin-left: 0;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .footer {
+    position: relative;
+    flex-direction: column;
+    padding: 16px 8px;
+    height: auto;
+  }
+  .footer__item {
+    line-height: 16px;
+    padding: 4px 0;
+  }
+  .footer__as {
+    margin: 8px;
+  }
+}
+
+@media screen and (max-height: 900px), screen and (max-width: 800px) {
+  .footer-container.footer--sticky {
+    position: relative;
+  }
+}

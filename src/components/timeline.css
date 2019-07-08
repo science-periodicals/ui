@@ -1,0 +1,363 @@
+html {
+  --color-status-default: var(--grey-300);
+  --color-status-canceled: #ffab91;
+  --color-status-overdue: #fc635d;
+  --color-status-pending: var(--blue-400);
+  --color-status-complete: var(--grey-500);
+}
+
+.timeline {
+  height: 48px;
+  padding: 4px 16px;
+  box-sizing: border-box;
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+}
+
+.timeline * {
+  box-sizing: border-box;
+}
+
+.timeline .timeline__description {
+  color: var(--grey-500);
+  display: flex;
+  font-weight: 400;
+  line-height: 1.1em;
+  margin-top: 4px;
+  margin-bottom: 0;
+  height: 1.1em;
+  opacity: 0;
+  transition: all 0.2s;
+  & strong {
+    font-weight: 500;
+  }
+  position: relative;
+  z-index: 10;
+}
+
+.timeline.showText .timeline__description,
+.timeline:hover .timeline__description {
+  margin: 6px 0 6px 0;
+  height: 1.1em;
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+.timeline__description-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.timeline__actions {
+  background-color: var(--grey-300);
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  height: 10px;
+  position: relative;
+  width: 100%;
+  box-shadow: 0 0 8px 10px rgba(255, 255, 255, 0.5);
+}
+
+.timeline.rejected .timeline__actions {
+  /*border: 2px solid red;*/
+  box-sizing: border-box;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--grey-200),
+    var(--grey-200) 3px,
+    white 4px,
+    white 5px
+  );
+}
+
+.timeline .timeline__actions:after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  margin: 4px 50%;
+  border-radius: 1px;
+  opacity: 0.5;
+  background-color: #17e30f;
+  transition: all 4s;
+  pointer-events: none;
+}
+
+.timeline.published .timeline__actions:after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 2px;
+  margin: 4px;
+  border-radius: 1px;
+  opacity: 0.2;
+  background-color: #17e30f;
+  transition: all 4s;
+  pointer-events: none;
+}
+
+/* simple lines on both extremity of the timeline */
+.timeline__date-range-start,
+.timeline__date-range-end,
+.timeline__stage-start {
+  position: absolute;
+}
+
+.timeline__date-range-start::before,
+.timeline__stage-start::before {
+  cursor: pointer;
+  content: '';
+  background-color: var(--grey-500);
+  width: 2px;
+  height: 10px;
+  position: absolute;
+  left: 4px;
+  top: 0;
+}
+.timeline__stage-start::before {
+  background-color: white;
+}
+.timeline__date-range-end::before {
+  cursor: pointer;
+  content: '';
+  background-color: var(--grey-500);
+  width: 2px;
+  height: 10px;
+  position: absolute;
+  left: -6px;
+  top: 0;
+}
+
+.timeline__date-range-start:hover,
+.timeline__date-range-end:hover,
+.timeline__stage-start:hover {
+  background-color: var(--grey-900);
+}
+
+/* the now dot */
+.timeline__now {
+  position: absolute;
+  background-color: transparent;
+  border: 2px solid var(--grey-500);
+  border-radius: 8px;
+  height: 14px;
+  margin-top: -2px;
+  margin-left: -2px;
+  width: 14px;
+  z-index: 4;
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* the dots */
+.timeline__action {
+  background-color: var(--grey-500);
+  border-radius: 5px;
+  height: 10px;
+  position: absolute;
+  width: 10px;
+  z-index: 1;
+  color: white;
+  transition: left 180ms linear;
+}
+
+.timeline.published .timeline__action,
+.timeline.rejected .timeline__action {
+  opacity: 0.3;
+}
+
+.timeline.published .timeline__action:hover,
+.timeline.rejected .timeline__action:hover {
+  opacity: 1;
+}
+.timeline__action:hover {
+  cursor: pointer;
+  z-index: 5;
+  opacity: 1;
+}
+
+.timeline__action--pending {
+  background-color: var(--color-status-pending);
+  z-index: 2;
+}
+
+.timeline__action--complete {
+  background-color: var(--action-completed-color);
+  z-index: 2;
+}
+
+.timeline__action--canceled {
+  background-color: var(--action-canceled-color);
+  z-index: 2;
+}
+
+.timeline__action--overdue {
+  background-color: var(--color-status-overdue);
+  z-index: 3;
+}
+
+/* add a line to the dot */
+.timeline__action--release::before {
+  content: '';
+  background-color: white;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+}
+.timeline__action--scheduled-time {
+  background-color: var(--hl-yellow-10);
+}
+.timeline__action--scheduled-time:hover {
+  background-color: yellow;
+}
+.timeline__action--scheduled-time::before {
+  content: '';
+  background-color: var(--grey-600);
+  width: 2px;
+  height: 10px;
+  position: absolute;
+  left: 4px;
+  top: 0;
+}
+
+.timeline__action--release.new::before {
+  animation: slide-in-release 0.5s;
+}
+
+@keyframes slide-in-release {
+  from {
+    right: 0;
+    width: 100%;
+    opacity: 0;
+    border-radius: 50%;
+    background-color: grey;
+    left: 0;
+  }
+  to {
+    right: auto;
+    opacity: 1;
+    border-radius: 0;
+  }
+}
+@keyframes spin-in-release {
+  from {
+    transform: rotate(0deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(360deg);
+    opacity: 1;
+  }
+}
+
+.timeline__action__count {
+  position: relative;
+  z-index: 4;
+}
+
+.timeline__action--multiple {
+  color: white;
+  line-height: 10px;
+  box-shadow: 0 0 0 2px var(--grey-400);
+  text-align: center;
+  z-index: 3;
+  font-size: 9px;
+  font-weight: 500;
+  vertical-align: middle;
+}
+
+.timeline__action--overdue.timeline__action--multiple {
+  box-shadow: 0 0 0 2px var(--color-status-overdue);
+  color: #fff;
+}
+
+.timeline__action--pending.timeline__action--multiple {
+  box-shadow: 0 0 0 2px var(--color-status-pending);
+}
+
+.timeline__action--highlight:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  bottom: -3px;
+  right: -3px;
+  border-radius: 10px;
+  border: 2px solid var(--grey-500);
+  opacity: 0.75;
+}
+
+.timeline__action--selected {
+  z-index: 5;
+  /* background-color: var(--accent-color); */
+  opacity: 0.5 !important;
+}
+.timeline__action--selected:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  bottom: -5px;
+  right: -5px;
+  border-radius: 10px;
+  border: 2px solid var(--accent-color);
+  /* background-color: inherit; */
+  z-index: -1;
+  /* box-shadow: var(--mid-shadow); */
+}
+
+.timeline__progress-bar {
+  background-color: transparent;
+  border-radius: 8px;
+  height: 10px;
+  width: 100%;
+  display: flex;
+  padding: 0 4px;
+  margin-top: 4px;
+  box-sizing: border-box;
+}
+
+.timeline__progress-bar.no-progress {
+  background-color: var(--ruling-color);
+  margin: 0 8px;
+  width: calc(100% - 16px);
+}
+
+.timeline__progress-bar > div {
+  background-color: var(--grey-200);
+  margin-right: 1px;
+  height: 10px;
+}
+
+.timeline__progress-bar .progress-point {
+  background-color: #33c748;
+}
+
+.timeline__progress-bar .progress-point.pending {
+  background-color: #fdbc40;
+}
+
+.timeline__progress-bar .progress-point.overdue {
+  background-color: var(--color-status-overdue);
+}
+
+.timeline__progress-bar > div:first-child {
+  border-radius: 8px 0 0 8px;
+}
+
+.timeline__progress-bar > div:last-child {
+  border-radius: 0 8px 8px 0;
+  margin-right: 0;
+}
+
+.timeline__progress-bar > div:only-child {
+  border-radius: 8px;
+}

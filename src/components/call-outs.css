@@ -1,0 +1,81 @@
+.call-outs {
+  &__list {
+    /* clear list styles */
+    padding: 0;
+    margin: 0;
+    /* ---------------- */
+  }
+
+  &__item {
+    cursor: pointer;
+  }
+
+  &__call-out {
+    font: var(--ui-type);
+    color: var(--ui-type__color);
+    letter-spacing: var(--ui-type__letter-spacing);
+
+    transition: color 0.2s, transform 0.2s;
+
+    &:hover,
+    &--entered {
+      color: var(--accent-color);
+    }
+    &--entered {
+      /*transform: scale(1.1);*/
+    }
+  }
+
+  &__call-out-label {
+    cursor: default;
+    min-width: var(--mgrd);
+    min-height: var(--mgrd);
+    border-radius: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0 var(--xsgrd);
+    box-sizing: border-box;
+
+    box-shadow: var(--mid-shadow);
+    animation-fill-mode: both, both;
+    /*animation: float-bounce-keyframes 2s infinite;
+    animation-play-state: paused;*/
+    animation-play-state: paused;
+    transition: all 0.2s;
+
+    &--defaultHidden {
+      opacity: 0;
+    }
+
+    &--defaultHidden&--entered {
+      animation: float-bounce-keyframes 2s infinite, fade-in-keyframes 1 .5s;
+      animation-play-state: running;
+      animation-fill-mode: both, both;
+      background-color: var(--accent-color--light);
+      opacity: 1;
+    }
+
+    &--entered {
+      animation: float-bounce-keyframes 2s infinite;
+      animation-play-state: running;
+      background-color: var(--accent-color--light);
+      opacity: 1;
+    }
+
+    &--unentered {
+      animation: float-bounce-keyframes 2s infinite;
+      animation-play-state: paused;
+      background-color: var(--accent-color--light);
+      /*opacity: 1;*/
+    }
+    &--defaultHidden&--unentered {
+      animation: none;
+      opacity: 0;
+      transition: opacity .5s;
+      pointer-events: none;
+    }
+  }
+}

@@ -1,0 +1,183 @@
+.spinner {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: auto;
+  position: relative;
+  font: var(--ui-type);
+  letter-spacing: 0;
+
+  &__graphic {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: top;
+    width: auto;
+    position: relative;
+  }
+
+  &__progress {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 10;
+
+    &__left-mask {
+      width: 50%;
+      height: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    &__right-mask {
+      width: 50%;
+      height: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    &__left-circle {
+      border-radius: 50%;
+      border: 2px solid transparent;
+      /*border-right: 2px solid black;
+      border-top: 2px solid black;*/
+      box-sizing: border-box;
+      opacity: 0.5;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: transform .2s ease-out;
+
+      &--spin-up {
+        animation-name: spin;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(.55,.12,.47,.92);
+      }
+
+      &--spin-down{
+        animation-name: spin;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(.55,.12,.47,.92);
+        animation-direction: reverse;
+      }
+
+      &--bounce{
+        animation-name: bounce;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
+      }
+    }
+
+    &__right-circle {
+      border-radius: 50%;
+      border: 2px solid transparent;
+      /*border-right: 2px solid black;
+      border-top: 2px solid black;*/
+      box-sizing: border-box;
+      opacity: .5;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transition: transform .2s ease-out;
+      z-index: 5;
+
+      &--spin-up {
+        animation-name: spin;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(.55,.12,.47,.92);
+      }
+
+      &--spin-down{
+        animation-name: spin;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: cubic-bezier(.55,.12,.47,.92);
+        animation-direction: reverse;
+      }
+
+      &--bounce{
+        animation-name: bounce;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+        animation-direction: alternate;
+      }
+    }
+  }
+
+  &__circle {
+    display: inline-flex;
+    letter-spacing: 0;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  &__percentage {
+    vertical-align: middle;
+    opacity: 0.35;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+
+    &--heartbeat {
+      animation: 1.5s infinite pulse;
+
+      &:empty {
+        border-radius: 50%;
+        width: 50%;
+        height: 50%;
+        background-color: rgba(0,0,0,0.2);
+      }
+    }
+
+  }
+
+  &__label {
+    text-align: center;
+    font: var(--ui-type);
+    opacity: 0.55;
+    margin-top: 1em;
+  }
+}
+
+@keyframes pulse {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  100% { opacity: 0;  }
+}
+
+@keyframes spin {
+  from{
+    transform: rotate(270deg);
+  }
+  to{
+    transform: rotate(990deg);
+  }
+}
+@keyframes bounce{
+  0%{
+    transform: rotate(270deg);
+  }
+
+  100%{
+    transform: rotate(1230deg);
+  }
+}

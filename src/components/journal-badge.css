@@ -1,0 +1,50 @@
+.journal-badge {
+  color: var(--grey-400);
+  position: relative;
+  display: block;
+
+  &__text {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.journal-badge--link {
+  cursor: pointer;
+}
+
+.journal-badge:hover,
+.journal-badge:link,
+.journal-badge:visited {
+  color: var(--grey-400);
+}
+
+.journal-badge:hover,
+.journal-badge:active {
+  color: var(--grey-400);
+}
+
+/* add focus ring for when inside of a hyperlink */
+.hyperlink.journal-badge:focus {
+  outline: none;
+  border: none;
+
+  &:after {
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: -4px;
+    bottom: -4px;
+    right: -4px;
+    background-color: var(--accent-color-2-a);
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+  }
+}

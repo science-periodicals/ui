@@ -1,0 +1,31 @@
+.paper-radio-button.light {
+  margin: 0;
+}
+
+.paper-radio-button.light .radio-button-container:focus{
+  outline: none;
+  background-color: rgba(0,0,0,.1);
+  border-radius: 50%;
+}
+
+.paper-radio-button.light .radio-button {
+  border: 2px solid transparent;
+}
+
+.paper-radio-button.light .checkmark {
+  border-color: whitesmoke;
+}
+
+.paper-radio-button.light:hover .radio-button .checkmark,
+.paper-radio-button.light:hover [aria-checked='true'] .radio-button .checkmark {
+  border-color: grey;
+}
+
+.paper-radio-button.light [aria-checked='true'] .radio-button {
+  background-color: transparent;
+  border-color: transparent;
+}
+
+.paper-radio-button.light [aria-checked='true'] .radio-button .checkmark {
+  border-color: black;
+}

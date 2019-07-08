@@ -1,0 +1,23 @@
+.workflow-picker {
+  &__workflow-preview {
+    display: flex;
+    &__name {
+      margin-left: var(--sgrd);
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    &__badges {
+      display: flex;
+      margin-left: auto;
+      align-items: center;
+      max-width: 50%;
+      &__badge {
+        margin-left: var(--xsgrd);
+      }
+    }
+  }
+
+  &__workflow-body {
+    padding: var(--mgrd);
+  }
+}

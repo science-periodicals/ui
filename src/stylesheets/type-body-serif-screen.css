@@ -1,0 +1,153 @@
+html {
+  --serif-body-type-face: 'FFMiloSerif', 'libre baskerville', 'times', serif;
+
+  /**
+   * Basic Serif Type
+   */
+
+  /*
+    standard serif body text for screen
+    font: var(--serif-body-type);
+    color: var(--serif-body-type__color);
+    letter-spacing: var(--serif-body-type__letter-spacing);
+  */
+  --serif-body-type: normal normal 400 1.4rem/1.75em var(--serif-body-type-face);
+  --serif-body-type__color: var(--text-color);
+  --serif-body-type__letter-spacing: 0.035em;
+
+  /*
+    short line standard serif body text for screen
+    font: var(--serif-body-type--short);
+    color: var(--serif-body-type--short__color);
+    letter-spacing: var(--serif-body-type--short__letter-spacing);
+  */
+  --serif-body-type--short: normal normal 400 1.4rem/1.75rem
+    var(--serif-body-type-face);
+  --serif-body-type--short__color: var(--text-color);
+  --serif-body-type--short__letter-spacing: 0.035em;
+
+  /*
+    Serif Caption
+    font: var(--serif-body-type--caption);
+    color: var(--serif-body-type--caption__color);
+    letter-spacing: var(--serif-body-type--caption__letter-spacing);
+   */
+
+  --serif-body-type--caption: normal normal 400 1.3rem/1.8rem
+    var(--serif-body-type-face);
+  --serif-body-type--caption__color: var(--text-color);
+  --serif-body-type--caption__letter-spacing: 0.035em;
+
+  /*
+    Serif Body Labels
+    font: var(--serif-body-type--label);
+    color: var(--serif-body-type--label__color);
+    letter-spacing: var(--serif-body-type--label__letter-spacing);
+   */
+
+  --serif-body-type--label: normal normal 400 1.3rem/1.5rem
+    var(--serif-body-type-face);
+  --serif-body-type--label__color: var(--text-color--light);
+  --serif-body-type--label__letter-spacing: 0.035;
+
+  /*
+  Serif Body Light Type
+  font: var(--serif-body-type--light);
+  color: var(--serif-body-type--light__color);
+  letter-spacing: var(--serif-body-type--light__letter-spacing);
+   */
+  --serif-body-type--light: normal normal 300 1.3rem/1.5rem
+    var(--serif-body-type-face);
+  --serif-body-type--light__color: var(--text-color--light);
+  --serif-body-type--light__letter-spacing: 0.035em;
+
+  /* Print Serif Body Type */
+
+  /**
+   * Serif Headline Type for Screen
+   */
+
+  /* headline type for screen
+    font: var(--serif-body-type--headline);
+    color: var(--serif-body-type--headline__color);
+    letter-spacing: var(--serif-body-type--headline__letter-spacing);
+  */
+
+  --serif-body-type--headline: normal normal 400 2.4rem/3.2rem
+    var(--serif-body-type-face);
+  --serif-body-type--headline__color: var(--text-color);
+  --serif-body-type--headline__letter-spacing: 0.035em;
+
+  /*
+    Serif Body subhead 1
+     font: var(--serif-body-type--subhead-1);
+     color: var(--serif-body-type--subhead-1__color);
+     letter-spacing: var(--serif-body-type--subhead-1__letter-spacing);
+   */
+
+  --serif-body-type--subhead-1: normal normal 400 1.8rem/2.4rem
+    var(--serif-body-type-face);
+  --serif-body-type--subhead-1__color: var(--text-color);
+  --serif-body-type--subhead-1__letter-spacing: 0.035em;
+
+  /*
+    Serif Body Subhead 2
+    font: var(--serif-body-type--subhead-2);
+    color: var(--serif-body-type--subhead-2__color);
+    letter-spacing: var(--serif-body-type--subhead-2__letter-spacing);
+  */
+
+  --serif-body-type--subhead-2: normal normal 500 1.6rem/2rem
+    var(--serif-body-type-face);
+  --serif-body-type--subhead-2__color: var(--text-color);
+  --serif-body-type--subhead-2__letter-spacing: 0.035em;
+
+  /*
+    Serif Body Subhead 3
+    font: var(--serif-body-type--subhead-3);
+    color: var(--serif-body-type--subhead-3__color);
+    letter-spacing: var(--serif-body-type--subhead-3__letter-spacing);
+  */
+  --serif-body-type--subhead-3: normal normal 700 1.3rem/1.8rem
+    var(--serif-body-type-face);
+  --serif-body-type--subhead-3__color: var(--text-color);
+  --serif-body-type--subhead-3__letter-spacing: 0.035em;
+
+  /*
+    Serif Body Subhead 4
+    font: var(--serif-body-type--subhead-4);
+    color: var(--serif-body-type--subhead-4__color);
+    letter-spacing: var(--serif-body-type--subhead-4__letter-spacing);
+  */
+  --serif-body-type--subhead-4: normal normal 200 1.2rem/1.8rem
+    var(--serif-body-type-face);
+  --serif-body-type--subhead-4__color: var(--text-color);
+  --serif-body-type--subhead-4__letter-spacing: 0.05em;
+
+  /**
+   * Serif Display Type for Screen
+   */
+
+  /*
+     Serif Body Display 1
+     font: var(--serif-body-type--display-1);
+     color: var(--serif-body-type--display-1__color);
+     letter-spacing: var(--serif-body-type--display-1__letter-spacing);
+   */
+
+  --serif-body-type--display-1: normal normal 400 3.4rem/4rem
+    var(--serif-body-type-face);
+  --serif-body-type--display-1__color: var(--text-color);
+  --serif-body-type--display-1__letter-spacing: 0.035em;
+
+  /*
+     Serif Body Display 2
+     font: var(--serif-body-type--display-2);
+     color: var(--serif-body-type--display-2__color);
+     letter-spacing: var(--serif-body-type--display-2__letter-spacing);
+   */
+  --serif-body-type--display-2: normal normal 400 4.5rem/4.8rem
+    var(--serif-body-type-face);
+  --serif-body-type--display-2__color: var(--text-color);
+  --serif-body-type--display-2__letter-spacing: 0.035em;
+}

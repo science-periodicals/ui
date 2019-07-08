@@ -1,0 +1,18 @@
+html {
+  --xxhigh-shadow: 1px 4px 7px 0px rgba(0, 0, 0, 0.175);
+  --xhigh-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+  --high-shadow: 2px 2px 4px rgba(0, 0, 0, 0.175);
+  --mid-shadow: 1px 1px 2px rgba(0, 0, 0, 0.175);
+  --low-shadow: 0 0 4px rgba(0, 0, 0, 0.175);
+  --no-shadow: 0 0 4px rgba(0, 0, 0, 0); /* used for shadow transitions */
+
+  --mid-inset-shadow: inset 0 8px 9px -10px rgba(0, 0, 0, 0.8);
+
+  --card-shadow--alt-theme: 1px 1px 3px var(--card-shadow-color--alt-theme);
+  --card-shadow--light-theme: 1px 1px 3px var(--card-shadow-color--light-theme);
+  --card-shadow--dark-theme: 0px 0px 4px var(--card-shadow-color--dark-theme);
+  --card-shadow: var(--card-shadow--light-theme);
+
+  --header-height: 56px;
+  --footer-height: 56px;
+}

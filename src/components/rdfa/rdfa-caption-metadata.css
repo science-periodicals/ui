@@ -1,0 +1,274 @@
+/* Standard List Theme */
+.rdfa-caption-metadata--list {
+  /* reset the namespace without modifier - space is important */
+  & .rdfa-caption-metadata {
+    /* do not add any master style here -this only used to setup namespace */
+    &__master-list {
+      list-style: none;
+      padding-left: 0;
+      margin: var(--sgrd) 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      & > li {
+        padding-bottom: var(--xsgrd);
+      }
+    }
+
+    &__list-item {
+      text-align: left;
+      &--licenses {
+        display: inline-flex;
+      }
+    }
+
+    &__label {
+      padding-right: var(--xsgrd);
+    }
+
+    &__sub-list {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+      display: inline;
+      vertical-align: baseline;
+      & li {
+        /* display: inline; */
+        vertical-align: baseline;
+      }
+    }
+  }
+}
+
+/**
+ * Print Inline List theme 
+ * Here we use em units so that spacing can be scaled proportionatly in 
+ * printable-resource
+ */
+
+.rdfa-caption-metadata--inline {
+  font: var(--sans-body-type--small);
+  letter-spacing: var(--sans-body-type--small__letter-spacing);
+  line-height: 1.35em;
+
+  /* reset the namespace without modifier - space is important */
+  & .rdfa-caption-metadata {
+    /* do not add any master style here -this only used to setup namespace */
+    &__master-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline;
+
+      & > li {
+        display: inline;
+        margin-right: 0.4em;
+        &:after {
+          content: '; ';
+        }
+        &:last-of-type {
+          &:after {
+            content: '';
+          }
+        }
+      }
+    }
+
+    &__list-item {
+      display: inline;
+      text-align: left;
+
+      &--licenses {
+        display: inline-flex;
+      }
+    }
+
+    &__label {
+      padding-right: 0.2em;
+    }
+
+    &__sub-list {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+      display: inline;
+      vertical-align: baseline;
+
+      &--licenses {
+        & a {
+          display: inline;
+          align-items: center;
+          border-bottom: 0;
+          vertical-align: middle;
+          & .iconoclass {
+            margin-right: 0.2rem;
+            display: inline-block;
+            vertical-align: text-top;
+          }
+
+          & abbr {
+            text-decoration: none;
+          }
+        }
+      }
+      & > li {
+        display: inline;
+        margin-right: var(--xsgrd--em);
+        &:after {
+          content: '; ';
+        }
+        &:last-of-type {
+          margin-right: 0;
+          &:after {
+            content: '';
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Standard List Theme for print*/
+.rdfa-caption-metadata--print-list {
+  font: var(--sans-body-print-type--small--em);
+  letter-spacing: var(--sans-body-type--small__letter-spacing);
+
+  /* reset the namespace without modifier - space is important */
+  & .rdfa-caption-metadata {
+    /* do not add any master style here -this only used to setup namespace */
+    &__master-list {
+      list-style: none;
+      padding-left: 0;
+      margin: var(--sgrd--em) 0;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      & > li {
+        padding-bottom: var(--xsgrd--em);
+      }
+    }
+
+    &__list-item {
+      text-align: left;
+      &--licenses {
+        display: inline-flex;
+      }
+    }
+
+    &__label {
+      padding-right: var(--xsgrd--em);
+    }
+
+    &__sub-list {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+      display: inline;
+      vertical-align: baseline;
+      & li {
+        /* display: inline; */
+        vertical-align: baseline;
+      }
+    }
+  }
+}
+
+/**
+ * Print Inline List theme 
+ * Here we use em units so that spacing can be scaled proportionatly in 
+ * printable-resource
+ */
+
+.rdfa-caption-metadata--print-inline {
+  font: var(--sans-body-print-type--small--em);
+  letter-spacing: var(--sans-body-print-type--small__letter-spacing);
+
+  /* reset the namespace without modifier - space is important */
+  & .rdfa-caption-metadata {
+    /* do not add any master style here -this only used to setup namespace */
+    &__master-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline;
+
+      & > li {
+        display: inline;
+        margin-right: 0.4em;
+        &:after {
+          content: '; ';
+        }
+        &:last-of-type {
+          &:after {
+            content: '';
+          }
+        }
+      }
+    }
+
+    &__list-item {
+      display: inline;
+      text-align: left;
+
+      &--licenses {
+        display: inline;
+        vertical-align: middle;
+        & .iconoclass {
+          vertical-align: baseline;
+          display: inline-block;
+        }
+      }
+    }
+
+    &__label {
+      padding-right: 0.2em;
+    }
+
+    &__sub-list {
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+      display: inline;
+      vertical-align: baseline;
+
+      &--licenses {
+        & a {
+          display: inline;
+          align-items: center;
+          border-bottom: 0;
+          vertical-align: baseline;
+          & > * {
+            vertical-align: baseline;
+          }
+
+          & .iconoclass {
+            margin-right: 0.2rem;
+            display: inline-block;
+            vertical-align: text-top;
+          }
+
+          & abbr {
+            text-decoration: none;
+          }
+        }
+      }
+      & > li {
+        display: inline;
+        margin-right: var(--xsgrd--em);
+        &:after {
+          content: '; ';
+        }
+        &:last-of-type {
+          margin-right: 0;
+          &:after {
+            content: '';
+          }
+        }
+      }
+    }
+  }
+}

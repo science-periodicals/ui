@@ -1,0 +1,178 @@
+@import './stylesheets/reset';
+@import './stylesheets/variables';
+@import './stylesheets/global.css';
+@import './stylesheets/colors.css';
+@import './stylesheets/buttons.css';
+@import './stylesheets/gui-elements.css';
+
+@import 'react-day-picker';
+
+@import './components/paper-input.css';
+@import './components/paper-textarea.css';
+@import './components/paper-button.css';
+@import './components/paper-button-link.css';
+@import './components/paper-radio-button.css';
+@import './components/paper-radio-button-light.css';
+@import './components/paper-checkbox.css';
+@import './components/paper-checkbox-light.css';
+@import './components/paper-select.css';
+@import './components/paper-subdomain.css';
+@import './components/paper-switch.css';
+@import './components/paper-action-button.css';
+@import './components/paper-date-picker.css';
+@import './components/paper-date-input.css';
+@import './components/paper-time-input.css';
+
+@import './components/link-button.css';
+
+@import './components/button-menu/button-menu.css';
+
+@import './components/time-picker.css';
+@import './components/rich-textarea/rich-textarea.css';
+@import './components/rich-textarea/rich-textarea-menu.css';
+@import './components/flex-packer.css';
+
+@import './components/card.css';
+@import './components/dropzone.css';
+@import './components/divider.css';
+
+@import './components/tooltip.css';
+@import './components/helptip.css';
+
+@import './components/action-identifier.css';
+
+@import './components/user-contact-sheet.css';
+@import './components/user-badge.css';
+@import './components/journal-badge.css';
+@import './components/organization-badge.css';
+@import './components/menu/menu.css';
+@import './components/menu/menu-head.css';
+@import './components/menu/menu-item.css';
+@import './components/start-menu/start-menu.css';
+
+@import './components/user-badge-menu.css';
+@import './components/spinner.css';
+
+@import './components/header.css';
+@import './components/footer.css';
+@import './components/header-search.css';
+
+@import './components/error-card.css';
+
+@import './components/chordal.css';
+@import './components/rating-dots.css';
+@import './components/rating-stars.css';
+@import './components/tags.css';
+@import './components/timeline.css';
+@import './components/graph-overview.css';
+
+@import './components/workflow-action.css';
+@import './components/workflow-action-user-badge-menu.css';
+@import './components/workflow-participants.css';
+@import './components/workflow-participants-handler.css';
+@import './components/workflow-participants-list.css';
+
+@import './components/workflow-picker.css';
+@import './components/contact-point-picker.css';
+@import './components/feed-item.css';
+
+@import './components/paper-autocomplete.css';
+@import './components/autocomplete/semantic-tags-autocomplete.css';
+@import './components/autocomplete/license-autocomplete.css';
+@import './components/autocomplete/countries-autocomplete.css';
+@import './components/autocomplete/organization-autocomplete.css';
+@import './components/autocomplete/journal-staff-autocomplete.css';
+@import './components/autocomplete/anonymized-role-autocomplete.css';
+@import './components/semantic-tags.css';
+@import './components/stepper.css';
+
+@import './components/control-panel.css';
+
+@import './components/expansion-panel.css';
+
+@import './components/action-progress-log.css';
+
+@import './components/share-menu.css';
+@import './components/link-interceptor.css';
+
+@import './components/roles-column-layout.css';
+@import './components/create-graph-action-editor/create-graph-action-editor.css';
+@import './components/create-graph-action-editor/create-graph-action-editor-action-preview.css';
+@import './components/create-graph-action-editor/stage-role.css';
+@import './components/create-graph-action-editor/view-identity-permission-editor.css';
+@import './components/create-graph-action-editor/create-graph-action-editor-modal.css';
+@import './components/create-graph-action-editor/create-graph-action-editor-question-editor.css';
+
+@import './components/periodical-contributor-editor.css';
+@import './components/periodical-invite-editor.css';
+@import './components/periodical-application-handler.css';
+@import './components/organization-member-editor.css';
+@import './components/organization-invite-editor.css';
+
+@import './components/modal.css';
+
+@import './components/app-layout/app-layout.css';
+@import './components/app-layout/app-layout-sub-header.css';
+@import './components/app-layout/app-layout-widget-panel.css';
+@import './components/app-layout/app-layout-banner.css';
+@import './components/app-layout/app-layout-sticky-list.css';
+
+@import './components/tabs/tabs.css';
+
+@import './components/layout-wrap-rows.css';
+
+@import './components/color-picker.css';
+@import './components/banner.css';
+
+@import './components/rich-snippet/rich-snippet.css';
+@import './components/ranking-bell.css';
+@import './components/call-outs.css';
+
+@import './components/author-guidelines.css';
+@import './components/author-guidelines-editor.css';
+@import './components/ds3-section-editor.css';
+@import './components/autocomplete/audience-autocomplete.css';
+@import './components/action-audience.css';
+
+@import './components/value.css';
+@import './components/rdfa/rdfa-citation.css';
+@import './components/rdfa/rdfa-role-contact-points.css';
+
+@import './components/dom-toc.css';
+@import './components/rdfa/rdfa-caption.css';
+@import './components/rdfa/rdfa-person.css';
+@import './components/rdfa/rdfa-organization.css';
+@import './components/rdfa/rdfa-cite.css';
+@import './components/rdfa/rdfa-caption-metadata.css';
+@import './components/rdfa/rdfa-license.css';
+@import './components/rdfa/rdfa-abstract-text.css';
+
+@import './components/rdfa/rdfa-funding-table.css';
+
+@import './components/peer-review-badge.css';
+
+@import './components/attachment-audience.css';
+
+@import './components/editors/contributor-role-editor.css';
+@import './components/editors/organization-editor.css';
+
+@import './components/service/service.css';
+@import './components/service/service-type-badge.css';
+@import './components/service/service-preview.css';
+@import './components/service/service-picker.css';
+
+@import './components/publication-type-picker.css';
+
+@import './components/printable-color-text.css';
+
+@import './components/progressive-image.css';
+
+@import './components/print-page-break.css';
+
+@import './components/counter-badge/counter-badge.css';
+
+@import './components/version/version.css';
+
+@import './components/text-logo.css';
+
+@import './components/status-badge.css';

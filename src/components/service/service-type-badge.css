@@ -1,0 +1,30 @@
+.service-type-badge {
+  cursor: default;
+  box-sizing: border-box;
+  height: var(--mgrd);
+  line-height: var(--mgrd);
+  background-color: var(--grey-100);
+  border: 1px solid var(--grey-200);
+  padding: 0 0.4rem;
+  text-transform: uppercase;
+  color: var(--text-color--light);
+  border-radius: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
+  flex: 0 1 auto;
+  align-items: center;
+  max-width: 100%;
+
+  &__text {
+    font: var(--ui-type--small);
+    line-height: 1em;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    display: block;
+  }
+}

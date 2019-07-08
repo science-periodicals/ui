@@ -1,0 +1,100 @@
+.author-guidelines-editor {
+  &__sections-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  & .divider {
+    margin: var(--sgrd) 0 var(--sgrd) 0;
+  }
+
+  &__sections-list-item > .publication-element-type-editor {
+    border-radius: var(--xsgrd);
+    margin: var(--sgrd) 0;
+  }
+
+  &__add {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 var(--mgrd) var(--mgrd);
+  }
+
+  & .publication-element-type-editor {
+    position: relative;
+    background-color: var(--grey-50);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    z-index: 0;
+    tab-index: -1;
+
+    &:focus,
+    &:hover {
+      box-shadow: var(--xhigh-shadow);
+      z-index: 10;
+    }
+
+    & .publication-element-type-editor:focus,
+    & .publication-element-type-editor:hover {
+      background-color: var(--grey-50);
+      & .publication-element-type-editor__controls-buttons {
+        opacity: 1;
+      }
+    }
+
+    &:focus {
+      outline: 0;
+    }
+
+    &__controls {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--sgrd) var(--mgrd) 0 var(--lgrd);
+      box-sizing: border-box;
+    }
+
+    &___controls-buttons {
+      transition: opacity 0.1s;
+    }
+
+    &__title {
+      font: var(--ui-type--subhead-1);
+      color: var(--ui-type--subhead-1__color);
+      letter-spacing: var(--ui-type--subhead-1__letter-spacing);
+    }
+
+    &__drag {
+      margin-left: var(--sgrd);
+    }
+    &__delete {
+    }
+
+    &__body {
+      padding: var(--mgrd) var(--lgrd) var(--lgrd) var(--lgrd);
+    }
+  }
+
+  & .publication-element-type-editor--dnd-dragging {
+    background-color: var(--base-bg-color) !important;
+    box-shadow: var(--mid-inset-shadow);
+    &:focus,
+    &:hover {
+      box-shadow: var(--mid-inset-shadow);
+      background-color: var(--base-bg-color);
+    }
+    & .publication-element-type-editor:focus,
+    & .publication-element-type-editor:hover {
+      box-shadow: var(--mid-inset-shadow);
+      background-color: var(--base-bg-color);
+    }
+    & > * {
+      opacity: 0;
+    }
+  }
+
+  /* over self target */
+  & .publication-element-type-editor--dnd-dragging.publication-element-type-editor--dnd-is-over {
+    background-color: var(--grey-300);
+  }
+}

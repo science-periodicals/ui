@@ -1,0 +1,98 @@
+html {
+  /* grid assumes :root unit is 10px*/
+  --xlgrd: 4rem;
+  --lgrd: 3.2rem;
+  --mgrd: 2.4rem;
+  --sgrd: 1.6rem;
+  --xsgrd: 0.8rem;
+
+  /* em grid - assumes parant element is base 10px */
+  --xlgrd--em: 4em;
+  --lgrd--em: 3.2em;
+  --mgrd--em: 2.4em;
+  --sgrd--em: 1.6em;
+  --xsgrd--em: 0.8em;
+}
+
+.reverse-z-index {
+  & > *:nth-child(10n + 0) {
+    z-index: 1;
+  }
+  & > *:nth-child(15n-1) {
+    z-index: 2;
+  }
+  & > *:nth-child(15n-2) {
+    z-index: 3;
+  }
+  & > *:nth-child(15n-3) {
+    z-index: 4;
+  }
+  & > *:nth-child(15n-4) {
+    z-index: 5;
+  }
+  & > *:nth-child(15n-5) {
+    z-index: 6;
+  }
+  & > *:nth-child(15n-6) {
+    z-index: 7;
+  }
+  & > *:nth-child(15n-7) {
+    z-index: 8;
+  }
+  & > *:nth-child(15n-8) {
+    z-index: 9;
+  }
+  & > *:nth-child(15n-9) {
+    z-index: 10;
+  }
+  & > *:nth-child(15n-10) {
+    z-index: 11;
+  }
+  & > *:nth-child(15n-11) {
+    z-index: 12;
+  }
+  & > *:nth-child(15n-12) {
+    z-index: 13;
+  }
+  & > *:nth-child(15n-13) {
+    z-index: 14;
+  }
+  & > *:nth-child(15n-14) {
+    z-index: 15;
+  }
+}
+
+@custom-media --mobile only screen and (width <= 420px);
+@custom-media --beyond-mobile only screen and (width > 420px);
+
+@custom-media --only-small-tablet only screen and (width > 420px) and (width <= 640px);
+@custom-media --up-to-small-tablet only screen and (width <= 420px);
+@custom-media --small-tablet only screen and (width <= 640px);
+@custom-media --beyond-small-tablet only screen and (width > 640px);
+
+@custom-media --only-tablet only screen and (width > 640px) and (width <= 768px);
+@custom-media --up-to-tablet only screen and (width <= 640px);
+@custom-media --tablet only screen and (width <= 768px);
+@custom-media --beyond-tablet only screen and (width > 768px);
+
+@custom-media --only-small-desktop only screen and (width > 768px) and (width <= 1024px);
+@custom-media --up-to-small-desktop only screen and (width <= 768px);
+@custom-media --small-desktop only screen and (width <= 1024px);
+@custom-media --beyond-small-desktop only screen and (width > 1024px);
+
+@custom-media --only-large-desktop only screen and (width > 1024px) and (width <= 1280px);
+@custom-media --up-to-large-desktop only screen and (width <= 1024px);
+@custom-media --large-desktop only screen and (width <= 1280px);
+@custom-media --beyond-large-desktop only screen and (width > 1280px);
+
+@custom-media --only-xlarge-desktop only screen and (width > 1280px) and (width <= 1824px);
+@custom-media --up-to-xlarge-desktop only screen and (width <= 1280px);
+@custom-media --xlarge-desktop only screen and (width <= 1824px);
+@custom-media --beyond-xlarge-desktop only screen and (width > 1824px);
+
+@custom-media --only-xxlarge-desktop only screen and (width > 1824px) and (width <= 2560px);
+@custom-media --up-to-xxlarge-desktop only screen and (width <= 1824px);
+@custom-media --xxlarge-desktop only screen and (width <= 2560px);
+@custom-media --beyond-xxlarge-desktop only screen and (width > 2560px);
+
+@custom-media --short-view only screen and (height <= 800px);

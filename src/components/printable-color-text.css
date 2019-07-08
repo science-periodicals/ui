@@ -1,0 +1,40 @@
+.printable-color-text {
+  display: inline-flex;
+
+  &--wrap {
+    flex-wrap: wrap;
+  }
+
+  &__chunk {
+    position: relative;
+    white-space: pre;
+    display: flex;
+    &__screen {
+      line-height: 1em; /* this forces the text's vertical alignment to match the svg's */
+
+      @media print {
+        visibility: hidden;
+      }
+    }
+    &__print {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      @media screen {
+        display: none;
+      }
+    }
+  }
+
+  &__svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: visible;
+  }
+  &__svg-text {
+  }
+}

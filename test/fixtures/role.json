@@ -1,0 +1,223 @@
+{
+  "@id":"scienceai:9d388822-48ca-49a3-8824-6bebb1fcf42e",
+  "@type":"ContributorRole",
+  "roleAction": [
+    {
+      "@id":"scienceai:4c9e14b0-5dd8-4fd6-b3f0-98feda54160f",
+      "@type":"Action",
+      "description": {
+        "@type":"rdf:HTML",
+        "@value":"<p>Senior author.</p>"
+      }
+    },
+    {
+      "@id":"scienceai:227b56aa-49d9-4914-acd6-7f2069508460",
+      "@type":"AcknowledgeAction",
+      "name":"acknowledge the editorial review work of",
+      "recipient": [
+        {
+          "@id":"scienceai:0f70582c-b8ca-49b1-b1b9-94de1d89d7f5",
+          "@type":"ContributorRole",
+          "roleAffiliation": [
+            {
+              "@id":"scienceai:98afe241-74b2-4413-9b1a-d727fc26084d",
+              "@type":"Organization",
+              "name":"Department of Ecology & Evolutionary Biology",
+              "parentOrganization": {
+                "@id":"scienceai:c91b9837-dbfc-4558-bfc0-854500069900",
+                "@type":"Organization",
+                "alternateName":"UCSC",
+                "location": {
+                  "@id":"scienceai:eb105bf0-8d55-4aab-bf69-4e9bd3386d8c",
+                  "@type":"Place",
+                  "address": {
+                    "@id":"scienceai:a1be0496-870e-4fa4-832e-77bdcc49060b",
+                    "@type":"PostalAddress",
+                    "addressCountry":"USA",
+                    "addressLocality":"Santa Cruz",
+                    "addressRegion":"CA"
+                  }
+                },
+                "name":"University of California Santa Cruz",
+                "sameAs":["http://www.ucsc.edu/"]
+              }
+            }
+          ],
+          "recipient": {
+            "@id":"scienceai:64887bb0-9ac0-43da-8c20-e47172edc5a5",
+            "@type":"Person",
+            "familyName":"Kilpatrick",
+            "givenName":"A Marm",
+            "name":"Dr. A Marm Kilpatrick, PhD",
+            "sameAs":["http://orcid.org/0000-0002-3612-5775"]
+          }
+        },
+        {
+          "@id":"scienceai:8a5f988f-5505-41dc-8987-7303795f563b",
+          "@type":"Person",
+          "name":"Anonymous reviewer 1"
+        },
+        {
+          "@id":"scienceai:5d48dc0d-0071-44fb-ae94-5a4500dde45c",
+          "@type":"Person",
+          "name":"Anonymous reviewer 2"
+        }
+      ]
+    }
+  ],
+
+  "roleAffiliation":[
+    {
+      "@id":"scienceai:4de8de1e-d95f-4c22-905a-0f170f933765",
+      "@type":"Organization",
+      "name":"Department of biology",
+      "parentOrganization": {
+        "@id":"scienceai:4de8de1e-d95f-4c22-905a-0f170f933764",
+        "@type":"Organization",
+        "alternateName":"EHA",
+        "funder": [
+          {
+            "@id":"scienceai:c8fad31e-330b-4aef-a7e2-dd32a7d505ed",
+            "@type":"FunderRole",
+            "roleOffer":[
+              {
+                "@id":"scienceai:7a66d4fd-8002-4e11-b36b-9c28a5434606",
+                "@type":"FundingSource",
+                "alternateName":"ARRA",
+                "name":"American Recovery and Reinvestment Act award",
+                "serialNumber":"3R01TW005869-06S1"
+              }
+            ],
+            "funder": [
+              {
+                "@id":"scienceai:e13005ae-ce2e-4d54-bbf9-66b56a6fdc84",
+                "@type":"Organization",
+                "name":"Fogarty International Center",
+                "parentOrganization": {
+                  "@id":"scienceai:381b84e6-3924-4ead-bdcc-a6950d2f459c",
+                  "@type":"Organization",
+                  "alternateName":"NIH",
+                  "location":{
+                    "@id":"scienceai:f055b12c-879e-4969-801c-73add7294dc4",
+                    "@type":"Place",
+                    "address": {
+                      "@id":"scienceai:76b03089-5cb7-460e-b910-add9d5f66522",
+                      "@type":"PostalAddress",
+                      "addressCountry":"USA",
+                      "addressLocality":"Bethesda",
+                      "addressRegion":"MD"
+                    }
+                  },
+                  "name":"National Institutes of Health",
+                  "sameAs":["http://www.nih.gov/"]
+                },
+                "sameAs":["http://www.fic.nih.gov/"]
+              }
+            ],
+            "name":"received funding from"
+          }
+        ],
+        "location": {
+          "@id":"scienceai:5d3bacad-7334-47e4-9491-28b04d5eab51",
+          "@type":"Place",
+          "address": {
+            "@id":"scienceai:fa2f36ab-fd3d-4464-a68d-d6fb904fdfa0",
+            "@type":"PostalAddress",
+            "addressCountry":"USA",
+            "addressLocality":"New York",
+            "addressRegion":"NY"
+          }
+        },
+        "name":"EcoHealth Alliance",
+        "sameAs": ["http://www.ecohealthalliance.org/"]
+      }
+    }
+  ],
+
+  "roleContactPoint":[
+    {
+      "@id":"scienceai:c65c93b5-d2a1-496f-897f-899190966123",
+      "@type":"ContactPoint",
+      "description":"daszak@ecohealthalliance.org",
+      "email":"mailto:daszak@ecohealthalliance.org",
+      "name":"Email",
+      "url":"mailto:daszak@ecohealthalliance.org"
+    },
+    {
+      "@id":"scienceai:4833654a-1102-43b3-964d-821afa6f24ee",
+      "@type":"ContactPoint",
+      "description":"@PeterDaszak",
+      "name":"Twitter",
+      "url":"https://twitter.com/peterdaszak"
+    },
+    {
+      "@id":"scienceai:fcd29dbe-1ecf-400d-a85b-67becffd78d7",
+      "@type":"ContactPoint",
+      "description":"+1-212-380-4460",
+      "name":"Tel",
+      "telephone":"tel:+1-212-380-4460",
+      "url":"tel:+1-212-380-4460"
+    },
+    {
+      "@id":"scienceai:7d9519f4-0aea-430f-b282-e13a00e27770",
+      "@type":"ContactPoint",
+      "description":"+1-212-380-4465",
+      "faxNumber":"fax:+1-212-380-4465",
+      "name":"Fax",
+      "url":"fax:+1-212-380-4465"
+    },
+    {
+      "@id":"scienceai:63bc39be-cedd-4f52-a341-bbee4cc27498",
+      "@type":"ContactPoint",
+      "address":"EcoHealth Alliance, 460 West 34th Street, 17th Floor, New York, NY 10001",
+      "name":"Address"
+    }
+  ],
+  "author":[
+    {
+      "@id":"scienceai:bb1bb7b9-8073-4768-8c91-f0bf38d626f8",
+      "@type":"Person",
+      "familyName":"Daszak",
+      "funder":[
+        {
+          "@id":"scienceai:9685092b-ec28-4fe9-8655-a639d0eff9d5",
+          "@type":"FunderRole",
+          "roleOffer":[
+            {
+              "@id":"scienceai:fd9c1f03-f566-4c8e-849f-0a0ff600c611",
+              "@type":"FundingSource",
+              "alternateName":[],
+              "description":[],
+              "name":"Non-biodefense emerging infectious disease research opportunities award",
+              "serialNumber":"R01 AI079231"
+            }
+          ],
+          "funder":[
+            {
+              "@id":"scienceai:4d5f6721-1a4e-4dfd-9e6b-e6a1d928d7e1",
+              "@type":"Organization",
+              "alternateName":"NIAID",
+              "location": {
+                "@id":"scienceai:f055b12c-879e-4969-801c-73add7294dc4",
+                "@type":"Place",
+                "address": {
+                  "@id":"scienceai:76b03089-5cb7-460e-b910-add9d5f66522",
+                  "@type":"PostalAddress",
+                  "addressCountry":"USA",
+                  "addressLocality":"Bethesda",
+                  "addressRegion":"MD"
+                }
+              },
+              "name":"National Institute of Allergy and Infectious Diseases",
+              "sameAs":["http://www.niaid.nih.gov/"]
+            }
+          ],
+          "name":"was funded by"
+        }
+      ],
+      "givenName":"Peter",
+      "name":"Peter Daszak, PhD",
+      "sameAs":["http://orcid.org/0000-0002-2046-5695"]
+    }
+  ]
+}

@@ -1,0 +1,446 @@
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.semantic-tags {
+  margin-top: 12px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.semantic-tags:hover {
+  cursor: default;
+}
+
+.semantic-tag {
+  font-family: var(--ui-type-face);
+  line-height: 24px;
+  color: var(--text-color);
+  font-size: 13px;
+  transition: background-color 0.25s ease-out;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 0, 0, 0);
+}
+.semantic-tag__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.semantic-tag__label-tooltip {
+  flex: 1 1 auto;
+}
+.semantic-tag__controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+}
+
+.semantic-tag--read-only .semantic-tag__controls {
+  display: none;
+}
+
+.semantic-tag--disabled .semantic-tag__controls {
+  opacity: 0.4;
+}
+
+.semantic-tag > .semantic-tag__label button {
+  /*padding: 0px 4px;*/
+  float: right;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+/* make sure that the if focused in by keyabord buttons are visible */
+.semantic-tag:focus-within > .semantic-tag__label button {
+  opacity: 0.4;
+}
+.semantic-tag.semantic-tag--hover > .semantic-tag__label button {
+  /*padding: 0px 4px;*/
+  opacity: 0.4;
+  transition: opacity 0.2s;
+}
+.semantic-tag.semantic-tag--hover > .semantic-tag__label button:hover,
+.semantic-tag > .semantic-tag__label button:focus
+ {
+  /*padding: 0px 4px;*/
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/*.icon--pop {
+  display: inline-block;
+  width: 16px;
+  vertical-align: middle;
+  opacity: 0.3;
+}
+
+.icon--pop:hover {
+  opacity: 0.6;
+}*/
+
+/*.semantic-tag > .semantic-tag__label button i:hover {
+  color: rgba(0,0,0,0.1);
+}
+
+.semantic-tag > .semantic-tag__label button:focus {
+  outline: 0;
+  box-shadow: none;
+}*/
+
+/* TODO cleanup classes name (use BEM + remove data attribute (use class instead)) */
+
+.semantic-tag > .semantic-tag__children {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  /*padding: 3px 5px;*/
+}
+
+.semantic-tag > .semantic-tag__children > .semantic-tag {
+  flex-grow: 1;
+}
+
+/*handle hover delete button*/
+.semantic-tag.semantic-tag__delete--hover {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag.semantic-tag__delete--hover .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+/*handle hover delete button*/
+.semantic-tag.semantic-tag__pop--hover {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag.semantic-tag__pop--hover > .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.semantic-tag.semantic-tag--level-0 {
+  flex-grow: 1;
+  border-radius: 16px;
+  /*font-size: 14px;*/
+  margin: 4px 0px;
+  padding: 0px;
+  background-color: var(--hl-blue-2-a);
+}
+
+.semantic-tag.semantic-tag--level-0 {
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.semantic-tag.semantic-tag--level-0:hover {
+  background-color: var(--hl-yellow-2-a);
+  color: var(--text-color);
+}
+
+.semantic-tag.semantic-tag--level-0 > .semantic-tag__label {
+  padding: 0px 4px 0px 16px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/*handle pop button hover*/
+.semantic-tag.semantic-tag--level-0.semantic-tag__pop--hover {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag.semantic-tag--level-0.semantic-tag__pop--hover
+  > .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/*handle hover on top-level delete button*/
+
+.semantic-tag.semantic-tag--level-0.semantic-tag__delete--hover {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag.semantic-tag--level-0.semantic-tag__delete--hover
+  .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+
+/*handle children state for delete button hover
+ie. all children will be deleted*/
+.semantic-tag__delete--hover .semantic-tag {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag__delete--hover .semantic-tag .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.semantic-tag.semantic-tag--level-1 {
+  border-radius: 12px;
+  font-size: 13px;
+  margin: 0px 4px 4px 4px;
+  padding: 0px;
+  background-color: var(--hl-blue-2-a);
+  min-height: 24px;
+  line-height: 24px;
+}
+
+.semantic-tag.semantic-tag--level-1:hover {
+  background-color: var(--hl-yellow-2-a);
+}
+
+.semantic-tag.semantic-tag--level-1 > .semantic-tag__label {
+  padding: 0px 4px 0px 16px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.semantic-tag.semantic-tag--level-1.semantic-tag--hover > .semantic-tag__label {
+  color: var(--text-color);
+}
+
+/*handle pop button hover*/
+.semantic-tag.semantic-tag--level-1.semantic-tag__pop--hover {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag.semantic-tag--level-1.semantic-tag__pop--hover
+  > .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.semantic-tag.semantic-tag--level-2 {
+  border-radius: 5px;
+  font-size: 13px;
+  margin: 0px 4px 4px 4px;
+  padding: 0px;
+  background-color: var(--hl-blue-2-a);
+  /*height:16px;*/
+  line-height: 24px;
+}
+
+.semantic-tag.semantic-tag--level-2:hover {
+  background-color: var(--hl-yellow-2-a);
+  text-decoration: strike;
+}
+
+.semantic-tag.semantic-tag--level-2 > .semantic-tag__label {
+  padding: 0px 4px 0px 16px;
+  color: rgba(0, 0, 0, 0.4);
+}
+
+.semantic-tag.semantic-tag--level-2.semantic-tag--hover > .semantic-tag__label {
+  color: var(--text-color);
+}
+
+/*handle pop button hover*/
+.semantic-tag.semantic-tag--level-2.semantic-tag__pop--hover {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag.semantic-tag--level-2.semantic-tag__pop--hover
+  > .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.semantic-tag.semantic-tag--level-3 {
+  border-radius: 3px;
+  /*font-size: 12px;*/
+  margin: 0px 4px 4px 4px;
+  background-color: var(--hl-blue-2-a);
+}
+
+.semantic-tag.semantic-tag--level-3:hover {
+  background-color: var(--hl-yellow-2-a);
+}
+
+.semantic-tag.semantic-tag--level-3 > .semantic-tag__label {
+  padding: 0px 4px 0px 16px;
+  color: rgba(0, 0, 0, 0.1);
+}
+
+.semantic-tag.semantic-tag--level-3.semantic-tag--hover > .semantic-tag__label {
+  color: var(--text-color);
+}
+
+/*handle pop button hover*/
+.semantic-tag.semantic-tag--level-3.semantic-tag__pop--hover {
+  background-color: rgba(255, 255, 255, 0) !important;
+  border: 1px dotted rgba(0, 0, 0, 0.1) !important;
+}
+.semantic-tag.semantic-tag--level-3.semantic-tag__pop--hover
+  > .semantic-tag__label {
+  /*text-decoration: line-through;*/
+  color: rgba(0, 0, 0, 0.1) !important;
+}
+
+.semantic-tag__term {
+  min-height: 24px;
+  vertical-align: middle;
+  /* width span to take up full bar so tooltip can be activated*/
+  /* width: calc(100% - 72px); */
+  box-sizing: border-box;
+  display: inline-block;
+  line-height: 16px;
+  padding: 3px 0px;
+}
+
+/* semantic tag add class (with extended paper-autocomplete) */
+
+.semantic-tag__placeholder {
+  display: flex;
+  width: 26px;
+  min-height: 26px;
+  border-radius: 16px;
+  font-size: 13px;
+  margin: 8px 4px 4px 4px;
+  padding: 0px;
+  background-color: var(--hl-blue-2-a);
+  border: 0;
+  float: right;
+  vertical-align: middle;
+  box-sizing: border-box;
+  transition: all 0.2s;
+}
+.semantic-tag__placeholder > button {
+  opacity: 0.4;
+  transition: opacity 0.2s;
+  position: absolute;
+  margin: 1px;
+}
+.semantic-tag__placeholder.open {
+  width: calc(100% - 8px);
+}
+.semantic-tag__placeholder.open > button {
+  opacity: 0;
+}
+
+@keyframes show-add-tag {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+  50% {
+    height: 40px;
+    opacity: 0;
+  }
+  100% {
+    height: 40px;
+    opacity: 1;
+  }
+}
+@keyframes hide-add-tag {
+  0% {
+    max-height: 40px;
+    opacity: 1;
+  }
+  50% {
+    max-height: 40px;
+    opacity: 0;
+  }
+  100% {
+    max-height: 0px;
+    opacity: 0;
+  }
+}
+
+@keyframes highlight-just-added-tag {
+  0% {
+    background-color: var(--hl-blue-10-a);
+  }
+  100% {
+    background-color: var(--hl-blue-2-a);
+  }
+}
+
+.semantic-tag.semantic-tag--just-added {
+  animation-name: highlight-just-added-tag;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+/*
+ * Adding tags
+ */
+
+.semantic-tag--add-tag-displayed {
+  min-width: 100%;
+}
+
+.semantic-tag__add {
+  z-index: 99;
+  padding: 0;
+  margin: 0;
+  font-family: var(--ui-type-face);
+  box-sizing: border-box;
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.semantic-tag__add .semantic-tags-autocomplete {
+  width: 100%;
+}
+
+.semantic-tag__add--displayed {
+  opacity: 1;
+  height: 40px;
+  width: calc(100% - 8px);
+  padding: 5px 15px 5px 15px;
+  margin: 4px;
+  overflow: visible;
+  animation-name: show-add-tag;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* TODO fix hidden animation */
+.semantic-tag__add--hidden {
+  animation-name: hide-add-tag;
+  animation-duration: 0.2s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+/* TODO fix this will cause the hidden animation to be invisible  */
+.semantic-tag__add--hidden > * {
+  display: none;
+}
+
+.semantic-tag__add--displayed > * {
+  display: inline-block;
+  z-index: 0;
+}
+
+.semantic-tag__add--level-1 {
+  border-radius: 12px;
+}
+.semantic-tag__add--level-2 {
+  border-radius: 5px;
+}
+.semantic-tag__add--level-3 {
+  border-radius: 3px;
+}
+
+.semantic-tag__add > .semantic-tag__add__icon {
+  vertical-align: top;
+  padding-left: 10px;
+  margin-bottom: 2px;
+}

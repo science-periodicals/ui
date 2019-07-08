@@ -1,0 +1,57 @@
+html {
+  /*
+  Standard Big Serif Type for screen
+  font: var(--serif-body-type--big);
+  color: var(--serif-body-type--big__color);
+  letter-spacing: var(--serif-body-type--big__letter-spacing);
+*/
+  --serif-body-type--big: normal normal 400 1.7rem/2.8rem
+    var(--serif-body-type-face);
+  --serif-body-type--big__color: var(--text-color);
+  --serif-body-type--big__letter-spacing: 0;
+
+  /*
+  Standard Big Serif Callout Type for screen
+  font: var(--serif-body-type--big--callout);
+  color: var(--serif-body-type--big__color);
+  letter-spacing: var(--serif-body-type--big__letter-spacing--callout);
+*/
+  --serif-body-type--big--callout: normal normal bold 2.2rem/2.8rem
+    var(--serif-body-type-face);
+  --serif-body-type--big__letter-spacing--callout: 0;
+
+  /*
+  Standard Big Serif Type Headline
+  font: var(--serif-body-type--big);
+  color: var(--serif-body-type--big__color);
+  letter-spacing: var(--serif-body-type--big__letter-spacing);
+*/
+  --serif-body-type--big--headline: normal normal 400 3.2rem/4rem
+    var(--serif-body-type-face);
+  --serif-body-type--big--headline__color: var(--text-color);
+  --serif-body-type--big--headline__letter-spacing: 0.035em;
+
+  /*
+  Big serif Body Subhead 1
+  font: var(--serif-body-type--big--subhead-1);
+  color: var(--serif-body-type--big--subhead-1__color);
+  letter-spacing: var(--serif-body-type--big--subhead-1__letter-spacing);
+*/
+
+  --serif-body-type--big--subhead-1: normal normal 400 2.4rem/3.2rem
+    var(--serif-body-type-face);
+  --serif-body-type--big--subhead-1__color: var(--text-color);
+  --serif-body-type--big--subhead-1__letter-spacing: 0.035em;
+
+  /*
+  Serif Body Subhead 2
+  font: var(--serif-body-type--subhead-2);
+  color: var(--serif-body-type--subhead-2__color);
+  letter-spacing: var(--serif-body-type--subhead-2__letter-spacing);
+*/
+
+  --serif-body-type--big--subhead-2: normal normal 500 2rem/2.4rem
+    var(--serif-body-type-face);
+  --serif-body-type--big--subhead-2__color: var(--text-color);
+  --serif-body-type--big--subhead-2__letter-spacing: 0.035em;
+}

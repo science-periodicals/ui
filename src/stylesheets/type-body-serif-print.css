@@ -1,0 +1,102 @@
+html {
+  /**
+ * Serif Print Styles
+ */
+
+  /*
+  Standard Serif Print Type
+  font: var(--serif-body-print-type);
+  color: var(--serif-body-print-type__color);
+  letter-spacing: var(--serif-body-print-type__letter-spacing);
+*/
+
+  --serif-body-print-type: normal normal 400 10pt/1.4em
+    var(--serif-body-type-face);
+  --serif-body-print-type__color: black;
+  --serif-body-print-type__letter-spacing: 0;
+
+  /*
+  Small Standard Serif Print Type
+  font: var(--serif-body-print-type--small);
+  color: var(--serif-body-print-type--small__color);
+  letter-spacing: var(--serif-body-print-type--small__letter-spacing);
+  */
+
+  --serif-body-print-type--small: normal normal 400 9pt/1.4em
+    var(--serif-body-type-face);
+  --serif-body-print-type--small__color: black;
+  -: normal normal 400 12pt/16pt var(--serif-body-type-face);
+  --serif-body-print-type--big__color: black;
+  --serif-body-print-type--big__letter-spacing: 0;
+
+  /*
+  Standard Big Serif Callout Type for screen
+  font: var(--serif-body-print-type--big--callout);
+  color: var(--serif-body-print-type--big__color);
+  letter-spacing: var(--serif-body-print-type--big__letter-spacing--callout);
+*/
+  --serif-body-print-type--big--callout: normal normal bold 12pt/1.4em
+    var(--serif-body-type-face);
+  --serif-body-print-type--big__letter-spacing--callout: 0;
+
+  /**
+   * Serif Body Headline Type for Print
+   */
+
+  /*
+  Serif Body Print Headline
+  font: var(--serif-body-print-type--headline);
+  color: var(--serif-body-print-type--headline__color);
+  letter-spacing: var(--serif-body-print-type--headline__letter-spacing);
+ */
+  --serif-body-print-type--headline: normal normal 500 20pt/24pt
+    var(--serif-body-type-face);
+  --serif-body-print-type--headline__color: black;
+  --serif-body-print-type--headline__letter-spacing: 0.035em;
+
+  /*
+  Serif Body Print Subhead 1
+  font: var(--serif-body-print-type--subhead-1);
+  color: var(--serif-body-print-type--subhead-1__color);
+  letter-spacing: var(--serif-body-print-type--subhead-1__letter-spacing);
+*/
+
+  --serif-body-print-type--subhead-1: normal normal 400 16pt/1.5em
+    var(--serif-body-type-face);
+  --serif-body-print-type--subhead-1__color: black;
+  --serif-body-print-type--subhead-1__letter-spacing: 0.035em;
+
+  /*
+  Serif Body Print Subhead 2
+  font: var(--serif-body-print-type--subhead-2);
+  color: var(--serif-body-print-type--subhead-2__color);
+  letter-spacing: var(--serif-body-print-type--subhead-2__letter-spacing);
+*/
+
+  --serif-body-print-type--subhead-2: normal normal 500 1.3rem/1.8rem
+    var(--serif-body-type-face);
+  --serif-body-print-type--subhead-2__color: black;
+  --serif-body-print-type--subhead-2__letter-spacing: 0.035em;
+
+  /*
+    Serif Body Print Subhead 3
+    font: var(--serif-body-type--subhead-3);
+    color: var(--serif-body-type--subhead-3__color);
+    letter-spacing: var(--serif-body-type--subhead-3__letter-spacing);
+  */
+  --serif-body-print-type--subhead-3: normal normal 700 1.2rem/1.7rem
+    var(--serif-body-type-face);
+  --serif-body-print-type--subhead-3__color: var(--text-color);
+  --serif-body-print-type--subhead-3__letter-spacing: 0.035em;
+
+  /*
+    Serif Body Print Subhead 4
+    font: var(--serif-body-type--subhead-4);
+    color: var(--serif-body-type--subhead-4__color);
+    letter-spacing: var(--serif-body-type--subhead-4__letter-spacing);
+  */
+  --serif-body-print-type--subhead-4: normal normal 200 1.1rem/1.6rem
+    var(--serif-body-type-face);
+  --serif-body-print-type--subhead-4__color: var(--text-color);
+  --serif-body-print-type--subhead-4__letter-spacing: 0.05em;
+}

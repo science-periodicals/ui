@@ -1,0 +1,53 @@
+.service-preview {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1 1 auto;
+  overflow: hidden;
+
+  &__org-badge {
+    margin-right: var(--xsgrd);
+  }
+
+  &__name {
+    transition: color 0.2s;
+    margin-right: var(--sgrd);
+    flex: 1 1 auto;
+    width: auto !important;
+  }
+
+  &__service-badge {
+    margin-left: auto;
+    flex: 0 1 auto;
+    padding: 0 var(--xsgrd);
+  }
+
+  &__time {
+    padding: 0 var(--xsgrd);
+    flex: 0 1 auto;
+    width: auto !important; /* override autoabridge's 100% width */
+
+    @media (--up-to-small-desktop) {
+      display: none !important;
+    }
+  }
+
+  &__price {
+    padding: 0 var(--xsgrd);
+    flex: 0 1 auto;
+    width: auto !important; /* override autoabridge's 100% width */
+  }
+
+  & .service-type-badge {
+    @media (--up-to-small-desktop) {
+      display: none;
+    }
+  }
+}
+
+/* make name black when panel is expanded */
+.expansion-panel--expanded .service-preview {
+  &__name {
+    color: var(--text-color);
+  }
+}

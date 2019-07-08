@@ -1,0 +1,87 @@
+.user-badge-menu {
+  display: inline-block;
+  cursor: pointer;
+  height: 32px;
+  width: 32px;
+  background-color: transparent;
+  vertical-align: top;
+  position: relative;
+  font: var(--ui-type);
+}
+
+.user-badge-menu--disabled {
+  cursor: default;
+}
+
+.user-badge-menu--enabled:hover .user-badge__circle {
+  box-shadow: inset 0 0 0 32px rgba(0, 0, 0, 0.1);
+}
+
+.user-badge-menu a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+.user-badge-menu a:hover {
+  text-decoration: none;
+  color: var(--link-color--active);
+}
+.user-badge-menu .menu-container {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  top: -100%;
+  z-index: 15;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & .iconoclass {
+    color: white;
+  }
+
+  & .iconoclass__svg {
+    opacity: 1;
+  }
+}
+.user-badge-menu .menu {
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+.user-badge-menu .menu__header-container {
+  /* width: 100%;
+  height: 100%; */
+  align-items: center;
+  justify-content: center;
+  display: flex;
+
+  &--focused {
+    & .menu__header-icon:before {
+      left: -4px;
+      top: -4px;
+      bottom: -4px;
+      right: -4px;
+    }
+  }
+}
+
+.user-badge-menu .react-portal__placeholder {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.user-badge-menu__status-icon {
+  position: absolute !important; /* without !important this is being overwritten in the app-suite */
+  right: -6px;
+  top: 0;
+  color: var(--grey-800);
+  pointer-events: none;
+  z-index: 20;
+  background-color: white;
+}
+/*.user-badge-menu .menu.right .menu_ul{
+  top: 32px;
+  right: 4px;
+}*/

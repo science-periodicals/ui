@@ -1,0 +1,79 @@
+{
+  "@context": "https://science.ai",
+  "@id": "scienceai:journalId",
+  "@type": "Periodical",
+  "url": "https://journal.science.ai",
+  "name": "journal name",
+  "hasDigitalDocumentPermission": [
+    {
+      "@type": "DigitalDocumentPermission",
+      "grantee": {
+        "@type": "Audience",
+        "audienceType": "public"
+      }
+    },
+    {
+      "@type": "DigitalDocumentPermission",
+      "permissionType": "AdminPermission",
+      "grantee": "user:tim"
+    }
+  ],
+  "editor": [
+    {
+      "@id": "role:eic",
+      "@type": "ContributorRole",
+      "roleName": "editor",
+      "name": "Editor-in-Chief",
+      "editor": "user:elsa",
+      "startDate": "2015-02-15T21:04:20.262Z"
+    },
+    {
+      "@id": "role:te",
+      "@type": "ContributorRole",
+      "roleName": "editor",
+      "name": "Triage editor",
+      "about": [
+        {
+          "@id": "subjects:biological-sciences",
+          "name": "Biological sciences"
+        },
+        {
+          "@id": "subjects:biochemistry",
+          "name": "Biochemistry"
+        }
+      ],
+      "editor": "user:elsa",
+      "startDate": "2015-02-15T21:04:20.262Z"
+    },
+    {
+      "@id": "role:eo",
+      "@type": "ContributorRole",
+      "roleName": "editor",
+      "name": "editorial office",
+      "editor": "user:tim",
+      "startDate": "2015-02-15T21:04:20.262Z",
+      "roleContactPoint": {
+        "@type": "ContactPoint",
+        "email": "mailto:tim@example.com"
+      }
+    },
+    {
+      "@id": "role:retired",
+      "@type": "ContributorRole",
+      "roleName": "editor",
+      "name": "Retired",
+      "editor": "user:elsa",
+      "startDate": "2015-02-15T21:04:20.262Z",
+      "endDate": "2015-02-15T21:05:20.262Z"
+    }
+  ],
+  "reviewer": [
+    {
+      "@id": "role:reviewer",
+      "@type": "ContributorRole",
+      "roleName": "reviewer",
+      "reviewer": "user:longusernamethatmayoverflowifnotproperlyhandled",
+      "startDate": "2015-02-15T21:04:20.262Z"
+    }
+  ]
+}

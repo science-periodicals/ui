@@ -1,0 +1,106 @@
+{
+  "@id": "scienceai:scholarlyArticle",
+  "@type": "ScholarlyArticle",
+  "name": "Targeting surveillance in apparently healthy versus diseased wild mammals for zoonotic virus discovery",
+  "description": "We analyzed a database of mammal-virus associations to ask whether zoonotic disease surveillance targeting diseased animals is the best strategy to identify potentially zoonotic pathogens. Though a mixed healthy and diseased surveillance strategy is generally best, surveillance of apparently healthy bats and rodents would likely maximize discovery potential for most zoonotic viruses.",
+  "hasPart": [
+
+    {
+      "@id": "scienceai:figure2",
+      "@type": "Image",
+      "alternateName": "Figure 2",
+      "caption": "The probability of being symptomatic based on a logistic regression analysis with bias reduction of whether or not a host presents with disease for 234 mammal-virus pairs from 5 orders of mammals and 10 families of viruses, including the lower 95% confidence interval (left), mean (center), and upper 95% confidence interval (right). Probabilities are based on the predicted values of the logistic regression and are given on a five-point gray scale from white (0.0 – 0.2) to black (0.8 - 1.0). Confidence values were calculated as the coefficient plus 1.96 times the standard error (from Table 1).",
+      "isBasedOn": [
+        "scienceai:table1",
+        "scienceai:supportingDataset1",
+        "scienceai:supportingCode1"
+      ]
+    },
+
+
+    {
+      "@id": "scienceai:figure1",
+      "@type": "Image",
+      "alternateName": "Figure 1",
+      "caption": "Percentage of reports of host-virus pairs in which observable disease was described, ‘Symptomatic’, no observable disease was described, ‘Asymptomatic’, or no description of disease was included, ‘No data’ (A). The proportion of hosts symptomatic by mammal order (B) and the proportion of virus families for which hosts are reported symptomatic (C) are given, both with standard error bars, calculated assuming binomial error structure. The total number of each host order or virus family included in the database is given above each bar. Note, all host orders and virus families in the database are included here, but analyses are limited to those host orders or virus families with at least three entries in the database.",
+      "hasPart": [
+        {
+          "@id": "scienceai:figure1A",
+          "@type": "Image",
+          "alternateName": "A",
+          "isPartOf": "scienceai:figure1"
+        },
+        {
+          "@id": "scienceai:figure1B",
+          "@type": "Image",
+          "alternateName": "B",
+          "isPartOf": "scienceai:figure1"
+        },
+        {
+          "@id": "scienceai:figure1C",
+          "@type": "Image",
+          "alternateName": "C",
+          "isPartOf": "scienceai:figure1"
+        }
+      ],
+      "isBasedOn": [
+        "scienceai:code1",
+        "scienceai:supportingCode1",
+        "scienceai:supportingDataset1"
+      ]
+    },
+
+    {
+      "@id": "scienceai:table1",
+      "@type": "Table",
+      "alternateName": "Table 1",
+      "caption": "Logistic regression analysis with bias reduction of whether a host presents with disease for 234 mammal–virus pairs from 5 taxonomic orders of mammals and 10 taxonomic families of viruses. The subset of data used was selected by using a cutoff of at least 3 records in the database to avoid making inference about host orders or virus families, for which we had very little information.",
+      "isBasedOn": [
+        "scienceai:supportingDataset1" ,
+        "scienceai:supportingCode1"
+      ]
+    },
+
+    {
+      "@id": "scienceai:code1",
+      "@type": "SoftwareSourceCode",
+      "alternateName": "Code 1",
+      "caption": "R code for creating Figure 1A.",
+      "isBasedOn": [
+        "scienceai:supportingDataset1"
+      ]
+    },
+
+    {
+      "@id": "scienceai:supportingCode1",
+      "@type": "SoftwareSourceCode",
+      "alternateName": "Supporting Code 1",
+      "caption": "R code used to generate Figure 1A, B, and C; Figure 2; and for the logistic regression analysis results presented in Table 1.",
+      "isBasedOn": [
+        "scienceai:supportingDataset1"
+      ]
+    },
+
+    {
+      "@id": "scienceai:equation1",
+      "@type": "Formula",
+      "alternateName": "Equation 1"
+    },
+
+    {
+      "@id": "scienceai:textBox1",
+      "@type": "WPSideBar",
+      "alternateName": "Text Box 1",
+      "caption": "Surveillance for West Nile virus with crow deaths."
+    },
+
+    {
+      "@id": "scienceai:supportingDataset1",
+      "@type": "Dataset",
+      "alternateName": "Supporting Dataset 1",
+      "caption": "Full dataset of host-virus pairs and disease state."
+    }
+
+  ]
+
+}

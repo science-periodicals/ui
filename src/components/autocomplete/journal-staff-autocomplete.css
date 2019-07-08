@@ -1,0 +1,10 @@
+.journal-staff-autocomplete {
+  &__user-title {
+    color: var(--text-color--light);
+    line-height: 1.25em;
+    display: block;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+}

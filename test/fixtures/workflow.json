@@ -1,0 +1,584 @@
+{
+  "@type": "CreateGraphAction",
+  "actionStatus": "PotentialActionStatus",
+  "name": "Default generic journal workflow",
+  "expectedDuration": "P7D",
+  "object": "scienceai:periodicalId",
+  "result": {
+    "@type": "Graph",
+    "version": "0.0.0",
+
+    "hasDigitalDocumentPermission": [
+      {
+        "@type": "DigitalDocumentPermission",
+        "permissionType": "ReadPermission",
+        "grantee": [
+          {
+            "@type": "Audience",
+            "audienceType": "author"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "reviewer"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "editor"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "producer"
+          }
+        ]
+      },
+      {
+        "@type": "DigitalDocumentPermission",
+        "permissionType": "WritePermission",
+        "grantee": [
+          {
+            "@type": "Audience",
+            "audienceType": "author"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "reviewer"
+          }
+        ]
+      },
+      {
+        "@type": "DigitalDocumentPermission",
+        "permissionType": "AdminPermission",
+        "grantee": [
+          {
+            "@type": "Audience",
+            "audienceType": "editor"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "producer"
+          }
+        ]
+      },
+      {
+        "@type": "DigitalDocumentPermission",
+        "permissionType": "ViewIdentityPermission",
+        "grantee": [
+          {
+            "@type": "Audience",
+            "audienceType": "editor"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "reviewer"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "producer"
+          }
+        ],
+        "permissionScope": [
+          {
+            "@type": "Audience",
+            "audienceType": "author"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "editor"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "producer"
+          }
+        ]
+      },
+      {
+        "@type": "DigitalDocumentPermission",
+        "permissionType": "ViewIdentityPermission",
+        "grantee": [
+          {
+            "@type": "Audience",
+            "audienceType": "author"
+          }
+        ],
+        "permissionScope": [
+          {
+            "@type": "Audience",
+            "audienceType": "author"
+          },
+          {
+            "@type": "Audience",
+            "audienceType": "producer"
+          }
+        ]
+      }
+    ],
+
+    "potentialAction": {
+      "@id": "_:submission-pre-screening-stage",
+      "@type": "CreateWorkflowStageAction",
+      "name": "Submission & pre-screening Stage",
+      "result": [
+        {
+          "@id": "_:screeningAskAction",
+          "@type": "AskAction",
+          "expectedDuration": "P2D",
+          "agent": { "@type": "ContributorRole", "roleName": "author" },
+          "participant": [
+            {
+              "@type": "Audience",
+              "audienceType": "author"
+            },
+            {
+              "@type": "Audience",
+              "audienceType": "reviewer"
+            },
+            {
+              "@type": "Audience",
+              "audienceType": "editor"
+            },
+            {
+              "@type": "Audience",
+              "audienceType": "producer"
+            }
+          ],
+          "name": "Screening questions",
+          "question": [
+            {
+              "@type": "Question",
+              "text": "Were experimental animals used?",
+              "suggestedAnswer": [
+                {
+                  "@type": "Answer",
+                  "text": "yes"
+                },
+                {
+                  "@type": "Answer",
+                  "text": "no"
+                }
+              ]
+            },
+            {
+              "@type": "Question",
+              "text": "Why is that a good fit?"
+            }
+          ]
+        },
+
+        {
+          "@id": "_:screeningCreateReleaseAction",
+          "@type": "CreateReleaseAction",
+          "agent": { "@type": "ContributorRole", "roleName": "author" },
+          "participant": [
+            {
+              "@type": "ContributorRole",
+              "roleName": "subscriber",
+              "participant": "user:elsa",
+              "startDate": "2015-02-15T21:04:20.262Z"
+            },
+            {
+              "@type": "Audience",
+              "audienceType": "author"
+            },
+            {
+              "@type": "Audience",
+              "audienceType": "reviewer"
+            },
+            {
+              "@type": "Audience",
+              "audienceType": "editor"
+            },
+            {
+              "@type": "Audience",
+              "audienceType": "producer"
+            }
+          ],
+
+          "name": "Upload files",
+          "expectedDuration": "P1D",
+          "result": {
+            "@type": "Graph",
+            "version": { "@type": "sa:semver", "@value": "major" },
+            "potentialAction": [
+              {
+                "@id": "_:screeningAssessAction",
+                "@type": "AssessAction",
+                "agent": { "@type": "ContributorRole", "roleName": "editor" },
+                "participant": [
+                  {
+                    "@type": "Audience",
+                    "audienceType": "editor"
+                  },
+                  {
+                    "@type": "Audience",
+                    "audienceType": "producer"
+                  }
+                ],
+                "result": [
+                  "_:production-stage",
+
+                  {
+                    "@id": "_:rejection-stage",
+                    "@type": "RejectAction",
+                    "agent": { "@type": "ContributorRole", "roleName": "editor" },
+                    "participant": [
+                      {
+                        "@type": "Audience",
+                        "audienceType": "author"
+                      },
+                      {
+                        "@type": "Audience",
+                        "audienceType": "reviewer"
+                      },
+                      {
+                        "@type": "Audience",
+                        "audienceType": "editor"
+                      },
+                      {
+                        "@type": "Audience",
+                        "audienceType": "producer"
+                      }
+                    ]
+                  },
+
+                  {
+                    "@id": "_:first-review-stage",
+                    "@type": "CreateWorkflowStageAction",
+                    "name": "Review Stage",
+                    "result": [
+                      {
+                        "@id": "_:reviewReviewAction",
+                        "@type": "ReviewAction",
+                        "expectedDuration": "P2D",
+                        "agent": { "@type": "ContributorRole", "roleName": "reviewer" },
+                        "participant": [
+                          {
+                            "@type": "Audience",
+                            "audienceType": "editor"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "producer"
+                          }
+                        ],
+                        "name": "review",
+                        "instrument": [
+                          {
+                            "@type": "Answer",
+                            "parentItem": {
+                              "@type": "Question",
+                              "text": "Is methionine mentioned ?",
+                              "suggestedAnswer": [
+                                {
+                                  "@type": "Answer",
+                                  "text": "yes"
+                                },
+                                {
+                                  "@type": "Answer",
+                                  "text": "no"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      },
+
+                      {
+                        "@id": "_:reviewAskAction",
+                        "@type": "AskAction",
+                        "expectedDuration": "P2D",
+                        "agent": { "@type": "ContributorRole", "roleName": "author" },
+                        "participant": [
+                          {
+                            "@type": "Audience",
+                            "audienceType": "author"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "reviewer"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "editor"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "producer"
+                          }
+                        ],
+                        "name": "Ethical questions"
+                      },
+
+                      {
+                        "@id": "_:reviewPayAction",
+                        "@type": "PayAction",
+                        "expectedDuration": "P2D",
+                        "agent": { "@type": "ContributorRole", "roleName": "author" },
+                        "participant": [
+                          {
+                            "@type": "Audience",
+                            "audienceType": "author"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "reviewer"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "editor"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "producer"
+                          }
+                        ],
+                        "name": "upfront APC"
+                      },
+
+                      {
+                        "@id": "_:reviewAssessAction",
+                        "@type": "AssessAction",
+                        "agent": { "@type": "ContributorRole", "roleName": "editor" },
+                        "participant": [
+                          {
+                            "@type": "Audience",
+                            "audienceType": "editor"
+                          },
+                          {
+                            "@type": "Audience",
+                            "audienceType": "producer"
+                          }
+                        ],
+                        "result": [
+                          "_:rejection-stage",
+
+                          {
+                            "@id": "_:production-stage",
+                            "@type": "CreateWorkflowStageAction",
+                            "name": "Production Stage",
+                            "result": [
+                              {
+                                "@id": "_:productionAllocateAction",
+                                "@type": "AllocateAction",
+                                "expectedDuration": "P2D",
+                                "agent": { "@type": "ContributorRole", "roleName": "producer" },
+                                "participant": [
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "author"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "reviewer"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "editor"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "producer"
+                                  }
+                                ],
+                                "name": "Allocate a URL"
+                              },
+                              {
+                                "@id": "_:productionScheduleAction",
+                                "@type": "ScheduleAction",
+                                "expectedDuration": "P3D",
+                                "agent": { "@type": "ContributorRole", "roleName": "producer" },
+                                "participant": [
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "author"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "reviewer"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "editor"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "producer"
+                                  }
+                                ],
+                                "name": "Schedule publication"
+                              },
+                              {
+                                "@id": "_:productionCreateReleaseAction",
+                                "@type": "CreateReleaseAction",
+                                "expectedDuration": "P4D",
+                                "agent": { "@type": "ContributorRole", "roleName": "producer" },
+                                "participant": [
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "author"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "reviewer"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "editor"
+                                  },
+                                  {
+                                    "@type": "Audience",
+                                    "audienceType": "producer"
+                                  }
+                                ],
+                                "name": "Publish",
+                                "result": {
+                                  "@type": "Graph",
+                                  "hasDigitalDocumentPermission": {
+                                    "@type": "DigitalDocumentPermission",
+                                    "grantee": { "@type": "Audience", "audienceType": "public" }
+                                  }
+                                }
+                              }
+                            ]
+                          },
+
+                          {
+                            "@id": "_:major-revision-stage",
+                            "@type": "CreateWorkflowStageAction",
+                            "name": "Major revision stage",
+                            "result": {
+                              "@id": "_:majorCreateReleaseAction",
+                              "@type": "CreateReleaseAction",
+                              "name": "Upload major revision",
+                              "agent": { "@type": "ContributorRole", "roleName": "author" },
+                              "participant": [
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "author"
+                                },
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "reviewer"
+                                },
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "editor"
+                                },
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "producer"
+                                }
+                              ],
+                              "result": {
+                                "@type": "Graph",
+                                "version": { "@type": "sa:semver", "@value": "major" },
+                                "potentialAction": [
+                                  {
+                                    "@id": "_:majorReviewAction",
+                                    "@type": "ReviewAction",
+                                    "agent": { "@type": "ContributorRole", "roleName": "reviewer"},
+                                    "participant": [
+                                      {
+                                        "@type": "Audience",
+                                        "audienceType": "editor"
+                                      },
+                                      {
+                                        "@type": "Audience",
+                                        "audienceType": "producer"
+                                      }
+                                    ]
+                                  },
+
+                                  {
+                                    "@id": "_:majorAssessAction",
+                                    "@type": "AssessAction",
+                                    "agent": { "@type": "ContributorRole", "roleName": "editor" },
+                                    "participant": [
+                                      {
+                                        "@type": "Audience",
+                                        "audienceType": "editor"
+                                      },
+                                      {
+                                        "@type": "Audience",
+                                        "audienceType": "producer"
+                                      }
+                                    ],
+                                    "result": [
+                                      "_:production-stage",
+                                      "_:major-revision-stage",
+                                      "_:minor-revision-stage",
+                                      "_:rejection-stage"
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          },
+
+                          {
+                            "@id": "_:minor-revision-stage",
+                            "@type": "CreateWorkflowStageAction",
+                            "name": "Minor revision stage",
+                            "result": {
+                              "@id": "_:minorCreateReleaseAction",
+                              "@type": "CreateReleaseAction",
+                              "name": "Upload minor revision",
+                              "agent": { "@type": "ContributorRole", "roleName": "author" },
+                              "participant": [
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "author"
+                                },
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "reviewer"
+                                },
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "editor"
+                                },
+                                {
+                                  "@type": "Audience",
+                                  "audienceType": "producer"
+                                }
+                              ],
+                              "result": {
+                                "@type": "Graph",
+                                "version": { "@type": "sa:semver", "@value": "minor" },
+                                "potentialAction": {
+                                  "@id": "_:minorAssessAction",
+                                  "@type": "AssessAction",
+                                  "agent": { "@type": "ContributorRole", "roleName": "editor" },
+                                  "participant": [
+                                    {
+                                      "@type": "Audience",
+                                      "audienceType": "editor"
+                                    },
+                                    {
+                                      "@type": "Audience",
+                                      "audienceType": "producer"
+                                    }
+                                  ],
+                                  "result": [
+                                    "_:production-stage",
+                                    "_:rejection-stage"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+
+                        ]
+                      }
+
+
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

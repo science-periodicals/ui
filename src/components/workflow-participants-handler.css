@@ -1,0 +1,10 @@
+.workflow-participants-handler {
+  &__search {
+    display: flex;
+    align-items: center;
+  }
+
+  &__autocomplete {
+    width: 100%;
+  }
+}

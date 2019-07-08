@@ -1,0 +1,18 @@
+.rich-textarea-menu {
+  background-color: white;
+  width: 100%;
+  box-shadow: var(--mid-shadow);
+  &__item {
+    display: flex;
+    align-items: center;
+    padding: 0.4rem;
+
+    &--active {
+      background-color: var(--card-bg-color--inactive);
+    }
+
+    &__right-arrow {
+      margin-left: auto;
+    }
+  }
+}

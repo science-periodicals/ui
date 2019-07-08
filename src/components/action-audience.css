@@ -1,0 +1,22 @@
+.action-audience {
+  display: flex;
+  align-items: center;
+
+  &__badge-list {
+    display: flex;
+    list-style:none;
+    margin: 0;
+    padding: 0;
+    & li {
+      padding: calc(var(--xsgrd) / 2);
+    }
+  }
+
+  &__add {
+    padding-left: var(--xsgrd);
+    &__handler {
+      min-width: 160px;
+      padding: var(--sgrd);
+    }
+  }
+}

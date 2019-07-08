@@ -1,0 +1,52 @@
+.user-contact-sheet {
+  min-width: 25rem;
+  max-width: 60rem;
+  white-space: normal;
+
+  font: var(--ui-type);
+  color: var(--ui-type__color);
+  letter-spacing: var(--ui-type__letter-spacing);
+
+  &__info-icon {
+    color: var(--icon-button-color);
+  }
+
+  &__row {
+    padding: var(--mgrd);
+    vertical-align: middle;
+  }
+
+  &__row-title {
+    font: var(--ui-type--subhead-3);
+    color: var(--ui-type--subhead-3__color);
+    letter-spacing: var(--ui-type--subhead-3__letter-spacing);
+
+    margin-bottom: 1em;
+  }
+
+  &__content-list {
+    /* clear list styles */
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    /* ---------------- */
+  }
+
+  &__content-list-item {
+    display: flex;
+    margin-bottom: 1em;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  &__content-details {
+    vertical-align: middle;
+    white-space: normal;
+  }
+}
+
+.shell .user-contact-sheet {
+  max-width: 100%;
+}

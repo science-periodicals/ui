@@ -1,0 +1,119 @@
+.rating-dots{
+  min-width: 45px;
+  max-width: 72px;
+  width: 100%;
+  height:24px;
+  box-sizing: border-box;
+  position:relative;
+  opacity: .5;
+  transition: opacity .2s;
+}
+
+.rating-dots:hover{
+  opacity: 1;
+}
+
+.rating-dots__placeholder{
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 6px;
+  max-width: 13px;
+  width: 20%;
+  height: 13px;
+  position:relative;
+  text-align: center;
+  opacity:.3;
+}
+
+.rating-dots__placeholder.on:hover{
+  opacity: 1;
+}
+.rating-dots__placeholder  .rating-dots__tooltip{
+  opacity:0;
+  position:absolute;
+  background-color: white;
+  padding: 8px 16px 8px 16px;
+  top: -32px;
+  margin-left: -16px;
+  box-shadow: var(--low-shadow);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.rating-dots__placeholder:hover .rating-dots__tooltip{
+  opacity:1;
+}
+
+.rating-dots .rating-dots__dot{
+  position:absolute;
+  width: 100%;
+  height: 6px;
+  top: 4px;
+  left: 0px;
+  border-right: 1px solid lightgrey;
+  box-sizing: border-box;
+  text-align: center;
+}
+.rating-dots > div:first-child .rating-dots__dot{
+  border-radius: 6px 0 0 6px;
+}
+.rating-dots > div:last-child .rating-dots__dot{
+  border-radius: 0 6px 6px 0;
+  border: 0;
+}
+.rating-dots .rating-dots__placeholder.off .rating-dots__dot{
+  background-color: black;
+  opacity: .3;
+}
+
+.rating-dots .rating-dots__placeholder.on .rating-dots__dot{
+  background-color: black;
+  opacity: 1;
+}
+
+.rating-dots__dot .dot__ld-name{
+  cursor: default;
+  position:absolute;
+  top: 8px;
+  font-size: 9px;
+  line-height: 9px;
+  text-align: center;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.rating-dots__star{
+  position:absolute;
+  left:0;
+  width: 100%;
+  height: 13px;
+}
+
+.rating-dots__star .rating-dots__star__svg{
+  height: 0;
+  margin-left: -1px;
+  position: absolute;
+  transition: .2s;
+  margin-top: -10px;
+}
+
+.rating-dots .rating-dots__placeholder .rating-dots__star__svg{
+  opacity: 0;
+}
+
+.rating-dots .rating-dots__placeholder.on:hover .rating-dots__star__svg{
+  opacity: 1;
+}
+
+.rating-dots .rating-dots__placeholder:hover .rating-dots__star__svg{
+  max-width: 13px;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  transition: .2s;
+}
+
+.rating-dots .rating-dots__placeholder:hover .dot__ld-name{
+  opacity: 1;
+}
