@@ -102,6 +102,7 @@ export default class Banner extends React.Component {
 
     if (textShadowColor && textShadowColor.value) {
       style.textShadow = `0 0 4px ${textShadowColor.value}`;
+      style.backgroundColor = textShadowColor.value;
     }
 
     // Note: we used an img to load the background URL to have access to the `load` event.

@@ -66,4 +66,20 @@ html {
     var(--sans-body-print-type-face);
   --sans-body-print-type--small-condensed__color: black;
   --sans-body-print-type--small-condensed__letter-spacing: 0.035em;
+
+  /**
+   * Sans Body Headlines for Screen
+   */
+
+  /*
+  Sans Body Subhead 1
+  font: var(--sans-body-print-type--subhead-1);
+  color: var(--sans-body-print-type--subhead-1__color);
+  letter-spacing: var(--sans-body-print-type--subhead-1__letter-spacing);
+  */
+
+  --sans-body-print-type--subhead-1: normal normal 400 1.6rem/2.4rem
+    var(--sans-body-print-type-face);
+  --sans-body-print-type--subhead-1__color: var(--text-color);
+  --sans-body-print-type--subhead-1__letter-spacing: 0.035em;
 }
