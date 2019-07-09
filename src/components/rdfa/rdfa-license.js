@@ -46,7 +46,7 @@ export default function RdfaLicense({
       {hasIcon && showIcon && (
         <Iconoclass
           iconName="creativeCommons"
-          size={isPrinting ? '1.1em' : '1.1em'}
+          size={isPrinting ? '1.1em' : '16px'}
         />
       )}
       {showName && <abbr title={spdx[spdxId].name}>{spdxId}</abbr>}
