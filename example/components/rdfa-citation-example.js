@@ -48,7 +48,7 @@ export default class RdfaCitationExample extends React.Component {
                 potentialAction: {
                   '@type': 'ViewAction',
                   actionStatus: 'CompletedActionStatus',
-                  endTime: new Date().toISOString()
+                  endTime: new Date('2019-04-11T18:16:34.535Z').toISOString()
                 }
               }}
               displayDoi={true}
@@ -114,7 +114,9 @@ export default class RdfaCitationExample extends React.Component {
                 '@id': 'http://www.ncbi.nlm.nih.gov/nuccore/EU768872',
                 '@type': 'Dataset',
                 name: 'EU768872',
-                datePublished: new Date().toISOString(),
+                datePublished: new Date(
+                  '2019-04-11T18:16:34.535Z'
+                ).toISOString(),
                 description:
                   'Ideonella dechloratans cytochrome C class 1 precursor and molybdopterin-guanine dinucleotide biosynthesis genes, complete cds',
                 includedInDataCatalog: {

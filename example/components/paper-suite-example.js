@@ -69,7 +69,7 @@ export default class PaperSuiteExample extends React.Component {
             <PaperDateInput
               label="Due Date"
               className="exampleDateInput"
-              date={new Date()}
+              date={new Date('2019-04-11T18:16:34.535Z')}
               floatLabel={true}
             />
           </LayoutWrapItem>
@@ -99,7 +99,7 @@ export default class PaperSuiteExample extends React.Component {
             <PaperDateInput
               label="Due Date"
               className="exampleDateInput"
-              date={new Date()}
+              date={new Date('2019-04-11T18:16:34.535Z')}
               floatLabel={true}
               readOnly={true}
             />
@@ -131,7 +131,7 @@ export default class PaperSuiteExample extends React.Component {
             <PaperDateInput
               label="Due Date"
               className="exampleDateInput"
-              date={new Date()}
+              date={new Date('2019-04-11T18:16:34.535Z')}
               floatLabel={true}
               disabled={true}
             />
