@@ -1,6 +1,6 @@
 @import 'normalize.css';
-@import '@scienceai/resources';
-@import '@scienceai/iconoclass';
+@import '@scipe/resources';
+@import '@scipe/iconoclass';
 @import '../src/index.css';
 @import './components/paged-media-example.css';
 

@@ -27,9 +27,9 @@ module.exports = {
   resolve: {
     mainFields: ['browser', 'main'],
     alias: {
-      '@scienceai/librarian$': path.resolve(
+      '@scipe/librarian$': path.resolve(
         __dirname,
-        'node_modules/@scienceai/librarian/src/browser.js'
+        'node_modules/@scipe/librarian/src/browser.js'
       )
     }
   },
