@@ -149,7 +149,7 @@ html {
   /* Card Background Color */
   --card-bg-color--light-theme: white;
   --card-bg-color--dark-theme: var(--grey-900);
-  --card-bg-color--alt-theme: #fff5cd;
+  --card-bg-color--alt-theme: #fef7d3;
   --card-bg-color: var(--card-bg-color--light-theme);
 
   --card-bg-color--inactive: whitesmoke;
@@ -167,7 +167,7 @@ html {
   /* Reader Background colors */
   --reader-bg-color--light-theme: white;
   --reader-bg-color--dark-theme: var(--grey-900);
-  --reader-bg-color--alt-theme: #fff5cd;
+  --reader-bg-color--alt-theme: #fcf1c6;
   --reader-bg-color: var(--reader-bg-color--light-theme);
 
   --icon-button-color: var(--grey-500);

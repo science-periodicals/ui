@@ -31,7 +31,7 @@ html {
   &__beveled-shadow {
     position: absolute;
     top: 5px;
-    left: 5px;
+    left: 6px;
     right: 5px;
     bottom: 5px;
     background: var(--card-shadow-color);
@@ -122,5 +122,6 @@ html {
 
   &__content {
     position: relative;
+    border: 1px solid transparent; /* prevent contents from 1px extension past the card__background */
   }
 }

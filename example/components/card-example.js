@@ -53,7 +53,9 @@ export default function CardExample(props) {
               style={{
                 borderTop: '1px solid grey',
                 padding: '16px',
-                left: '24px'
+                left: '24px',
+                backgroundColor: 'whitesmoke',
+                marginBottom: '24px'
               }}
             >
               Some Content Here
