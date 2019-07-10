@@ -7,6 +7,7 @@
 
   /* force equation to fit in print */
   & [role='math'] svg {
+    vertical-align: middle;
     @media print {
       max-width: 100%;
       object-fit: contain;
@@ -68,7 +69,6 @@
         margin-right: -16px; /* compensate for padding in parent - used to keep from wrapping widow */
         vertical-align: baseline;
       }
-
     }
 
     & a:not([property]):not([resource])[role='doc-anchorlink'][href^='#'] {
@@ -251,7 +251,6 @@
         padding-right: 0;
         background-color: transparent;
       }
-
     }
   }
 }
