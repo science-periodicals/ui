@@ -10,6 +10,21 @@ import MenuItem from './menu/menu-item';
 import { getIconNameFromSchema, getDisplaySize } from '../utils/graph';
 
 export default class ResourceDownloadMenu extends React.Component {
+  static propTypes = {
+    id: PropTypes.string,
+    className: PropTypes.string,
+    portal: PropTypes.bool,
+    title: PropTypes.string,
+    iconSize: PropTypes.string,
+    align: PropTypes.oneOf(['left', 'right', 'center']),
+    resource: PropTypes.object
+  };
+
+  static defaultProps = {
+    portal: true,
+    align: 'right'
+  };
+
   renderEncoding(encoding) {
     const extension = (encoding.fileFormat || '').startsWith(ds3Mime)
       ? 'DS3'
@@ -31,7 +46,15 @@ export default class ResourceDownloadMenu extends React.Component {
   }
 
   render() {
-    const { id, className, resource, portal, align, iconSize } = this.props;
+    const {
+      id,
+      className,
+      resource,
+      title,
+      portal,
+      align,
+      iconSize
+    } = this.props;
 
     const menuItems = [];
 
@@ -74,6 +97,7 @@ export default class ResourceDownloadMenu extends React.Component {
       <Menu
         id={id}
         className={classNames(className, 'resource-download-menu')}
+        title={title}
         icon="download"
         iconSize={iconSize}
         portal={portal}
@@ -84,17 +108,3 @@ export default class ResourceDownloadMenu extends React.Component {
     );
   }
 }
-
-ResourceDownloadMenu.defaultProps = {
-  portal: true,
-  align: 'right'
-};
-
-ResourceDownloadMenu.propTypes = {
-  id: PropTypes.string,
-  className: PropTypes.string,
-  portal: PropTypes.bool,
-  iconSize: PropTypes.string,
-  align: PropTypes.oneOf(['left', 'right', 'center']),
-  resource: PropTypes.object
-};
