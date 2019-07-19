@@ -80,6 +80,7 @@ function headerMenusToMenus(children) {
 
 export default class Header extends Component {
   static propTypes = {
+    theme: PropTypes.oneOf(['light', 'dark', 'alt']),
     product: PropTypes.oneOf(['dispatcher', 'publisher', 'sifter', 'reader']),
     onClickHamburger: PropTypes.func,
     showHamburger: PropTypes.bool,
@@ -177,7 +178,8 @@ export default class Header extends Component {
       children,
       status,
       statusMessage,
-      startMenu
+      startMenu,
+      theme
     } = this.props;
 
     let mobileChildren = mobilizeChildren(children);
@@ -241,7 +243,7 @@ export default class Header extends Component {
             }`}
           >
             <Hyperlink {...logoLink}>
-              <Logo className="header__logo" logo={logo} />
+              <Logo className="header__logo" logo={logo} theme={theme} />
             </Hyperlink>
           </div>
           {product && (
