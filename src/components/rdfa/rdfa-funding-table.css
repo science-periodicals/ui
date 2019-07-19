@@ -3,6 +3,7 @@
   max-width: 100%;
   overflow: auto;
   border-collapse: collapse;
+  margin-bottom: 2em;
 
   font: var(--ui-type--condensed);
   font-stretch: condensed;

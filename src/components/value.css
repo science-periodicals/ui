@@ -5,10 +5,15 @@
     max-width: 100%;
   }
 
-  /* force equation to fit in print */
+  & span[role='math'] {
+    /* make sure there is leading between tall equation lines */
+    margin: 0.25em 0;
+  }
+
   & [role='math'] svg {
     vertical-align: middle;
     @media print {
+      /* force equation to fit in print */
       max-width: 100%;
       object-fit: contain;
     }
