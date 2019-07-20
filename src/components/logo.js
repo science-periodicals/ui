@@ -2,11 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { arrayify } from '@scipe/jsonld';
-import {
-  ASSET_LOGO,
-  ASSET_LOGO_DARK,
-  ASSET_LOGO_ALT
-} from '@scipe/librarian';
+import { ASSET_LOGO, ASSET_LOGO_DARK, ASSET_LOGO_ALT } from '@scipe/librarian';
 import resetSubdomain from '../utils/reset-subdomain';
 
 export default class Logo extends React.Component {
@@ -75,7 +71,9 @@ export default class Logo extends React.Component {
       encoding = {
         '@type': 'ImageObject',
         fileFormat: 'image/svg+xml',
-        contentUrl: '/images/sci.pe-logo-preview-menubar-h48px.svg'
+        contentUrl: `/images/sci.pe-logo-preview-menubar-h48px${
+          theme === 'light' ? '' : `-${theme}`
+        }.svg`
       };
     } else {
       const resources = arrayify(logo);
@@ -112,7 +110,7 @@ export default class Logo extends React.Component {
         encoding = {
           '@type': 'ImageObject',
           fileFormat: 'image/svg+xml',
-          contentUrl: `/images/sci.pe-logo-menubar-h48px${
+          contentUrl: `/images/sci.pe-logo-preview-menubar-h48px${
             theme === 'light' ? '' : `-${theme}`
           }.svg`
         };

@@ -157,6 +157,90 @@ export default class RdfaCitationExample extends React.Component {
               }}
             />
           </li>
+
+          {/* DigitalDocument part of a WebPage itself part of a WebSite */}
+          <li className="example__list-item">
+            <RdfaCitation
+              predicate="schema:citation"
+              object={{
+                '@id': 'node:nodeId',
+                '@type': 'DigitalDocument',
+                name: 'Digital document title',
+                author: {
+                  '@type': 'Person',
+                  name: 'Peter J Smith'
+                },
+                isPartOf: {
+                  '@type': 'WebPage',
+                  name: 'web page name',
+                  isPartOf: {
+                    '@type': 'WebSite',
+                    name: 'web site name'
+                  }
+                },
+                potentialAction: {
+                  '@type': 'ViewAction',
+                  actionStatus: 'CompletedActionStatus',
+                  endTime: {
+                    '@type': 'xsd:date',
+                    '@value': '2020-03-10'
+                  }
+                }
+              }}
+            />
+          </li>
+
+          {/* WebPage itself part of a WebSite */}
+          <li className="example__list-item">
+            <RdfaCitation
+              predicate="schema:citation"
+              object={{
+                '@id': 'node:nodeId',
+                '@type': 'WebPage',
+                name: 'web page  title',
+                author: {
+                  '@type': 'Person',
+                  name: 'Peter J Smith'
+                },
+                isPartOf: {
+                  '@type': 'WebSite',
+                  name: 'web site name'
+                },
+                potentialAction: {
+                  '@type': 'ViewAction',
+                  actionStatus: 'CompletedActionStatus',
+                  endTime: {
+                    '@type': 'xsd:date',
+                    '@value': '2020-03-10'
+                  }
+                }
+              }}
+            />
+          </li>
+
+          {/* WebPage */}
+          <li className="example__list-item">
+            <RdfaCitation
+              predicate="schema:citation"
+              object={{
+                '@id': 'node:nodeId',
+                '@type': 'WebPage',
+                name: 'web page  title',
+                author: {
+                  '@type': 'Person',
+                  name: 'Peter J Smith'
+                },
+                potentialAction: {
+                  '@type': 'ViewAction',
+                  actionStatus: 'CompletedActionStatus',
+                  endTime: {
+                    '@type': 'xsd:date',
+                    '@value': '2020-03-10'
+                  }
+                }
+              }}
+            />
+          </li>
         </ul>
       </div>
     );
