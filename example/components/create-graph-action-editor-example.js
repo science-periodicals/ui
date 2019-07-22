@@ -10,7 +10,8 @@ import {
   PaperButton,
   ControlPanel,
   withScreenDim,
-  CSS_LARGE_DESKTOP
+  CSS_LARGE_DESKTOP,
+  PaperCheckbox
 } from '../../src/';
 import periodical from '../../test/fixtures/periodical.json';
 
@@ -25,6 +26,7 @@ class _CreateGraphActionEditorExample extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      disabled: false,
       createGraphAction: {
         '@type': 'CreateGraphAction',
         result: {
@@ -114,6 +116,10 @@ class _CreateGraphActionEditorExample extends Component {
     };
   }
 
+  handleToggle = e => {
+    this.setState({ disabled: e.target.checked });
+  };
+
   handleChange = nextCreateGraphAction => {
     console.log('on change', nextCreateGraphAction);
 
@@ -145,12 +151,17 @@ class _CreateGraphActionEditorExample extends Component {
   };
 
   render() {
-    const { createGraphAction } = this.state;
+    const { createGraphAction, disabled } = this.state;
     const { screenWidth } = this.props;
 
     return (
       <div className="example">
+        <PaperCheckbox checked={disabled} onChange={this.handleToggle}>
+          disabled
+        </PaperCheckbox>
+
         <CreateGraphActionEditor
+          disabled={disabled}
           readOnly={false}
           layout={
             screenWidth < CSS_LARGE_DESKTOP ? 'singleColumn' : 'multiColumn'

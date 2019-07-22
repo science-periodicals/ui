@@ -71,13 +71,14 @@ export default class CreateGraphActionEditorServiceEditor extends Component {
   };
 
   render() {
-    const { potentialServices, action, serviceProp } = this.props;
+    const { potentialServices, action, serviceProp, disabled } = this.props;
 
     return (
       <StyleFormGroup>
         <fieldset>
           <ServicePicker
             multi={true}
+            disabled={disabled}
             onSelect={this.handleSelect}
             services={arrayify(action[serviceProp])}
             potentialServices={potentialServices}
