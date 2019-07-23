@@ -5,8 +5,9 @@
     max-width: 100%;
   }
 
-  & span[role='math'] {
-    /* make sure there is leading between tall equation lines */
+  & span[role='math'][style*="display: block"] {
+    /* make sure there is leading between block equation lines */
+    /* Note: the style*="display: block" attribute selector is brittle and sensitive the presence or absence of the space */
     margin: 0.25em 0;
   }
 
