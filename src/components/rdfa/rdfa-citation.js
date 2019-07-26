@@ -547,14 +547,16 @@ function RdfaIsPartOf({
   className,
   object,
   predicate = 'schema:isPartOf',
+  // set when called recursively
   hasIssue,
-  hasVolume
+  hasVolume,
+  hasWebPage
 }) {
   // Issue, Volume, Periodical
-  //  issue 2, volume X, of periodical
-  //  issue 2 of periodical
-  //  volume X of periodical
-  //  periodical
+  // issue 2, volume X, of periodical
+  // issue 2 of periodical
+  // volume X of periodical
+  // periodical
   if (!object || typeof object === 'string') return null;
 
   if (object['@type'] === 'PublicationIssue') {
@@ -659,6 +661,62 @@ function RdfaIsPartOf({
     }
   }
 
+  if (
+    object['@type'] === 'WebPage' // a `DigitalDocument` can be part of a `WebPage`
+  ) {
+    if (object.name != null) {
+      const name = (
+        <Value tagName="span" property="schema:name">
+          {object.name}
+        </Value>
+      );
+
+      return (
+        <span id={id} className={classNames('rdfa-is-part-of', className)}>
+          {hasWebPage && <span>, </span>}
+          <span
+            property="schema:isPartOf"
+            typeof={prefix(object['@type'])}
+            resource={getId(object)}
+          >
+            {object.url ? <a href={object.url}>{name}</a> : name}
+            <RdfaIsPartOf
+              object={object.isPartOf}
+              predicate="schema:isPartOf"
+              hasIssue={hasIssue}
+              hasWebPage={true}
+            />
+          </span>
+        </span>
+      );
+    }
+  }
+
+  if (
+    object['@type'] === 'WebSite' // a `WebPage` can be part of a `WebSite`
+  ) {
+    if (object.name != null) {
+      const name = (
+        <Value tagName="span" property="schema:name">
+          {object.name}
+        </Value>
+      );
+
+      return (
+        <span id={id} className={classNames('rdfa-is-part-of', className)}>
+          {hasWebPage && <span>, </span>}
+          <span
+            property="schema:isPartOf"
+            typeof={prefix(object['@type'])}
+            resource={getId(object)}
+          >
+            {object.url ? <a href={object.url}>{name}</a> : name}
+          </span>
+        </span>
+      );
+    }
+  }
+
   return null;
 }
 RdfaIsPartOf.propTypes = {
@@ -666,8 +724,10 @@ RdfaIsPartOf.propTypes = {
   className: PropTypes.string,
   object: PropTypes.oneOfType([PropTypes.object, PropTypes.string]), // string can happen during document worker reconciliation
   predicate: PropTypes.string,
+  // used for recursive calls
   hasIssue: PropTypes.bool,
-  hasVolume: PropTypes.bool
+  hasVolume: PropTypes.bool,
+  hasWebPage: PropTypes.bool
 };
 
 function RdfaDataCatalog({ id, className, object, predicate }) {

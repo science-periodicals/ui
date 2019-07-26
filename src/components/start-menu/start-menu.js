@@ -1,9 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Iconoclass from '@scipe/iconoclass';
 import Menu from '../menu/menu';
-import MenuHead from '../menu/menu-head';
 import MenuItem from '../menu/menu-item';
 import resetSubdomain from '../../utils/reset-subdomain';
 
@@ -19,19 +17,28 @@ const StartMenu = ({ align, portal, className, alert, reset }) => (
     iconName={alert ? 'logoSciAlt' : 'logoSci'}
     isconSize={32}
   >
-    {/* <MenuHead>
-      <Iconoclass
-        iconName={alert ? 'logoSciAlt' : 'logoSci'}
-        size="32px"
-        className="start-menu__head-icon"
-        round={false}
-      />
-    </MenuHead> */}
     {reset ? (
-      <MenuItem href={resetSubdomain('/explore')}>Explore</MenuItem>
+      <MenuItem href={resetSubdomain('/explore/journals')}>
+        Explore Journals
+      </MenuItem>
     ) : (
-      <MenuItem to="/explore">Explore</MenuItem>
+      <MenuItem to="/explore/journals">Explore Journals</MenuItem>
     )}
+
+    {reset ? (
+      <MenuItem href={resetSubdomain('/explore/articles')}>
+        Explore Articles
+      </MenuItem>
+    ) : (
+      <MenuItem to="/explore/articles">Explore Articles</MenuItem>
+    )}
+
+    {reset ? (
+      <MenuItem href={resetSubdomain('/explore/rfas')}>Explore RFAs</MenuItem>
+    ) : (
+      <MenuItem to="/explore/rfas">Explore RFAs</MenuItem>
+    )}
+
     <MenuItem href={resetSubdomain('/get-started')}>Get started</MenuItem>
   </Menu>
 );

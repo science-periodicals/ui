@@ -13,6 +13,7 @@ export default class Value extends React.Component {
     rel: PropTypes.string,
     escHtml: PropTypes.bool,
     property: PropTypes.string,
+    locationLinksType: PropTypes.oneOf(['shell', 'scroll']), // if set will decorate link starting with `a[href^='#v']` with either a open in shell or scroll icon
     children: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,
@@ -90,6 +91,7 @@ export default class Value extends React.Component {
       children,
       escHtml: _escHtml,
       setHref,
+      locationLinksType,
       ...others
     } = this.props;
 
@@ -115,7 +117,10 @@ export default class Value extends React.Component {
       tagName,
       Object.assign(
         {
-          className: classNames(className, 'value'),
+          className: classNames(className, 'value', {
+            'value--shell-location-link': locationLinksType === 'shell',
+            'value--scroll-location-link': locationLinksType === 'scroll'
+          }),
           dangerouslySetInnerHTML: { __html: html },
           datatype,
           ref: this.$el

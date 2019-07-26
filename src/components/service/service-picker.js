@@ -12,6 +12,7 @@ import PaperRadioButton from '../paper-radio-button';
 
 export default class ServicePicker extends React.Component {
   static propTypes = {
+    disabled: PropTypes.bool,
     multi: PropTypes.bool,
     onSelect: PropTypes.func,
     compactPreviews: PropTypes.bool,
@@ -37,6 +38,7 @@ export default class ServicePicker extends React.Component {
 
   render() {
     const {
+      disabled,
       service,
       services,
       potentialServices,
@@ -67,6 +69,7 @@ export default class ServicePicker extends React.Component {
                 {multi ? (
                   <PaperCheckbox
                     id={`radio-${getId(service)}`}
+                    disabled={disabled}
                     checked={checked.has(getId(service))}
                     className="service-picker__control"
                     onClick={this.handleClick.bind(
@@ -78,6 +81,7 @@ export default class ServicePicker extends React.Component {
                 ) : (
                   <PaperRadioButton
                     id={`radio-${getId(service)}`}
+                    disabled={disabled}
                     checked={checked.has(getId(service))}
                     className="service-picker__control"
                     onClick={this.handleClick.bind(

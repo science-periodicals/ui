@@ -4,13 +4,7 @@ import Fuse from 'fuse.js';
 import moment from 'moment';
 import pluralize from 'pluralize';
 import capitalize from 'lodash/capitalize';
-import {
-  getId,
-  arrayify,
-  textify,
-  unrole,
-  getNodeMap
-} from '@scipe/jsonld';
+import { getId, arrayify, textify, unrole, getNodeMap } from '@scipe/jsonld';
 import Iconoclass from '@scipe/iconoclass';
 import { createId } from '@scipe/librarian';
 import { API_LABELS } from '../../constants';
@@ -637,6 +631,7 @@ export default class CreateGraphActionEditorActionPreview extends React.Componen
             name="publishActionInstanceOf"
             className={bem`__public`}
             checked={willBePublished}
+            disabled={disabled}
             onChange={this.handleToggleMakePublic}
           >
             Make public at publication
@@ -654,8 +649,9 @@ export default class CreateGraphActionEditorActionPreview extends React.Componen
             ) : (
               <span />
             )}
+            {/* Note: we allow to open settings in disabled mode */}
             {!readOnly && (
-              <PaperButton onClick={this.handleOpenModal} disabled={disabled}>
+              <PaperButton onClick={this.handleOpenModal}>
                 <Iconoclass iconName="gear" size="18px" />
                 Settings
               </PaperButton>
