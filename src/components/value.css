@@ -53,7 +53,7 @@
     & a[rel~='sa:roleContactPoint'],
     & a[rel~='sa:roleAffiliation'],
     & a:not([property]):not([resource])[role='doc-anchorlink'][href^="#"], /* link to section */
-    & a[href^='http'] {
+    & a[href^='http'], &--shell-location-link a[href^='#v'], &--scroll-location-link a[href^='#v'] {
       display: inline;
       padding-right: 16px;
       margin-bottom: -3px;
@@ -87,6 +87,14 @@
       &:after {
         mask-image: url('/images/inline-icons__offsite_black.svg');
       }
+    }
+
+    &--shell-location-link a[href^='#v']:after {
+      mask-image: url('/images/inline-icons__shell_black.svg');
+    }
+
+    &--scroll-location-link a[href^='#v']:after {
+      mask-image: url('/images/inline-icons__anchor_black.svg');
     }
 
     /* shrink the shell icon for superscript */
