@@ -8,10 +8,13 @@ import classNames from 'classnames';
 class _AppLayoutStickyList extends Component {
   static propTypes = {
     children: PropTypes.any,
-    onHeaderHeightChange: PropTypes.func,
+    className: PropTypes.string,
+
+    /* context */
+    menubarHidden: PropTypes.bool,
     headerHeight: PropTypes.number,
     subHeaderHeight: PropTypes.number,
-    className: PropTypes.string
+    onHeaderHeightChange: PropTypes.func
   };
 
   constructor(props) {
@@ -60,7 +63,13 @@ class _AppLayoutStickyList extends Component {
   }
 
   render() {
-    const { children, headerHeight, subHeaderHeight, className } = this.props;
+    const {
+      children,
+      headerHeight,
+      subHeaderHeight,
+      className,
+      menubarHidden
+    } = this.props;
     return (
       <div
         ref={this.containerRef}
@@ -80,7 +89,8 @@ class _AppLayoutStickyList extends Component {
           onStick: this.handleStick,
           onUnstick: this.handleUnstick,
           headerHeight: headerHeight,
-          subHeaderHeight: subHeaderHeight
+          subHeaderHeight: subHeaderHeight,
+          menubarHidden: menubarHidden
         })}
 
         {reactChildrenUtils.getAllNotOfType(children, AppLayoutStickyListItem)}

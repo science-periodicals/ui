@@ -22,7 +22,8 @@ export const AppLayoutContext = React.createContext({
   hasWidgetPanel: false,
   handleHeaderHeightChange: noop,
   registerWidgetPanel: noop,
-  virtualRight: false
+  virtualRight: false,
+  leftExpanded: true
 });
 
 class _AppLayout extends Component {
@@ -52,7 +53,7 @@ class _AppLayout extends Component {
     this._isMounted = false;
     this.handleScroll = this.handleScroll.bind(this);
     this.handleResize = this.handleResize.bind(this);
-    this.handleTimeout = this.handleTimeout.bind(this);
+    this.watchScroll = this.watchScroll.bind(this);
     this.handleHeaderHeightChange = this.handleHeaderHeightChange.bind(this);
     this.registerWidgetPanel = this.registerWidgetPanel.bind(this);
     this.checkBannerVisibleHeight = this.checkBannerVisibleHeight.bind(this);
@@ -73,12 +74,15 @@ class _AppLayout extends Component {
     this.bannerRef = React.createRef();
     this.subHeaderRef = React.createRef();
 
-    this.timeout = undefined;
+    this.RAFId = undefined;
     this.scrollDirection = 'down';
     this.newYOffset = 0;
     this.oldYOffset = 0;
     this.lastMenubarChangeOffset = 0;
-    this.headerHeights = { menubar: 56, banner: 0 };
+    this.bannerHeights = {
+      menubar: 56,
+      banner: 0
+    }; /* menubar must be calculated into the banner heights */
 
     /* used to watch height of the main content area */
     this.oldContentHeight = 0;
@@ -103,8 +107,8 @@ class _AppLayout extends Component {
     window.removeEventListener('load', this.handleScroll);
     window.removeEventListener('scroll', this.handleScroll);
     window.removeEventListener('resize', this.handleResize);
-    if (this.timeout != null) {
-      clearTimeout(this.timeout);
+    if (this.RAFId != null) {
+      window.cancelAnimationFrame(this.RAFId);
     }
   }
 
@@ -171,19 +175,20 @@ class _AppLayout extends Component {
 
     if (key === 'menubar') {
       headerHeight = newHeight;
+      this.bannerHeights['menubar'] = newHeight;
     } else if (key === 'subheader') {
       subHeaderHeight = newHeight;
-    } else if (newHeight == 0 && key in this.headerHeights) {
-      delete this.headerHeights[key];
+    } else if (newHeight == 0 && key in this.bannerHeights) {
+      delete this.bannerHeights[key];
     } else {
-      this.headerHeights[key] = newHeight;
+      this.bannerHeights[key] = newHeight;
     }
 
-    const heightsArr = Object.values(this.headerHeights);
+    const heightsArr = Object.values(this.bannerHeights);
     const bannerHeight = heightsArr.length == 0 ? 0 : Math.max(...heightsArr);
 
     // the best way to debug the sticky header is to uncomment the line below and see which id is causing the problem
-    //console.log(this.headerHeights, headerHeight);
+    //console.log(this.bannerHeights, headerHeight);
 
     if (
       this.state.headerHeight !== headerHeight ||
@@ -207,11 +212,11 @@ class _AppLayout extends Component {
 
   /* handle scroll events: check if banner is visible and call handleHeaderHeightChange */
   handleScroll(event) {
-    if (this.timeout != null) {
-      clearTimeout(this.timeout);
+    if (this.RAFId != null) {
+      window.cancelAnimationFrame(this.RAFId);
     }
 
-    this.timeout = setTimeout(this.handleTimeout, 100);
+    this.RAFId = requestAnimationFrame(this.watchScroll);
 
     this.checkBannerVisibleHeight();
     this.measureSubHeaderHeight();
@@ -221,9 +226,10 @@ class _AppLayout extends Component {
     if (this.bannerRef.current) {
       const bannerRect = this.bannerRef.current.getBoundingClientRect();
 
-      if (bannerRect.top <= 0 && bannerRect.bottom >= 0) {
-        const bannerHeight = bannerRect.bottom;
+      // check if partially visible
 
+      if (/*bannerRect.top <= 0 && */ bannerRect.bottom >= 0) {
+        const bannerHeight = bannerRect.bottom;
         this.handleHeaderHeightChange(bannerHeight, 'banner');
       } else {
         this.handleHeaderHeightChange(0, 'banner');
@@ -250,17 +256,21 @@ class _AppLayout extends Component {
   }
 
   /* used to detect the direction of scroll and determine if the menubar should be hidden or not*/
-  handleTimeout(event) {
+  watchScroll() {
     const { screenHeight } = this.props;
 
-    if (this.timeout != null) {
-      clearTimeout(this.timeout);
+    if (this.RAFId != null) {
+      window.cancelAnimationFrame(this.RAFId);
+      this.RAFId = null;
     }
     if (!this._isMounted) {
       return;
     }
     this.oldYOffset = this.newYOffset ? this.newYOffset : window.scrollY;
-    this.newYOffset = window.scrollY;
+
+    // note: safari can have negative scroll position when it bounces.
+    this.newYOffset = Math.max(window.scrollY, 0);
+    //this.newYOffset = window.scrollY;
 
     const yDeltaSinceLastMenubarChange =
       this.lastMenubarChangeOffset - this.newYOffset;
@@ -274,7 +284,10 @@ class _AppLayout extends Component {
     the menubar that may produce a scroll event  .
     */
     const scrollDirection =
-      absYDelta > 56 && this.oldYOffset !== this.newYOffset
+      absYDelta > 56 &&
+      this.oldYOffset !== this.newYOffset &&
+      this.newYOffset !==
+        0 /* if scrolled to top, scroll direction should be down to show menubar */
         ? this.oldYOffset < this.newYOffset
           ? 'up'
           : 'down'
@@ -282,10 +295,14 @@ class _AppLayout extends Component {
 
     this.scrollDirection = scrollDirection;
 
-    //console.log('scrollDirection', this.scrollDirection);
-
     const menubarShouldBeHidden =
       scrollDirection == 'up' && screenHeight == CSS_SHORT;
+
+    // console.log({
+    //   scrollDirection: this.scrollDirection,
+    //   scrollY: window.scrollY,
+    //   menubarShouldBeHidden: menubarShouldBeHidden
+    // });
 
     if (this.state.menubarHidden !== menubarShouldBeHidden) {
       this.lastMenubarChangeOffset = this.newYOffset;
