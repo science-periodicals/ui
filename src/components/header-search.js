@@ -75,12 +75,14 @@ export default class HeaderSearch extends Component {
   };
 
   handleClickDelete = e => {
-    this.props.onSubmitSearch({
+    const fakeEvent = {
       target: {
         name: 'q',
         value: ''
       }
-    });
+    };
+    this.props.onChangeSearch(fakeEvent);
+    this.props.onSubmitSearch(fakeEvent);
   };
 
   render() {
