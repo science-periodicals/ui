@@ -5,6 +5,38 @@ import Value from './value';
 import ReactPortal from './react-portal';
 
 export default class Chordal extends React.Component {
+  static propTypes = {
+    data: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        color: PropTypes.string.isRequired,
+        links: PropTypes.arrayOf(PropTypes.string).isRequired
+      })
+    ),
+    dotHighlightSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    dotSize: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    distance: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    opacity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    highlightOpacity: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+    tooltipClass: PropTypes.string,
+    highlight: PropTypes.string,
+    onHighlight: PropTypes.func,
+    noAnimation: PropTypes.bool,
+    onClick: PropTypes.func
+  };
+
+  static defaultProps = {
+    size: 200,
+    dotHighlightSize: 5,
+    dotSize: 4,
+    opacity: 0.33,
+    highlightOpacity: 1,
+    distance: 0.9,
+    tooltipClass: 'chordal__tooltip'
+  };
+
   constructor(props, context) {
     super(props, context);
     this.previousPositions = {};
@@ -174,9 +206,7 @@ export default class Chordal extends React.Component {
                                 />
                               </linearGradient>
                               <line
-                                stroke={`url(#chordal-${item.id}-${link}-${
-                                  this.random
-                                })`}
+                                stroke={`url(#chordal-${item.id}-${link}-${this.random})`}
                                 x1={val.x}
                                 y1={val.y}
                                 x2={to.x}
@@ -216,36 +246,3 @@ export default class Chordal extends React.Component {
     );
   }
 }
-
-const { arrayOf, bool, func, number, oneOfType, shape, string } = PropTypes;
-Chordal.propTypes = {
-  data: arrayOf(
-    shape({
-      id: string.isRequired,
-      label: string.isRequired,
-      color: string.isRequired,
-      links: arrayOf(string).isRequired
-    })
-  ),
-  dotHighlightSize: oneOfType([number, string]),
-  dotSize: oneOfType([number, string]),
-  distance: oneOfType([number, string]),
-  size: oneOfType([number, string]),
-  opacity: oneOfType([number, string]),
-  highlightOpacity: oneOfType([number, string]),
-  tooltipClass: string,
-  highlight: string,
-  onHighlight: func,
-  noAnimation: bool,
-  onClick: func
-};
-
-Chordal.defaultProps = {
-  size: 200,
-  dotHighlightSize: 5,
-  dotSize: 4,
-  opacity: 0.33,
-  highlightOpacity: 1,
-  distance: 0.9,
-  tooltipClass: 'chordal__tooltip'
-};
