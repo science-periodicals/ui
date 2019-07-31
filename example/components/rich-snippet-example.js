@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
-import Iconoclass from '@scipe/iconoclass';
 import {
   RichSnippet,
   RichSnippetImpactImage,
   RichSnippetAbstract,
   RichSnippetImpactAbstract,
-  RichSnippetCitationGraph,
   RichSnippetImageGallery,
   RichSnippetAuthor,
   RichSnippetReviewer,
   RichSnippetChordal,
   PaperButton
 } from '../../src/';
-
-import data from '../../test/fixtures/graph';
 
 let chordalData = [
   {
@@ -80,7 +76,8 @@ export default class RichSnippetExample extends Component {
               this.setState({
                 viewMode:
                   this.state.viewMode === 'scholar' ? 'impact' : 'scholar'
-              })}
+              })
+            }
           >
             Toggle Mode
           </PaperButton>
@@ -101,7 +98,7 @@ export default class RichSnippetExample extends Component {
               Jon Smith
             </RichSnippetReviewer>
             <RichSnippetReviewer ranking={shortHash('Peter OTool')}>
-              Peter O'Tool
+              Peter O’Tool
             </RichSnippetReviewer>
             <RichSnippetReviewer ranking={shortHash('Reality Winner')}>
               Reality Winner
@@ -180,17 +177,6 @@ export default class RichSnippetExample extends Component {
                 threatened...
               </span>
             </RichSnippetImpactAbstract>
-            <RichSnippetCitationGraph
-              citedBy={1243}
-              impactFactor={13}
-              data={[
-                { name: `'13`, citations: 2000 },
-                { name: `'14`, citations: 2780 },
-                { name: `'15`, citations: 1890 },
-                { name: `'16`, citations: 2390 },
-                { name: `'17`, citations: 3490 }
-              ]}
-            />
           </RichSnippet>
         </div>
         <div className="example__row">
@@ -267,7 +253,7 @@ export default class RichSnippetExample extends Component {
                 decreased in population size and range. In the 177 mammals for
                 which we have detailed data, all have lost 30% or more of their
                 geographic ranges and more than 40% of the species have
-                experienced severe population declines (>80% range shrinkage).
+                experienced severe population declines (80% range shrinkage).
                 Our data indicate that beyond global species extinctions Earth
                 is experiencing a huge episode of population declines and
                 extirpations, which will have negative cascading consequences on
@@ -277,18 +263,6 @@ export default class RichSnippetExample extends Component {
                 extinction event.
               </p>
             </RichSnippetAbstract>
-
-            <RichSnippetCitationGraph
-              citedBy={1243}
-              impactFactor={13}
-              data={[
-                { name: `'13`, citations: 2000 },
-                { name: `'14`, citations: 2780 },
-                { name: `'15`, citations: 1890 },
-                { name: `'16`, citations: 2390 },
-                { name: `'17`, citations: 3490 }
-              ]}
-            />
           </RichSnippet>
         </div>
       </div>

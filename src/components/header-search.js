@@ -1,17 +1,37 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import Iconoclass from '@scipe/iconoclass';
 import noop from 'lodash/noop';
 import PaperInput from './paper-input';
 import Spinner from './spinner';
-import Iconoclass from '@scipe/iconoclass';
 import BemTags from '../utils/bem-tags';
 import OnClickOutWrapper from './on-clickout-wrapper';
 import HeaderSearchLeft from './header-search-left';
 import HeaderSearchRight from './header-search-right';
 import { getAllOfType, typesMatch } from '../utils/react-children-utils';
-import classNames from 'classnames';
+
+const ENTER_KEY_CODE = 13;
 
 export default class HeaderSearch extends Component {
+  static defaultProps = {
+    onChangeSearch: noop,
+    onSubmitSearch: noop,
+    searchValue: '',
+    fixed: true,
+    loading: false
+  };
+
+  static propTypes = {
+    fixed: PropTypes.bool,
+    onChangeSearch: PropTypes.func,
+    onSubmitSearch: PropTypes.func,
+    searchValue: PropTypes.string,
+    onSearchMenuClick: PropTypes.func,
+    children: PropTypes.node,
+    loading: PropTypes.bool
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -30,31 +50,40 @@ export default class HeaderSearch extends Component {
     });
   }
 
-  handleChange(e) {
-    if (this.props.onChangeSearch) {
-      this.props.onChangeSearch(e);
-    }
-  }
+  handleChange = e => {
+    this.props.onChangeSearch(e);
+  };
 
   handleClickOutside() {
     this.setState({ searchFocused: false });
   }
 
-  handleKeyDown(e) {
+  handleKeyDown = e => {
     if (e.key === 'Escape') {
       this.paperinput.blur();
+    } else if (e.keyCode === ENTER_KEY_CODE) {
+      this.props.onSubmitSearch(e);
     }
-  }
+  };
 
-  handleClickDelete(e) {
-    if (this.props.onChangeSearch)
-      this.props.onChangeSearch({
-        target: {
-          name: 'q',
-          value: ''
-        }
-      });
-  }
+  handleBlur = e => {
+    this.props.onSubmitSearch(e);
+  };
+
+  handleFocus = e => {
+    this.setState({ searchFocused: true });
+  };
+
+  handleClickDelete = e => {
+    const fakeEvent = {
+      target: {
+        name: 'q',
+        value: ''
+      }
+    };
+    this.props.onChangeSearch(fakeEvent);
+    this.props.onSubmitSearch(fakeEvent);
+  };
 
   render() {
     const bem = BemTags();
@@ -126,9 +155,10 @@ export default class HeaderSearch extends Component {
                 label="Search"
                 name="q"
                 value={searchValue}
-                onChange={this.handleChange.bind(this)}
-                onKeyDown={this.handleKeyDown.bind(this)}
-                onFocus={() => this.setState({ searchFocused: true })}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+                onBlur={this.handleBlur}
+                onFocus={this.handleFocus}
                 floatLabel={false}
                 large={true}
                 ref={el => (this.paperinput = el)}
@@ -143,7 +173,7 @@ export default class HeaderSearch extends Component {
                 disabled={!searchValue}
                 tagName="button"
                 size="12px"
-                onClick={this.handleClickDelete.bind(this)}
+                onClick={this.handleClickDelete}
               />
             </div>
           </OnClickOutWrapper>
@@ -167,22 +197,6 @@ export default class HeaderSearch extends Component {
     );
   }
 }
-
-HeaderSearch.defaultProps = {
-  onChangeSearch: noop,
-  searchValue: '',
-  fixed: true,
-  loading: false
-};
-
-HeaderSearch.propTypes = {
-  fixed: PropTypes.bool,
-  onChangeSearch: PropTypes.func,
-  searchValue: PropTypes.string,
-  onSearchMenuClick: PropTypes.func,
-  children: PropTypes.node,
-  loading: PropTypes.bool
-};
 
 export const HeaderSearchFieldChild = ({ children, className }) => {
   return (
