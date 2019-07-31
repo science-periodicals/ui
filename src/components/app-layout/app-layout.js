@@ -59,16 +59,18 @@ class _AppLayout extends Component {
     this.checkBannerVisibleHeight = this.checkBannerVisibleHeight.bind(this);
 
     this.state = {
+      rightVisible: props.rightExpanded,
+      /* Context */
+      menubarHidden: false,
       headerHeight: 56,
       subHeaderHeight: 0,
       bannerHeight: 0,
       screenWidth: props.screenWidth,
-      rightVisible: props.rightExpanded,
-      menubarHidden: false,
+      hasWidgetPanel: false,
       handleHeaderHeightChange: this.handleHeaderHeightChange,
       registerWidgetPanel: this.registerWidgetPanel,
-      hasWidgetPanel: false,
-      virtualRight: props.virtualRight
+      virtualRight: props.virtualRight,
+      leftExpanded: props.leftExpanded
     };
 
     this.bannerRef = React.createRef();
@@ -129,6 +131,10 @@ class _AppLayout extends Component {
 
     if (this.props.virtualRight !== this.state.virtualRight) {
       newState.virtualRight = this.props.virtualRight;
+    }
+
+    if (this.props.leftExpanded !== this.state.leftExpanded) {
+      newState.leftExpanded = this.props.leftExpanded;
     }
 
     if (Object.keys(newState).length > 0) {
@@ -402,10 +408,10 @@ export function withAppLayout(Component) {
           subHeaderHeight,
           bannerHeight,
           screenWidth,
+          hasWidgetPanel,
           handleHeaderHeightChange,
           registerWidgetPanel,
           virtualRight,
-          hasWidgetPanel,
           leftExpanded
         }) => (
           <Component
@@ -415,10 +421,10 @@ export function withAppLayout(Component) {
             subHeaderHeight={subHeaderHeight}
             bannerHeight={bannerHeight}
             screenWidth={screenWidth}
+            hasWidgetPanel={hasWidgetPanel}
             handleHeaderHeightChange={handleHeaderHeightChange}
             registerWidgetPanel={registerWidgetPanel}
             virtualRight={virtualRight}
-            hasWidgetPanel={hasWidgetPanel}
             leftExpanded={leftExpanded}
           />
         )}
