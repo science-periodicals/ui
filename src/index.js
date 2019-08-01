@@ -439,3 +439,7 @@ export { default as Version } from './components/version/version';
 export { default as TextLogo } from './components/text-logo';
 
 export { default as StatusBadge } from './components/status-badge';
+
+export {
+  default as WorkflowBadge
+} from './components/workflow-badge/workflow-badge';

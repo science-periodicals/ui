@@ -294,3 +294,7 @@ export { default as TextLogoExample } from './components/text-logo-example';
 export {
   default as StatusBadgeExample
 } from './components/status-badge-example';
+
+export {
+  default as WorkflowBadgeExample
+} from './components/workflow-badge-example';

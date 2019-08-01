@@ -176,3 +176,5 @@
 @import './components/text-logo.css';
 
 @import './components/status-badge.css';
+
+@import './components/workflow-badge/workflow-badge.css';

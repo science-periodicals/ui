@@ -1,0 +1,8 @@
+.workflow-badge {
+  &__background {
+    background-color: darkgrey;
+    border: 4px solid grey;
+  }
+  &__segment-down {
+  }
+}
