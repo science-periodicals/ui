@@ -23,6 +23,7 @@ export default class UserBadge extends React.Component {
       'editor',
       'producer',
       'reviewer',
+      'administrator',
       'authors',
       'editors',
       'producers',
@@ -184,7 +185,7 @@ export default class UserBadge extends React.Component {
           />
         )
       ) : (isRoleNameRequired && !roleName) ||
-      (required && username === '?') ? (
+        (required && username === '?') ? (
         '!'
       ) : anonymous ? (
         userBadgeLabel || '?'

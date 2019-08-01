@@ -26,6 +26,7 @@ export default class UserBadgeMenu extends React.Component {
       'producer',
       'reviewer',
       'authors',
+      'administrator',
       'editors',
       'producers',
       'reviewers',

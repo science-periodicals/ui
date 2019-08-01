@@ -127,7 +127,7 @@ export default class OrganizationEditor extends React.Component {
           <ul className="organization-editor__trail-list">
             {trail.map((organization, i) => (
               <li
-                key={getId(organization)}
+                key={getId(organization) || i}
                 className={classnames('organization-editor__trail-list__item', {
                   'organization-editor__trail-list__item--active':
                     getId(organization) === activeNodeId,
@@ -156,23 +156,22 @@ export default class OrganizationEditor extends React.Component {
                      size="18px"
                      className="organization-editor__trail-list__edit-icon"
                      />*/}
-                {i > 0 &&
-                  !readOnly && (
-                    <Iconoclass
-                      iconName="delete"
-                      behavior="button"
-                      disabled={disabled}
-                      onClick={this.handleDelete.bind(
-                        this,
-                        trail[i - 1],
-                        trail[i]
-                      )}
-                      size="18px"
-                      className="organization-editor__trail-list__delete-icon"
-                      onMouseOver={this.handleHoverDelete.bind(this, i, true)}
-                      onMouseLeave={this.handleHoverDelete.bind(this, i, false)}
-                    />
-                  )}
+                {i > 0 && !readOnly && (
+                  <Iconoclass
+                    iconName="delete"
+                    behavior="button"
+                    disabled={disabled}
+                    onClick={this.handleDelete.bind(
+                      this,
+                      trail[i - 1],
+                      trail[i]
+                    )}
+                    size="18px"
+                    className="organization-editor__trail-list__delete-icon"
+                    onMouseOver={this.handleHoverDelete.bind(this, i, true)}
+                    onMouseLeave={this.handleHoverDelete.bind(this, i, false)}
+                  />
+                )}
               </li>
             ))}
 
@@ -215,18 +214,14 @@ export default class OrganizationEditor extends React.Component {
 
         {/*controls*/}
         <ControlPanel>
-          {isLeaf &&
-            !readOnly && (
-              <PaperButton
-                disabled={disabled}
-                onClick={this.handleAddParentOrganization.bind(
-                  this,
-                  activeNode
-                )}
-              >
-                add parent organization
-              </PaperButton>
-            )}
+          {isLeaf && !readOnly && (
+            <PaperButton
+              disabled={disabled}
+              onClick={this.handleAddParentOrganization.bind(this, activeNode)}
+            >
+              add parent organization
+            </PaperButton>
+          )}
 
           {onClose && (
             <PaperButton onClick={this.handleClose}>close</PaperButton>
