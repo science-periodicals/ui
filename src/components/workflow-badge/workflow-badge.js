@@ -172,9 +172,6 @@ const WorkflowBadge = ({ size = 100, startTime, endTime, counts, paths }) => {
     return segments;
   };
 
-    return paths;
-  };
-
   const renderCell = (x, y) => {
     return (
       <rect
