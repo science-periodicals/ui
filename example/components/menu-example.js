@@ -10,7 +10,7 @@ export default function MenuExample(props) {
       className="example reverse-z-index"
       style={{ width: '100%', padding: '8px', boxSizing: 'border-box' }}
     >
-      <div className="example__row">
+      <div className="example__row" style={{ background: 'grey' }}>
         <Menu title="Left Menu" align="right" className="testClass">
           <MenuItem onClick={() => console.log('example menu click')}>
             Left Menu Item One

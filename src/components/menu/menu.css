@@ -75,7 +75,7 @@ is above the modal. */
       border-bottom: 6px solid var(--card-bg-color);
       z-index: 10;
       left: -6px;
-      right: 0;
+      /* right: 0; */
       top: 1px;
       position: absolute;
       box-sizing: border-box;
