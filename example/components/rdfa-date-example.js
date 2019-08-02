@@ -10,7 +10,7 @@ export default class RdfaDateExample extends React.Component {
             <RdfaDate object="2019-05-01T06:38:49.385Z" />
           </li>
           <li>
-            <RdfaDate object={{ '@type': 'xsd:gDay', '@value': 1 }} />
+            <RdfaDate object={{ '@type': 'xsd:gMonth', '@value': 1 }} />
           </li>
           <li>
             <RdfaDate
