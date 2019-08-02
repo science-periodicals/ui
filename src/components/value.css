@@ -5,14 +5,16 @@
     max-width: 100%;
   }
 
-  & span[role='math'][style*="display: block"] {
+  & span[role='math'][style*='display: block'] {
     /* make sure there is leading between block equation lines */
     /* Note: the style*="display: block" attribute selector is brittle and sensitive the presence or absence of the space */
     margin: 0.25em 0;
   }
 
   & [role='math'] svg {
-    vertical-align: middle;
+    /* setting vertical-align causes issue in safari - leaving it here for reference */
+    /* vertical-align: middle; */
+
     @media print {
       /* force equation to fit in print */
       max-width: 100%;
