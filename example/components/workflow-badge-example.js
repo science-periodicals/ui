@@ -54,7 +54,7 @@ export default function WorkflowBadgeExample(props) {
       id: 'action:editorActionId',
       x: 6,
       y: 0,
-      z: [false, false, true, false] // only visible to reviewer first
+      z: [true, true, true, false] // only visible to reviewer first
     },
 
     // producer
@@ -62,7 +62,20 @@ export default function WorkflowBadgeExample(props) {
       id: 'action:editorActionId',
       x: 7,
       y: 3,
-      z: [false, false, true, false] // only visible to reviewer first
+      z: [true, true, true, false] // only visible to reviewer first
+    },
+    // author
+    {
+      id: 'action:authoActionId',
+      x: 8,
+      y: 0,
+      z: [true, true, true, false] // only visible to reviewer first
+    },
+    {
+      id: 'action:authoActionId',
+      x: 9,
+      y: 0,
+      z: [true, true, true, false] // only visible to reviewer first
     }
   ];
 
