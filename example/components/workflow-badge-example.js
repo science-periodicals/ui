@@ -75,13 +75,71 @@ export default function WorkflowBadgeExample(props) {
       id: 'action:authoActionId',
       x: 9,
       y: 0,
-      z: [true, true, true, false] // only visible to reviewer first
+      z: [true, true, true, true] // only visible to reviewer first
     }
   ];
 
+  const viewIdentityPermissionMatrix = {
+    authors: {
+      authors: true,
+      editors: true,
+      reviewers: false,
+      producers: true,
+      public: true
+    },
+    editors: {
+      authors: true,
+      editors: true,
+      reviewers: true,
+      producers: true,
+      public: true
+    },
+    reviewers: {
+      authors: false,
+      editors: true,
+      reviewers: false,
+      producers: false,
+      public: true
+    },
+    producers: {
+      authors: true,
+      editors: true,
+      reviewers: false,
+      producers: true,
+      public: false
+    }
+  };
+
+  const counts = {
+    authors: 2,
+    editors: 3,
+    reviewers: 3,
+    producers: 2
+  };
+
   return (
     <div className="example">
-      <WorkflowBadge paths={testPaths1} />
+      <div className="example__row">
+        <WorkflowBadge
+          paths={testPaths1}
+          startTime={new Date()}
+          endTime={new Date()}
+          viewIdentityPermissionMatrix={viewIdentityPermissionMatrix}
+          counts={counts}
+        />
+        <WorkflowBadge
+          paths={testPaths1}
+          startTime={new Date()}
+          endTime={new Date()}
+          viewIdentityPermissionMatrix={viewIdentityPermissionMatrix}
+          counts={counts}
+          activePathColor="white"
+          inactivePathColor="#cccccc"
+          foregroundColor="white"
+          backgroundColor="#858585"
+          cellColor="#949494"
+        />
+      </div>
     </div>
   );
 }

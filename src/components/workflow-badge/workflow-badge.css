@@ -1,8 +1,42 @@
 .workflow-badge {
+  position: relative;
   &__background {
-    background-color: darkgrey;
-    border: 1px solid grey;
+    position: relative;
+    /* background-color: darkgrey;
+    border: 1px solid grey; */
   }
-  &__segment-down {
+  &__footer {
+    position: absolute;
+    bottom: 3px;
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 3px;
+    align-items: center;
+    justify-content: space-between;
+    opacity: 0.6;
+    &__matrix-container {
+      flex: 0 0 auto;
+      box-sizing: border-box;
+      padding-left: 4px;
+    }
+  }
+
+  &__date-range {
+    display: flex;
+    flex: 1 0 auto;
+    justify-content: space-between;
+    align-items: center;
+    font: 500 10px/11px 'Roboto', 'Sans-Serif';
+    position: relative;
+    top: 0.1em;
+    box-sizing: border-box;
+  }
+}
+
+.workflow-badge-role-icon {
+  &__count {
+    font: 600 6px Roboto, 'sans-serif';
+    letter-spacing: -0.25px;
   }
 }

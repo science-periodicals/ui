@@ -529,7 +529,8 @@ const WorkflowBadgeMatrix = ({
         data-pos={`${col},${row}`}
         key={`corner_${col}_${row}`}
       >
-        {/* <rect
+        {/* uncomment to debug */
+        /* <rect
           id="grid-square"
           width={gridSquareSize}
           height={gridSquareSize}
