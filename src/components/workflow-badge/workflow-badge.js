@@ -82,7 +82,12 @@ const WorkflowBadge = ({
             />
           </svg>
         </svg>
-        <div className="workflow-badge__footer">
+        <div
+          className="workflow-badge__footer"
+          style={{
+            height: `${(1 - matrixSizePerc - matrixYOffsetPerc) * 100}%`
+          }}
+        >
           <div
             className="workflow-badge__footer__matrix-container"
             style={{
@@ -94,12 +99,22 @@ const WorkflowBadge = ({
               matrix={viewIdentityPermissionMatrix}
               visibleColor={activePathColor}
               invisibleColor={inactivePathColor}
+              height={(1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8}
             />
           </div>
 
           <div
             className="workflow-badge__date-range"
-            style={{ color: foregroundColor }}
+            style={{
+              color: foregroundColor,
+              fontSize: Math.min(
+                16,
+                Math.max(
+                  10,
+                  (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8
+                )
+              )
+            }}
           >
             <span className="workflow-badge__date-range__start">
               {startTime.toLocaleDateString('en-US', {

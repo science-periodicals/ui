@@ -84,25 +84,27 @@ const WorkflowBadgeRoleIcon = ({
       className="workflow-badge-role-icon"
       title={roleName}
     >
-      <g transform="translate(15.5,5)">
-        <circle
-          cx="0"
-          cy="0"
-          r="4.5"
-          stroke={backgroundColor}
-          fill={foregroundColor}
-          strokeWidth="1.5"
-        />
-        <text
-          x="0"
-          y="2"
-          fill={backgroundColor}
-          className="workflow-badge-role-icon__count"
-          textAnchor="middle"
-        >
-          {count}
-        </text>
-      </g>
+      {count > 1 && (
+        <g transform="translate(15.5,5)">
+          <circle
+            cx="0"
+            cy="0"
+            r="4"
+            stroke={backgroundColor}
+            fill={foregroundColor}
+            strokeWidth="0"
+          />
+          <text
+            x="0"
+            y="2.25"
+            fill={backgroundColor}
+            className="workflow-badge-role-icon__count"
+            textAnchor="middle"
+          >
+            {count}
+          </text>
+        </g>
+      )}
       <g stroke={backgroundColor} fill={foregroundColor}>
         <path d="M0.375,20.125 L0.375,13.813 C0.375,10.413 4.499,7.5 7.875,7.5 C11.251,7.5 15.375,10.413 15.375,13.813 L15.375,20.125 L0.375,20.125 Z"></path>
         <path

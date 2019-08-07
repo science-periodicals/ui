@@ -7,14 +7,14 @@
   }
   &__footer {
     position: absolute;
-    bottom: 3px;
+    bottom: 0;
     display: flex;
     width: 100%;
     box-sizing: border-box;
     padding-right: 3px;
     align-items: center;
     justify-content: space-between;
-    opacity: 0.6;
+    opacity: 0.7;
     &__matrix-container {
       flex: 0 0 auto;
       box-sizing: border-box;
@@ -27,16 +27,18 @@
     flex: 1 0 auto;
     justify-content: space-between;
     align-items: center;
-    font: 500 10px/11px 'Roboto', 'Sans-Serif';
+    font: 400 10px/11px 'Roboto', 'Sans-Serif';
     position: relative;
-    top: 0.1em;
+    padding-left: 1px;
+    bottom: -0.035em;
     box-sizing: border-box;
   }
 }
 
 .workflow-badge-role-icon {
   &__count {
-    font: 600 6px Roboto, 'sans-serif';
-    letter-spacing: -0.25px;
+    font: 500 6.25px Roboto, 'sans-serif';
+
+    /* letter-spacing: -0.25px; */
   }
 }

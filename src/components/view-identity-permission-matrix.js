@@ -49,7 +49,7 @@ const ViewIdentityPermissionMatrix = ({
 };
 
 ViewIdentityPermissionMatrix.propTypes = {
-  size: PropTypes.number,
+  height: PropTypes.number,
   visibleColor: PropTypes.string,
   invisibleColor: PropTypes.string,
   matrix: PropTypes.shape({

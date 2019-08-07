@@ -114,7 +114,7 @@ export default function WorkflowBadgeExample(props) {
     authors: 2,
     editors: 3,
     reviewers: 3,
-    producers: 2
+    producers: 1
   };
 
   return (
@@ -128,6 +128,19 @@ export default function WorkflowBadgeExample(props) {
           counts={counts}
         />
         <WorkflowBadge
+          paths={testPaths1}
+          startTime={new Date()}
+          endTime={new Date()}
+          viewIdentityPermissionMatrix={viewIdentityPermissionMatrix}
+          counts={counts}
+          activePathColor="white"
+          inactivePathColor="#cccccc"
+          foregroundColor="white"
+          backgroundColor="#858585"
+          cellColor="#949494"
+        />
+        <WorkflowBadge
+          badgeSize={200}
           paths={testPaths1}
           startTime={new Date()}
           endTime={new Date()}
