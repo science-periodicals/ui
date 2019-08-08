@@ -11,25 +11,25 @@ export default function WorkflowBadgeExample(props) {
     {
       id: 'action:createReleaseActionId',
       x: 0,
-      y: 0,
+      y: A,
       z: [true, false, false, false] // only visible to author
     },
     {
       id: 'action:createReleaseActionId',
       x: 1,
-      y: 0,
+      y: A,
       z: [true, true, false, false] // author and editor can view
     },
     {
       id: 'action:createReleaseActionId',
       x: 2,
-      y: 0,
+      y: A,
       z: [true, true, true, true] // all can view
     },
     {
       id: 'action:createReleaseActionId',
       x: 3,
-      y: 0,
+      y: A,
       z: [true, true, true, true] // all can view
     },
 
@@ -37,7 +37,7 @@ export default function WorkflowBadgeExample(props) {
     {
       id: 'action:reviewActionId',
       x: 4,
-      y: 2,
+      y: R,
       z: [false, false, true, false] // only visible to reviewer first
     },
 
@@ -45,7 +45,7 @@ export default function WorkflowBadgeExample(props) {
     {
       id: 'action:editorActionId',
       x: 5,
-      y: 1,
+      y: E,
       z: [false, false, true, false] // only visible to reviewer first
     },
 
@@ -53,7 +53,7 @@ export default function WorkflowBadgeExample(props) {
     {
       id: 'action:editorActionId',
       x: 6,
-      y: 0,
+      y: A,
       z: [true, true, true, false] // only visible to reviewer first
     },
 
@@ -61,20 +61,20 @@ export default function WorkflowBadgeExample(props) {
     {
       id: 'action:editorActionId',
       x: 7,
-      y: 3,
+      y: P,
       z: [true, true, true, false] // only visible to reviewer first
     },
     // author
     {
-      id: 'action:authoActionId',
+      id: 'action:authorActionId',
       x: 8,
-      y: 0,
+      y: A,
       z: [true, true, true, false] // only visible to reviewer first
     },
     {
-      id: 'action:authoActionId',
+      id: 'action:authorActionId',
       x: 9,
-      y: 0,
+      y: A,
       z: [true, true, true, true] // only visible to reviewer first
     }
   ];
