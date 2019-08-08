@@ -24,7 +24,7 @@ export default function WorkflowBadgeExample(props) {
       id: 'action:createReleaseActionId',
       x: 2,
       y: 0,
-      z: [true, true, true, true] // all can view
+      z: [true, true, true, false] // all can view
     },
     {
       id: 'action:createReleaseActionId',
@@ -38,7 +38,7 @@ export default function WorkflowBadgeExample(props) {
       id: 'action:reviewActionId',
       x: 4,
       y: 2,
-      z: [false, false, true, false] // only visible to reviewer first
+      z: [false, true, true, false] // only visible to reviewer first
     },
 
     // editor

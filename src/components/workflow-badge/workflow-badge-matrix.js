@@ -78,6 +78,7 @@ const WorkflowBadgeMatrix = ({
     paths.forEach((action, i) => {
       if (i == 0) {
         roleActionMatrix[colIndex].rows[action.y] = {
+          first: true,
           id: 'actionGroup',
           x: colIndex,
           y: action.y,
@@ -608,12 +609,15 @@ const WorkflowBadgeMatrix = ({
     const x = xOffset;
     const y = yOffset;
 
-    const paths = actions.map(action => {
+    const paths = actions.map((action, subActionIndex) => {
       return roleNames.map((roleName, i) => {
         const strokeYOffset =
           strokeWidth / 2 /* account for stroke thickness */ +
           (strokeWidth + strokeGap) * i /* space between strokes */ +
           (cellHeight - pathSize) / 2; /* center the path in the cell */
+
+        const subActionWidth = width / actions.length;
+        const subActionXOffset = subActionIndex * subActionWidth;
 
         return (
           <path
@@ -622,8 +626,8 @@ const WorkflowBadgeMatrix = ({
             stroke={action.z[i] ? activePathColor : inactivePathColor}
             strokeWidth={strokeWidth}
             d={`
-              M ${x}, ${y + strokeYOffset}
-              L ${x + width}, ${y + strokeYOffset}
+              M ${x + subActionXOffset}, ${y + strokeYOffset}
+              L ${x + subActionXOffset + subActionWidth}, ${y + strokeYOffset}
             `}
           />
         );
