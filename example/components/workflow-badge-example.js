@@ -37,7 +37,7 @@ export default function WorkflowBadgeExample(props) {
     {
       id: 'action:reviewActionId',
       x: 4,
-      y: 2,
+      y: R,
       z: [false, true, true, false] // only visible to reviewer first
     },
 

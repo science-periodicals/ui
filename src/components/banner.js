@@ -59,6 +59,7 @@ export default class Banner extends React.Component {
   }
 
   handleLoad = e => {
+    console.log('loaded');
     const { onLoad, cssVariables, type, theme } = this.props;
     const { lastBackgroundUrl } = this.state;
     this.setState({ isLoaded: true });
@@ -122,6 +123,7 @@ export default class Banner extends React.Component {
         {!isLoaded && !!backgroundUrl && (
           <img src={backgroundUrl} onLoad={this.handleLoad} />
         )}
+
         {children}
       </El>
     );

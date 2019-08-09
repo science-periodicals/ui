@@ -1,4 +1,9 @@
 .banner {
+  & img {
+    /* The img tag is just a hack to be able to track the load event we set display to none to avoid visual artifact during SSR */
+    display: none;
+  }
+
   background-color: white;
   background-position: 0 40%;
   background-size: cover;
