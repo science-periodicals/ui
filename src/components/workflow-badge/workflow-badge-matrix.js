@@ -23,11 +23,14 @@ const WorkflowBadgeMatrix = ({
   */
   const colCount = (() => {
     let count = 1;
-    paths.forEach((action, i) => {
+    paths.forEach((actionItem, i) => {
       if (i > 0) {
-        const prevAction = paths[i - 1];
-        if (prevAction.x !== action.x && prevAction.y !== action.y) {
-          // make a col for the connector and one for the action
+        const prevActionItem = paths[i - 1];
+        if (
+          prevActionItem.x !== actionItem.x &&
+          prevActionItem.y !== actionItem.y
+        ) {
+          // make a col for the connector and one for the actionItem
           count += 2;
         }
       }
@@ -59,7 +62,7 @@ const WorkflowBadgeMatrix = ({
   });
 
   /**
-   * transform action data in full matrix, grouping contiguous actions together -
+   * transform actionItem data in full matrix, grouping contiguous actions together -
    */
   const roleActionMatrix = (() => {
     // initialize every cell value
@@ -75,49 +78,53 @@ const WorkflowBadgeMatrix = ({
 
     // piece together the different types of paths
     let colIndex = 0;
-    paths.forEach((action, i) => {
+    paths.forEach((actionItem, i) => {
       if (i == 0) {
-        roleActionMatrix[colIndex].rows[action.y] = {
+        roleActionMatrix[colIndex].rows[actionItem.y] = {
           first: true,
           id: 'actionGroup',
           x: colIndex,
-          y: action.y,
-          actions: [action]
+          y: actionItem.y,
+          actions: [actionItem]
         };
       } else {
-        const prevAction = sortedPaths[i - 1];
-        if (action.y == prevAction.y) {
+        const prevActionItem = sortedPaths[i - 1];
+        if (actionItem.y == prevActionItem.y) {
           // part of same group
-          roleActionMatrix[colIndex].rows[action.y] = {
+          roleActionMatrix[colIndex].rows[actionItem.y] = {
             id: 'actionGroup',
             x: colIndex,
-            y: action.y,
-            actions: roleActionMatrix[colIndex].rows[action.y].actions.concat(
-              action
-            )
+            y: actionItem.y,
+            actions: roleActionMatrix[colIndex].rows[
+              actionItem.y
+            ].actions.concat(actionItem)
           };
         } else {
-          const prevAction = sortedPaths[i - 1];
-          // new group - add action connectors
+          const prevActionItem = sortedPaths[i - 1];
+          // new group - add actionItem connectors
           colIndex++;
-          // an action can jump through multiple roles, so build segment for each one
-          // Note: action's can move up or down
-          const rowStart = prevAction.y < action.y ? prevAction.y : action.y;
-          const rowEnd = prevAction.y < action.y ? action.y : prevAction.y;
+          // an actionItem can jump through multiple roles, so build segment for each one
+          // Note: actionItem's can move up or down
+          const rowStart =
+            prevActionItem.y < actionItem.y ? prevActionItem.y : actionItem.y;
+          const rowEnd =
+            prevActionItem.y < actionItem.y ? actionItem.y : prevActionItem.y;
 
           for (let row = rowStart; row <= rowEnd; row++) {
             const type =
-              row === prevAction.y || row == action.y ? 'corner' : 'vertical';
-            const direction = prevAction.y < action.y ? 'down' : 'up';
+              row === prevActionItem.y || row == actionItem.y
+                ? 'corner'
+                : 'vertical';
+            const direction = prevActionItem.y < actionItem.y ? 'down' : 'up';
 
             let subtype;
-            if (row === prevAction.y && direction === 'down') {
+            if (row === prevActionItem.y && direction === 'down') {
               subtype = 'tr'; // top-right radius
-            } else if (row == action.y && direction === 'down') {
+            } else if (row == actionItem.y && direction === 'down') {
               subtype = 'bl'; // bottom-left radius
-            } else if (row === prevAction.y && direction === 'up') {
+            } else if (row === prevActionItem.y && direction === 'up') {
               subtype = 'br'; // bottom-right radius
-            } else if (row === action.y && direction === 'up') {
+            } else if (row === actionItem.y && direction === 'up') {
               subtype = 'tl'; // top-right radius
             } else {
               subtype = direction;
@@ -128,17 +135,17 @@ const WorkflowBadgeMatrix = ({
               x: colIndex,
               y: row,
               z:
-                prevAction.z /* inherit the visibility permissions from the previous action */
+                prevActionItem.z /* inherit the visibility permissions from the previous actionItem */
             };
           }
-          // add the new action
+          // add the new actionItem
           colIndex++;
-          //console.log('add action to ', colIndex, action.y);
-          roleActionMatrix[colIndex].rows[action.y] = {
+          //console.log('add actionItem to ', colIndex, actionItem.y);
+          roleActionMatrix[colIndex].rows[actionItem.y] = {
             id: 'actionGroup',
             x: colIndex,
-            y: action.y,
-            actions: [action]
+            y: actionItem.y,
+            actions: [actionItem]
           };
         }
       }
@@ -165,7 +172,7 @@ const WorkflowBadgeMatrix = ({
       return curr.colType === 'connector' ? acc + curr.colWidth : acc;
     }, 0);
 
-    // find the available space for the action widths
+    // find the available space for the actionItem widths
     const variableWidth = size - fixedWidth;
 
     // now that we know how much free space we have, we can go back through the
@@ -609,7 +616,7 @@ const WorkflowBadgeMatrix = ({
     const x = xOffset;
     const y = yOffset;
 
-    const paths = actions.map((action, subActionIndex) => {
+    const paths = actions.map((actionItem, subActionIndex) => {
       return roleNames.map((roleName, i) => {
         const strokeYOffset =
           strokeWidth / 2 /* account for stroke thickness */ +
@@ -623,7 +630,7 @@ const WorkflowBadgeMatrix = ({
           <path
             fill="none"
             key={`right_${col}_${row}_${i}`}
-            stroke={action.z[i] ? activePathColor : inactivePathColor}
+            stroke={actionItem.z[i] ? activePathColor : inactivePathColor}
             strokeWidth={strokeWidth}
             d={`
               M ${x + subActionXOffset}, ${y + strokeYOffset}
@@ -650,6 +657,7 @@ const WorkflowBadgeMatrix = ({
 
 WorkflowBadgeMatrix.propTypes = {
   size: PropTypes.number,
+  cellColor: PropTypes.string,
   activePathColor: PropTypes.string,
   inactivePathColor: PropTypes.string,
   paths: PropTypes.array
