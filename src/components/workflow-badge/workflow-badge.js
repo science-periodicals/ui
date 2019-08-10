@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import WorkFlowBadgeRoleIcon from './workflow-badge-role-icon';
 import WorkflowBadgeMatrix from './workflow-badge-matrix';
@@ -27,6 +27,11 @@ const WorkflowBadge = ({
   const matrixSize = badgeSize * matrixSizePerc;
   const matrixYOffsetPerc = 0.06;
   const roles = ['Authors', 'Editors', 'Reviewers', 'Producers'];
+
+  const [hoveringRole, setHoveringRole] = useState();
+
+  const hoveredForegroundColor = '#ffb523';
+
   return (
     <div className="workflow-badge">
       <div
@@ -60,9 +65,15 @@ const WorkflowBadge = ({
               >
                 <WorkFlowBadgeRoleIcon
                   roleName={role}
-                  foregroundColor={foregroundColor}
+                  foregroundColor={
+                    hoveringRole === role
+                      ? hoveredForegroundColor
+                      : foregroundColor
+                  }
                   backgroundColor={backgroundColor}
                   count={counts[role.toLowerCase()]}
+                  onMouseEnter={() => setHoveringRole(role)}
+                  onMouseLeave={() => setHoveringRole('none')}
                 />
               </svg>
             );
@@ -79,6 +90,7 @@ const WorkflowBadge = ({
               inactivePathColor={inactivePathColor}
               paths={paths}
               cellColor={cellColor}
+              highlightRole={hoveringRole}
             />
           </svg>
         </svg>

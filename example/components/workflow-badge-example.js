@@ -114,7 +114,7 @@ export default function WorkflowBadgeExample(props) {
     authors: 2,
     editors: 3,
     reviewers: 3,
-    producers: 1
+    producers: 0
   };
 
   return (

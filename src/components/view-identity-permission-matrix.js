@@ -37,7 +37,9 @@ const ViewIdentityPermissionMatrix = ({
                     height: `${height / 4}px`,
                     marginLeft: `${roleB === 'public' ? '2px' : '0'}`
                   }}
-                  title={`${roleA} can view identity of ${roleB}`}
+                  title={`${roleA} can ${
+                    matrix[roleA][roleB] ? '' : 'not '
+                  }view identity of ${roleB}`}
                 />
               );
             })}

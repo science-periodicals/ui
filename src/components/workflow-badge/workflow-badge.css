@@ -36,6 +36,13 @@
 }
 
 .workflow-badge-role-icon {
+  &__person {
+    transition: fill 0.2s;
+  }
+
+  &__count-circle {
+    transition: fill 0.2s;
+  }
   &__count {
     font: 500 6.25px Roboto, 'sans-serif';
 

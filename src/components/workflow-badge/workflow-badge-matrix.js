@@ -5,11 +5,14 @@ const WorkflowBadgeMatrix = ({
   size,
   activePathColor,
   inactivePathColor,
+  activePathHighlightColor = '#ffb523',
+  inactivePathHighlightColor = '#ccaa6e',
   cellColor,
-  paths
+  paths,
+  highlightRole
 }) => {
   const actionCount = paths.length;
-  const roleNames = ['Author', 'Editor', 'Reviewer', 'Producer'];
+  const roleNames = ['Authors', 'Editors', 'Reviewers', 'Producers'];
   const cellHeight = size / 4;
   const strokeWidth = 1.5; /* width of a single role path line */
   const strokeGap = 1; /* space between role path lines */
@@ -371,7 +374,7 @@ const WorkflowBadgeMatrix = ({
 
     const cornerYOffset = vAlign === 'top' ? 0 : gridSquareSize - cornerSize;
 
-    const strokes = roleNames.map((role, i) => {
+    const strokes = roleNames.map((roleName, i) => {
       let strokeStartXOffset,
         strokeStartYOffset,
         strokeEndXOffset,
@@ -501,7 +504,15 @@ const WorkflowBadgeMatrix = ({
         <path
           fill="none"
           key={`rcorner_${col}_${row}_${i}`}
-          stroke={viz[i] ? activePathColor : inactivePathColor}
+          stroke={
+            viz[i]
+              ? roleName === highlightRole
+                ? activePathHighlightColor
+                : activePathColor
+              : roleName === highlightRole
+              ? inactivePathHighlightColor
+              : inactivePathColor
+          }
           strokeWidth={strokeWidth}
           data-role={roleNames[i]}
           d={`
@@ -585,7 +596,15 @@ const WorkflowBadgeMatrix = ({
           fill="none"
           key={`down_${col}_${row}_${rolePos}`}
           data-role={`${roleName}`}
-          stroke={viz[i] ? activePathColor : inactivePathColor}
+          stroke={
+            viz[i]
+              ? roleName === highlightRole
+                ? activePathHighlightColor
+                : activePathColor
+              : roleName === highlightRole
+              ? inactivePathHighlightColor
+              : inactivePathColor
+          }
           strokeWidth={strokeWidth}
           d={`
             M ${x + xOffset}, ${y}
@@ -630,7 +649,15 @@ const WorkflowBadgeMatrix = ({
           <path
             fill="none"
             key={`right_${col}_${row}_${i}`}
-            stroke={actionItem.z[i] ? activePathColor : inactivePathColor}
+            stroke={
+              actionItem.z[i]
+                ? roleName === highlightRole
+                  ? activePathHighlightColor
+                  : activePathColor
+                : roleName === highlightRole
+                ? inactivePathHighlightColor
+                : inactivePathColor
+            }
             strokeWidth={strokeWidth}
             d={`
               M ${x + subActionXOffset}, ${y + strokeYOffset}
@@ -660,7 +687,8 @@ WorkflowBadgeMatrix.propTypes = {
   cellColor: PropTypes.string,
   activePathColor: PropTypes.string,
   inactivePathColor: PropTypes.string,
-  paths: PropTypes.array
+  paths: PropTypes.array,
+  highlightRole: PropTypes.string
 };
 
 export default WorkflowBadgeMatrix;
