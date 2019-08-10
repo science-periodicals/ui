@@ -23,16 +23,18 @@ export default class Logo extends React.Component {
       PropTypes.arrayOf(PropTypes.object)
     ]),
     theme: PropTypes.oneOf(['light', 'dark', 'alt']).isRequired,
+    alt: PropTypes.string,
     onLoad: PropTypes.func
   };
 
   static defaultProps = {
     theme: 'light',
+    alt: 'logo',
     logo: 'sci.pe-preview'
   };
 
   render() {
-    const { logo, className, onLoad, theme } = this.props;
+    const { logo, className, onLoad, theme, alt } = this.props;
 
     let encoding;
     if (logo === 'sci.pe') {
@@ -132,7 +134,7 @@ export default class Logo extends React.Component {
       <img
         className={classNames('logo', className)}
         src={resetSubdomain(thumbnail.contentUrl)}
-        alt="logo"
+        alt={alt}
         onLoad={onLoad}
       />
     );
