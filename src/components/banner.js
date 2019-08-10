@@ -122,6 +122,7 @@ export default class Banner extends React.Component {
         {!isLoaded && !!backgroundUrl && (
           <img src={backgroundUrl} onLoad={this.handleLoad} />
         )}
+
         {children}
       </El>
     );
