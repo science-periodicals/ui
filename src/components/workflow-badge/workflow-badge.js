@@ -17,7 +17,9 @@ const WorkflowBadge = ({
   paths,
   viewIdentityPermissionMatrix,
   activePathColor = 'black',
+  activePathHighlightColor = '#ffb773',
   inactivePathColor = 'darkgrey',
+  inactivePathHighlightColor = '#ccaa6e',
   foregroundColor = 'black',
   backgroundColor = 'whitesmoke',
   cellColor = '#efefef'
@@ -28,9 +30,9 @@ const WorkflowBadge = ({
   const matrixYOffsetPerc = 0.06;
   const roles = ['Authors', 'Editors', 'Reviewers', 'Producers'];
 
-  const [hoveringRole, setHoveringRole] = useState();
+  const [hoveringRole, setHoveringRole] = useState('');
 
-  const hoveredForegroundColor = '#ffb523';
+  const hoveredForegroundColor = '#ffb773';
 
   return (
     <div className="workflow-badge">
@@ -43,13 +45,13 @@ const WorkflowBadge = ({
         }}
       >
         <svg viewBox={svgViewBox} xmlns="http://www.w3.org/2000/svg">
-          <rect
+          {/* <rect
             width={badgeSize - matrixSize}
             height={badgeSize}
             fill={backgroundColor}
             x="0"
             y="0"
-          ></rect>
+          ></rect> */}
 
           {roles.map((role, i) => {
             return (
@@ -87,14 +89,81 @@ const WorkflowBadge = ({
             <WorkflowBadgeMatrix
               size={matrixSize}
               activePathColor={activePathColor}
+              activePathHighlightColor={activePathHighlightColor}
               inactivePathColor={inactivePathColor}
+              inactivePathHighlightColor={inactivePathHighlightColor}
               paths={paths}
               cellColor={cellColor}
               highlightRole={hoveringRole}
             />
           </svg>
+          {/* FOOTER */}
+          <svg
+            className="workflow-badge__footer"
+            x="0"
+            y={`${(matrixSizePerc + matrixYOffsetPerc) * 100}%`}
+            width={badgeSize}
+          >
+            <g
+              className="workflow-badge__footer__matrix-container"
+              transform={`translate(${0.03 * badgeSize} ${0.015 * badgeSize})`}
+            >
+              <ViewIdentityPermissionMatrix
+                matrix={viewIdentityPermissionMatrix}
+                visibleColor={activePathColor}
+                visibleHighlightColor={activePathHighlightColor}
+                invisibleColor={inactivePathColor}
+                invisibleHighlightColor={inactivePathHighlightColor}
+                highlightRole={hoveringRole}
+                height={
+                  (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize -
+                  0.04 * badgeSize
+                }
+              />
+            </g>
+
+            <g
+              className="workflow-badge__date-range"
+              transform={`translate(${0.2 * badgeSize} ${0.1 * badgeSize})`}
+              width={matrixSize}
+              fill={foregroundColor}
+              style={{
+                color: foregroundColor,
+                fontSize: Math.min(
+                  16,
+                  Math.max(
+                    10,
+                    (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8
+                  )
+                )
+              }}
+            >
+              <text className="workflow-badge__date-range__start">
+                {startTime.toLocaleDateString('en-US', {
+                  day: undefined,
+                  month: '2-digit',
+                  year: 'numeric'
+                })}
+              </text>
+              <text textAnchor="middle" x={matrixSize / 2 - matrixSize * 0.025}>
+                -
+              </text>
+              <text
+                className="workflow-badge__date-range__end"
+                textAnchor="end"
+                x={matrixSize - matrixSize * 0.04}
+              >
+                {endTime.toLocaleDateString('en-US', {
+                  day: undefined,
+                  month: '2-digit',
+                  year: 'numeric'
+                })}
+              </text>
+            </g>
+          </svg>
         </svg>
-        <div
+
+        {/* <div
           className="workflow-badge__footer"
           style={{
             height: `${(1 - matrixSizePerc - matrixYOffsetPerc) * 100}%`
@@ -110,7 +179,10 @@ const WorkflowBadge = ({
             <ViewIdentityPermissionMatrix
               matrix={viewIdentityPermissionMatrix}
               visibleColor={activePathColor}
+              visibleHighlightColor={activePathHighlightColor}
               invisibleColor={inactivePathColor}
+              invisibleHighlightColor={inactivePathHighlightColor}
+              highlightRole={hoveringRole}
               height={(1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8}
             />
           </div>
@@ -144,7 +216,7 @@ const WorkflowBadge = ({
               })}
             </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

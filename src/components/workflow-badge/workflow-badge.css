@@ -5,7 +5,7 @@
     /* background-color: darkgrey;
     border: 1px solid grey; */
   }
-  &__footer {
+  /* &__footer {
     position: absolute;
     bottom: 0;
     display: flex;
@@ -20,7 +20,7 @@
       box-sizing: border-box;
       padding-left: 4px;
     }
-  }
+  } */
 
   &__date-range {
     display: flex;

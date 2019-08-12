@@ -5,55 +5,79 @@ const ViewIdentityPermissionMatrix = ({
   matrix,
   height = 8,
   visibleColor,
-  invisibleColor
+  invisibleColor,
+  visibleHighlightColor,
+  invisibleHighlightColor,
+  highlightRole
 }) => {
   return (
-    <div
+    <svg
       className="view-identity-permission-matrix"
-      style={{
-        height: `${height}px`,
-        width: `${height + (height / 4) * 2}px`
-      }}
+      //viewBox={`0 0 ${height} ${height + (height / 4) * 2}`}
+      height={height}
+      width={`${height + (height / 4) * 2}`}
     >
-      {Object.keys(matrix).map(roleA => {
+      {Object.keys(matrix).map((roleA, row) => {
         return (
-          <div
+          <g
             className={`view-identity-permission-matrix__row view-identity-permission-matrix__cell--${roleA}`}
             key={roleA}
-            style={{ display: 'flex' }}
           >
-            {Object.keys(matrix[roleA]).map(roleB => {
+            {Object.keys(matrix[roleA]).map((roleB, col) => {
               return (
-                <div
+                <rect
+                  width={`${height / 4}px`}
+                  height={`${height / 4}px`}
+                  x={`${col * (height / 4) + (roleB === 'public' ? 2 : 0)}px`}
+                  y={`${row * (height / 4)}px`}
+                  fill={
+                    roleA === highlightRole.toLowerCase()
+                      ? matrix[roleA][roleB]
+                        ? visibleHighlightColor
+                        : invisibleHighlightColor
+                      : matrix[roleA][roleB]
+                      ? visibleColor
+                      : invisibleColor
+                  }
+                  stroke="none"
                   key={`${roleA}x${roleB}`}
                   className={`view-identity-permission-matrix__cell view-identity-permission-matrix__cell${
                     matrix[roleA][roleB] ? '--visible' : '--invisible'
                   } view-identity-permission-matrix__cell--${roleB}`}
-                  style={{
-                    backgroundColor: matrix[roleA][roleB]
-                      ? visibleColor
-                      : invisibleColor,
-                    width: `${height / 4}px`,
-                    height: `${height / 4}px`,
-                    marginLeft: `${roleB === 'public' ? '2px' : '0'}`
-                  }}
                   title={`${roleA} can ${
                     matrix[roleA][roleB] ? '' : 'not '
                   }view identity of ${roleB}`}
                 />
               );
             })}
-          </div>
+          </g>
         );
       })}
-    </div>
+    </svg>
   );
 };
+
+// style={{
+//   backgroundColor:
+//     roleA === highlightRole.toLowerCase()
+//       ? matrix[roleA][roleB]
+//         ? visibleHighlightColor
+//         : invisibleHighlightColor
+//       : matrix[roleA][roleB]
+//       ? visibleColor
+//       : invisibleColor,
+//   width: `${height / 4}px`,
+//   height: `${height / 4}px`,
+//   marginLeft: `${roleB === 'public' ? '2px' : '0'}`
+// }}
 
 ViewIdentityPermissionMatrix.propTypes = {
   height: PropTypes.number,
   visibleColor: PropTypes.string,
   invisibleColor: PropTypes.string,
+  visibleHighlightColor: PropTypes.string,
+  invisibleHighlightColor: PropTypes.string,
+  highlightRole: PropTypes.string,
   matrix: PropTypes.shape({
     authors: PropTypes.shape({
       authors: PropTypes.bool,
