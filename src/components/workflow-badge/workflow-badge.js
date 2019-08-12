@@ -106,7 +106,7 @@ const WorkflowBadge = ({
           >
             <g
               className="workflow-badge__footer__matrix-container"
-              transform={`translate(${0.03 * badgeSize} ${0.015 * badgeSize})`}
+              transform={`translate(${0.025 * badgeSize} ${0.015 * badgeSize})`}
             >
               <ViewIdentityPermissionMatrix
                 matrix={viewIdentityPermissionMatrix}
@@ -124,7 +124,7 @@ const WorkflowBadge = ({
 
             <g
               className="workflow-badge__date-range"
-              transform={`translate(${0.2 * badgeSize} ${0.1 * badgeSize})`}
+              transform={`translate(${0.185 * badgeSize} ${0.1 * badgeSize})`}
               width={matrixSize}
               fill={foregroundColor}
               style={{
@@ -145,13 +145,13 @@ const WorkflowBadge = ({
                   year: 'numeric'
                 })}
               </text>
-              <text textAnchor="middle" x={matrixSize / 2 - matrixSize * 0.025}>
+              <text textAnchor="middle" x={matrixSize / 2 - matrixSize * 0.02}>
                 -
               </text>
               <text
                 className="workflow-badge__date-range__end"
                 textAnchor="end"
-                x={matrixSize - matrixSize * 0.04}
+                x={matrixSize - matrixSize * 0.02}
               >
                 {endTime.toLocaleDateString('en-US', {
                   day: undefined,
