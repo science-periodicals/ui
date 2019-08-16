@@ -1,4 +1,4 @@
-import { getId } from '@scipe/jsonld';
+import { arrayify, unrole } from '@scipe/jsonld';
 import { getStageActions, compareActions } from '@scipe/librarian';
 
 /**
@@ -67,19 +67,158 @@ export function getWorkflowBadgePaths(
     });
 
   const paths = [];
+
   let x = 0;
   cActions.forEach(({ action, cat }) => {
     // we subdivide each action into:
-    // - active
-    // - staged
-    // - completed
-    // - after stage completed status
+    //
+    // 1. active
+    // 2. staged
+    // 3. completed
+    // 4. after stage is completed status
+    //
     // to represent the time varying audience (`z`)
     // Based on the category (`cat`) we spread `action`
-    // into a multiple of 4 (number of status)
+    // into a multiple of 4 (number of status).
+    //
+    // We encode the visible audience for each status with a list of 4 boolean
+    // for (in order) [Authors, Editors, Reviewers, Producers]
+
+    const activeAudiences = arrayify(action.participant).reduce(
+      (audiences, role) => {
+        if (role['@type'] === 'AudienceRole' && role.startTime) {
+          const roleStartTime = new Date(role.startTime).getTime();
+          if (
+            (!action.stagedTime &&
+              roleStartTime < new Date(role.endTime).getTime()) ||
+            (action.stagedTime &&
+              roleStartTime < new Date(role.stagedTime).getTime())
+          ) {
+            const participant = unrole(role, 'participant');
+            if (participant && participant.audienceType) {
+              audiences[getAudienceIndex(participant.audienceType)] = true;
+            }
+          }
+        }
+
+        return audiences;
+      },
+      [false, false, false, false]
+    );
+
+    const stagedAudiences = arrayify(action.participant).reduce(
+      (audiences, role) => {
+        if (
+          role['@type'] === 'AudienceRole' &&
+          role.startTime &&
+          action.stagedTime
+        ) {
+          const roleStartTime = new Date(role.startTime).getTime();
+          if (
+            roleStartTime >= new Date(action.stagedTime).getTime() &&
+            roleStartTime < new Date(action.endTime).getTime()
+          ) {
+            const participant = unrole(role, 'participant');
+            if (participant && participant.audienceType) {
+              audiences[getAudienceIndex(participant.audienceType)] = true;
+            }
+          }
+        }
+
+        return audiences;
+      },
+      activeAudiences.slice()
+    );
+
+    const completedAudiences = arrayify(action.participant).reduce(
+      (audiences, role) => {
+        if (
+          role['@type'] === 'AudienceRole' &&
+          role.startTime &&
+          action.endTime
+        ) {
+          const roleStartTime = new Date(role.startTime).getTime();
+          if (roleStartTime === new Date(action.endTime).getTime()) {
+            const participant = unrole(role, 'participant');
+            if (participant && participant.audienceType) {
+              audiences[getAudienceIndex(participant.audienceType)] = true;
+            }
+          }
+        }
+
+        return audiences;
+      },
+      stagedAudiences.slice()
+    );
+
+    const stageCompletedAudiences = arrayify(action.participant).reduce(
+      (audiences, role) => {
+        if (
+          role['@type'] === 'AudienceRole' &&
+          role.startTime &&
+          action.endTime
+        ) {
+          const roleStartTime = new Date(role.startTime).getTime();
+          if (roleStartTime > new Date(action.endTime).getTime()) {
+            const participant = unrole(role, 'participant');
+            if (participant && participant.audienceType) {
+              audiences[getAudienceIndex(participant.audienceType)] = true;
+            }
+          }
+        }
+
+        return audiences;
+      },
+      completedAudiences.slice()
+    );
+
+    const isPublicAfter = arrayify(action.participant).some(
+      (audiences, role) => {
+        if (role['@type'] === 'AudienceRole') {
+          const participant = unrole(role, 'participant');
+          if (participant && participant.audienceType === 'public') {
+            return true;
+          }
+        }
+        return false;
+      }
+    );
+
+    const isPublicDuring = false; // this is currently only true for pre-print and post publication reviews
+
+    const y = getAudienceIndex(action.agent.roleName);
+    [
+      activeAudiences,
+      stagedAudiences,
+      completedAudiences,
+      stageCompletedAudiences
+    ].forEach(z => {
+      for (let i = 0; i < cat; i++) {
+        paths.push({
+          x: x++,
+          y,
+          z,
+          isPublicDuring,
+          isPublicAfter
+        });
+      }
+    });
   });
 
   return paths;
+}
+
+function getAudienceIndex(audienceType) {
+  switch (audienceType) {
+    case 'author':
+      return 0;
+    case 'editor':
+      return 1;
+    case 'reviewer':
+      return 2;
+    case 'producer':
+      return 3;
+  }
 }
 
 /**
