@@ -443,3 +443,4 @@ export { default as StatusBadge } from './components/status-badge';
 export {
   default as WorkflowBadge
 } from './components/workflow-badge/workflow-badge';
+export { getWorkflowBadgePaths } from './utils/workflow-badge-utils';

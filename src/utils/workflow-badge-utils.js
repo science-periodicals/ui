@@ -1,11 +1,12 @@
-import { arrayify, unrole } from '@scipe/jsonld';
+import { arrayify, unrole, getId } from '@scipe/jsonld';
 import { getStageActions, compareActions } from '@scipe/librarian';
 
 /**
  * Util to get the `paths` prop of `<WorkflowBadge />`
  */
 export function getWorkflowBadgePaths(
-  stages = [] // all the `StartWorkflowStageAction` of a `Graph`
+  stages = [], // all the `StartWorkflowStageAction` of a `Graph`
+  { nCat = 1 } = {}
 ) {
   const actions = stages
     .reduce((actions, stage) => {
@@ -37,18 +38,16 @@ export function getWorkflowBadgePaths(
 
   // we categorize the actions based on their duration grouping together
   // actions falling within the same percentile
-  const i33 = getPercentileIndex(33);
-  const i66 = getPercentileIndex(66);
+
+  const percentilesIndexes = Array.from({ length: nCat }, (_, i) => {
+    return ((i + 1) / nCat) * 100;
+  }).map(p => getPercentileIndex(p, actions));
 
   const cActions = actions
     .map((action, i) => {
-      let cat;
-      if (i <= i33) {
-        cat = 1;
-      } else if (i <= i66) {
-        cat = 2;
-      } else {
-        cat = 3;
+      let cat = 1;
+      while (i > percentilesIndexes[cat - 1]) {
+        cat++;
       }
 
       return {
@@ -58,12 +57,13 @@ export function getWorkflowBadgePaths(
     })
     .sort((a, b) => {
       // sort by startTime
-      if (a.starTime !== b.starTime) {
+      if (a.action.starTime !== b.action.starTime) {
         return (
-          new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
+          new Date(a.action.startTime).getTime() -
+          new Date(b.action.startTime).getTime()
         );
       }
-      return compareActions(a, b);
+      return compareActions(a.action, b.action);
     });
 
   const paths = [];
@@ -86,16 +86,20 @@ export function getWorkflowBadgePaths(
 
     const activeAudiences = arrayify(action.participant).reduce(
       (audiences, role) => {
-        if (role['@type'] === 'AudienceRole' && role.startTime) {
-          const roleStartTime = new Date(role.startTime).getTime();
+        if (role['@type'] === 'AudienceRole' && role.startDate) {
+          const roleStartDate = new Date(role.startDate).getTime();
           if (
             (!action.stagedTime &&
-              roleStartTime < new Date(role.endTime).getTime()) ||
+              roleStartDate < new Date(action.endTime).getTime()) ||
             (action.stagedTime &&
-              roleStartTime < new Date(role.stagedTime).getTime())
+              roleStartDate < new Date(action.stagedTime).getTime())
           ) {
             const participant = unrole(role, 'participant');
-            if (participant && participant.audienceType) {
+            if (
+              participant &&
+              participant.audienceType &&
+              participant.audienceType !== 'public'
+            ) {
               audiences[getAudienceIndex(participant.audienceType)] = true;
             }
           }
@@ -110,16 +114,20 @@ export function getWorkflowBadgePaths(
       (audiences, role) => {
         if (
           role['@type'] === 'AudienceRole' &&
-          role.startTime &&
+          role.startDate &&
           action.stagedTime
         ) {
-          const roleStartTime = new Date(role.startTime).getTime();
+          const roleStartDate = new Date(role.startDate).getTime();
           if (
-            roleStartTime >= new Date(action.stagedTime).getTime() &&
-            roleStartTime < new Date(action.endTime).getTime()
+            roleStartDate >= new Date(action.stagedTime).getTime() &&
+            roleStartDate < new Date(action.endTime).getTime()
           ) {
             const participant = unrole(role, 'participant');
-            if (participant && participant.audienceType) {
+            if (
+              participant &&
+              participant.audienceType &&
+              participant.audienceType !== 'public'
+            ) {
               audiences[getAudienceIndex(participant.audienceType)] = true;
             }
           }
@@ -134,13 +142,17 @@ export function getWorkflowBadgePaths(
       (audiences, role) => {
         if (
           role['@type'] === 'AudienceRole' &&
-          role.startTime &&
+          role.startDate &&
           action.endTime
         ) {
-          const roleStartTime = new Date(role.startTime).getTime();
-          if (roleStartTime === new Date(action.endTime).getTime()) {
+          const roleStartDate = new Date(role.startDate).getTime();
+          if (roleStartDate === new Date(action.endTime).getTime()) {
             const participant = unrole(role, 'participant');
-            if (participant && participant.audienceType) {
+            if (
+              participant &&
+              participant.audienceType &&
+              participant.audienceType !== 'public'
+            ) {
               audiences[getAudienceIndex(participant.audienceType)] = true;
             }
           }
@@ -155,13 +167,17 @@ export function getWorkflowBadgePaths(
       (audiences, role) => {
         if (
           role['@type'] === 'AudienceRole' &&
-          role.startTime &&
+          role.startDate &&
           action.endTime
         ) {
-          const roleStartTime = new Date(role.startTime).getTime();
-          if (roleStartTime > new Date(action.endTime).getTime()) {
+          const roleStartDate = new Date(role.startDate).getTime();
+          if (roleStartDate > new Date(action.endTime).getTime()) {
             const participant = unrole(role, 'participant');
-            if (participant && participant.audienceType) {
+            if (
+              participant &&
+              participant.audienceType &&
+              participant.audienceType !== 'public'
+            ) {
               audiences[getAudienceIndex(participant.audienceType)] = true;
             }
           }
@@ -172,17 +188,15 @@ export function getWorkflowBadgePaths(
       completedAudiences.slice()
     );
 
-    const isPublicAfter = arrayify(action.participant).some(
-      (audiences, role) => {
-        if (role['@type'] === 'AudienceRole') {
-          const participant = unrole(role, 'participant');
-          if (participant && participant.audienceType === 'public') {
-            return true;
-          }
+    const isPublicAfter = arrayify(action.participant).some(role => {
+      if (role['@type'] === 'AudienceRole') {
+        const participant = unrole(role, 'participant');
+        if (participant && participant.audienceType === 'public') {
+          return true;
         }
-        return false;
       }
-    );
+      return false;
+    });
 
     const isPublicDuring = false; // this is currently only true for pre-print and post publication reviews
 
@@ -195,6 +209,7 @@ export function getWorkflowBadgePaths(
     ].forEach(z => {
       for (let i = 0; i < cat; i++) {
         paths.push({
+          id: getId(action),
           x: x++,
           y,
           z,
