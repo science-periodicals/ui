@@ -12,6 +12,7 @@ describe('workflow badge', function() {
             '@type': 'CreateReleaseAction',
             startTime: new Date('2018-01-01').toISOString(),
             endTime: new Date('2018-01-02').toISOString(),
+            actionStatus: 'CompletedActionStatus',
             agent: {
               '@type': 'ContributorRole',
               roleName: 'author',
@@ -75,6 +76,7 @@ describe('workflow badge', function() {
             startTime: new Date('2018-01-05').toISOString(),
             stagedTime: new Date('2018-01-06').toISOString(),
             endTime: new Date('2018-01-07').toISOString(),
+            actionStatus: 'CompletedActionStatus',
             agent: {
               '@type': 'ContributorRole',
               roleName: 'editor',

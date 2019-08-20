@@ -25,7 +25,12 @@ export function getWorkflowBadgePaths(
 
       return actions;
     }, [])
-    .filter(action => action.startTime && action.endTime)
+    .filter(
+      action =>
+        action.startTime &&
+        action.endTime &&
+        action.actionStatus === 'CompletedActionStatus' // need to exclude the failed or canceled actions and this needs to work during preview mode when workflow may not have been completed yet
+    )
     .sort((a, b) => {
       // sort by duration
       const da =
