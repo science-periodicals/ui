@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const WorkflowBadgeMatrix = ({
+function WorkflowBadgeMatrix({
   size,
   activePathColor,
   inactivePathColor,
@@ -10,7 +10,7 @@ const WorkflowBadgeMatrix = ({
   cellColor,
   paths,
   highlightRole
-}) => {
+}) {
   const actionCount = paths.length;
   const roleNames = ['Authors', 'Editors', 'Reviewers', 'Producers'];
   const cellHeight = size / 4;
@@ -680,14 +680,23 @@ const WorkflowBadgeMatrix = ({
   };
 
   return <g> {renderActionMatrix(size, 0)}</g>;
-};
+}
 
 WorkflowBadgeMatrix.propTypes = {
   size: PropTypes.number,
   cellColor: PropTypes.string,
   activePathColor: PropTypes.string,
   inactivePathColor: PropTypes.string,
-  paths: PropTypes.array,
+  paths: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired, // the @id of the underlying action (usefull to draw separator lines as 1 action can span through several time steps)
+      x: PropTypes.number.isRequired, // logical time (0,1,2,3,4,5,6...)
+      y: PropTypes.oneOf([0, 1, 2, 3]).isRequired, // A, E, R, P
+      z: PropTypes.arrayOf(PropTypes.bool).isRequired, // A, E, R, P to color code the time-varying audience
+      isPublicDuring: PropTypes.bool.isRequired, // an action can be viewed publicly _during_ the editorial workflow
+      isPublicAfter: PropTypes.bool.isRequired // an action can be viewed publicly _after_ the editorial workflow has been completed
+    })
+  ),
   highlightRole: PropTypes.string
 };
 

@@ -9,7 +9,7 @@ acurate stroke offsets with parallel bazzier radius is quite complex in practice
 See: http://tavmjong.free.fr/blog/?p=1257 for explanation. Instead we took a
 lego-brick approach where each segment type can be composed on a grid */
 
-const WorkflowBadge = ({
+function WorkflowBadge({
   badgeSize = 120,
   startTime,
   endTime,
@@ -23,7 +23,7 @@ const WorkflowBadge = ({
   foregroundColor = 'black',
   backgroundColor = 'whitesmoke',
   cellColor = '#efefef'
-}) => {
+}) {
   const svgViewBox = `0 0 ${badgeSize} ${badgeSize}`;
   const matrixSizePerc = 0.8;
   const matrixSize = badgeSize * matrixSizePerc;
@@ -220,7 +220,7 @@ const WorkflowBadge = ({
       </div>
     </div>
   );
-};
+}
 
 WorkflowBadge.propTypes = {
   badgeSize: PropTypes.number,
@@ -242,7 +242,9 @@ WorkflowBadge.propTypes = {
       id: PropTypes.string.isRequired, // the @id of the underlying action (usefull to draw separator lines as 1 action can span through several time steps)
       x: PropTypes.number.isRequired, // logical time (0,1,2,3,4,5,6...)
       y: PropTypes.oneOf([0, 1, 2, 3]).isRequired, // A, E, R, P
-      z: PropTypes.arrayOf(PropTypes.bool).isRequired // A, E, R, P to color code the time-varying audience
+      z: PropTypes.arrayOf(PropTypes.bool).isRequired, // A, E, R, P to color code the time-varying audience
+      isPublicDuring: PropTypes.bool.isRequired, // an action can be viewed publicly _during_ the editorial workflow
+      isPublicAfter: PropTypes.bool.isRequired // an action can be viewed publicly _after_ the editorial workflow has been completed
     })
   ),
   viewIdentityPermissionMatrix: PropTypes.shape({
