@@ -309,7 +309,7 @@ const WorkflowBadgeMatrix = ({
     return segments;
   };
 
-  /* 
+  /*
   render the background grid cell
   */
   const renderCell = (xOffset, yOffset, width, height, col, row) => {

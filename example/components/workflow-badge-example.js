@@ -80,33 +80,35 @@ export default function WorkflowBadgeExample(props) {
   ];
 
   const viewIdentityPermissionMatrix = {
-    authors: {
-      authors: true,
-      editors: true,
-      reviewers: false,
-      producers: true,
-      public: true
+    author: {
+      author: true,
+      editor: true,
+      reviewer: false,
+      producer: true
     },
-    editors: {
-      authors: true,
-      editors: true,
-      reviewers: true,
-      producers: true,
-      public: true
+    editor: {
+      author: true,
+      editor: true,
+      reviewer: true,
+      producer: true
     },
-    reviewers: {
-      authors: false,
-      editors: true,
-      reviewers: false,
-      producers: false,
-      public: true
+    reviewer: {
+      author: false,
+      editor: true,
+      reviewer: false,
+      producer: false
     },
-    producers: {
-      authors: true,
-      editors: true,
-      reviewers: false,
-      producers: true,
-      public: false
+    producer: {
+      author: true,
+      editor: true,
+      reviewer: false,
+      producer: true
+    },
+    public: {
+      author: true,
+      editor: true,
+      reviewer: true,
+      producer: false
     }
   };
 

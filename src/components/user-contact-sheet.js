@@ -101,9 +101,9 @@ export default class UserContactSheet extends Component {
             </h4>
             <div className={bem`row-content`}>
               <ul className={bem`content-list`}>
-                {affiliations.map(affiliation => (
+                {affiliations.map((affiliation, i) => (
                   <li
-                    key={getId(affiliation)}
+                    key={getId(affiliation) || i}
                     className={bem`content-list-item`}
                   >
                     <Iconoclass

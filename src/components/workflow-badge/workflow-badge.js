@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import WorkFlowBadgeRoleIcon from './workflow-badge-role-icon';
+import WorkflowBadgeRoleIcon from './workflow-badge-role-icon';
 import WorkflowBadgeMatrix from './workflow-badge-matrix';
 import ViewIdentityPermissionMatrix from '../view-identity-permission-matrix';
-/* 
-We chose to use a block level render of each line segment because creating 
-acurate stroke offsets with parallel bazzier radius is quite complex in practice. 
-See: http://tavmjong.free.fr/blog/?p=1257 for explanation. Instead we took a 
+/*
+We chose to use a block level render of each line segment because creating
+acurate stroke offsets with parallel bazzier radius is quite complex in practice.
+See: http://tavmjong.free.fr/blog/?p=1257 for explanation. Instead we took a
 lego-brick approach where each segment type can be composed on a grid */
 
 const WorkflowBadge = ({
@@ -46,12 +46,12 @@ const WorkflowBadge = ({
       >
         <svg viewBox={svgViewBox} xmlns="http://www.w3.org/2000/svg">
           {/* <rect
-            width={badgeSize - matrixSize}
-            height={badgeSize}
-            fill={backgroundColor}
-            x="0"
-            y="0"
-          ></rect> */}
+              width={badgeSize - matrixSize}
+              height={badgeSize}
+              fill={backgroundColor}
+              x="0"
+              y="0"
+              ></rect> */}
 
           {roles.map((role, i) => {
             return (
@@ -65,7 +65,7 @@ const WorkflowBadge = ({
                 width={`${(matrixSizePerc / 4) * 100 - 4}%`}
                 height={`${(matrixSizePerc / 4) * 100 - 4}%`}
               >
-                <WorkFlowBadgeRoleIcon
+                <WorkflowBadgeRoleIcon
                   roleName={role}
                   foregroundColor={
                     hoveringRole === role
@@ -114,7 +114,7 @@ const WorkflowBadge = ({
                 visibleHighlightColor={activePathHighlightColor}
                 invisibleColor={inactivePathColor}
                 invisibleHighlightColor={inactivePathHighlightColor}
-                highlightRole={hoveringRole}
+                highlightRole={hoveringRole.toLowerCase().replace(/s$/, '')}
                 height={
                   (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize -
                   0.04 * badgeSize
@@ -164,59 +164,59 @@ const WorkflowBadge = ({
         </svg>
 
         {/* <div
-          className="workflow-badge__footer"
-          style={{
+            className="workflow-badge__footer"
+            style={{
             height: `${(1 - matrixSizePerc - matrixYOffsetPerc) * 100}%`
-          }}
-        >
-          <div
+            }}
+            >
+            <div
             className="workflow-badge__footer__matrix-container"
             style={{
-              width: `${(1 - matrixSizePerc) * 100 - 2}%`
+            width: `${(1 - matrixSizePerc) * 100 - 2}%`
             }}
-          >
+            >
             {' '}
             <ViewIdentityPermissionMatrix
-              matrix={viewIdentityPermissionMatrix}
-              visibleColor={activePathColor}
-              visibleHighlightColor={activePathHighlightColor}
-              invisibleColor={inactivePathColor}
-              invisibleHighlightColor={inactivePathHighlightColor}
-              highlightRole={hoveringRole}
-              height={(1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8}
+            matrix={viewIdentityPermissionMatrix}
+            visibleColor={activePathColor}
+            visibleHighlightColor={activePathHighlightColor}
+            invisibleColor={inactivePathColor}
+            invisibleHighlightColor={inactivePathHighlightColor}
+            highlightRole={hoveringRole}
+            height={(1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8}
             />
-          </div>
+            </div>
 
-          <div
+            <div
             className="workflow-badge__date-range"
             style={{
-              color: foregroundColor,
-              fontSize: Math.min(
-                16,
-                Math.max(
-                  10,
-                  (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8
-                )
-              )
+            color: foregroundColor,
+            fontSize: Math.min(
+            16,
+            Math.max(
+            10,
+            (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8
+            )
+            )
             }}
-          >
+            >
             <span className="workflow-badge__date-range__start">
-              {startTime.toLocaleDateString('en-US', {
-                day: undefined,
-                month: '2-digit',
-                year: 'numeric'
-              })}
+            {startTime.toLocaleDateString('en-US', {
+            day: undefined,
+            month: '2-digit',
+            year: 'numeric'
+            })}
             </span>{' '}
             –{' '}
             <span className="workflow-badge__date-range__end">
-              {endTime.toLocaleDateString('en-US', {
-                day: undefined,
-                month: '2-digit',
-                year: 'numeric'
-              })}
+            {endTime.toLocaleDateString('en-US', {
+            day: undefined,
+            month: '2-digit',
+            year: 'numeric'
+            })}
             </span>
-          </div>
-        </div> */}
+            </div>
+            </div> */}
       </div>
     </div>
   );
@@ -246,34 +246,36 @@ WorkflowBadge.propTypes = {
     })
   ),
   viewIdentityPermissionMatrix: PropTypes.shape({
-    authors: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool,
-      public: PropTypes.bool
-    }),
-    editors: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool,
-      public: PropTypes.bool
-    }),
-    reviewers: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool,
-      public: PropTypes.bool
-    }),
-    producers: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool,
-      public: PropTypes.bool
-    })
+    author: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
+    }).isRequired,
+    editor: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
+    }).isRequired,
+    reviewer: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
+    }).isRequired,
+    producer: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
+    }).isRequired,
+    public: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
+    }).isRequired
   })
 };
 
