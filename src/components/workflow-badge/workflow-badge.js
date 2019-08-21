@@ -10,7 +10,8 @@ See: http://tavmjong.free.fr/blog/?p=1257 for explanation. Instead we took a
 lego-brick approach where each segment type can be composed on a grid */
 
 function WorkflowBadge({
-  badgeSize = 120,
+  badgeWidth = 120,
+  badgeHeight = 120,
   startTime,
   endTime,
   counts,
@@ -24,10 +25,22 @@ function WorkflowBadge({
   backgroundColor = 'whitesmoke',
   cellColor = '#efefef'
 }) {
-  const svgViewBox = `0 0 ${badgeSize} ${badgeSize}`;
-  const matrixSizePerc = 0.8;
-  const matrixSize = badgeSize * matrixSizePerc;
-  const matrixYOffsetPerc = 0.06;
+  const leftColWidthPercentOfHeight = 0.2;
+  const leftColWidthPx = leftColWidthPercentOfHeight * badgeHeight;
+
+  const footerHeightPerc = 0.15;
+  const footerHeightPx = badgeHeight * footerHeightPerc;
+
+  const matrixHeightPerc = 1 - footerHeightPerc;
+  const matrixWidthPx = badgeWidth - leftColWidthPx;
+  const matrixhHeightPx = badgeHeight * matrixHeightPerc;
+
+  /* the timeline font size determines the minimum width of the matrix */
+  const dateFontSizePx = Math.min(13, Math.max(8, footerHeightPx * 0.5));
+  const minDateWidthPx = dateFontSizePx * 10 * 0.5;
+
+  const minTimeLineWidthPx = minDateWidthPx * 2 + 24;
+
   const roles = ['Authors', 'Editors', 'Reviewers', 'Producers'];
 
   const [hoveringRole, setHoveringRole] = useState('');
@@ -39,55 +52,59 @@ function WorkflowBadge({
       <div
         className="workflow-badge__background"
         style={{
-          width: badgeSize,
-          height: badgeSize,
+          width: `${badgeWidth}px`,
+          height: `${badgeHeight}px`,
           backgroundColor: backgroundColor
         }}
       >
-        <svg viewBox={svgViewBox} xmlns="http://www.w3.org/2000/svg">
-          {/* <rect
-              width={badgeSize - matrixSize}
-              height={badgeSize}
-              fill={backgroundColor}
-              x="0"
-              y="0"
-              ></rect> */}
-
-          {roles.map((role, i) => {
-            return (
-              <svg
-                key={`role-icon_${i}`}
-                x="2%"
-                y={`${i * ((matrixSizePerc / 4) * 100) +
-                  matrixYOffsetPerc * 100 +
-                  1}%`}
-                viewBox="0 0 20 20"
-                width={`${(matrixSizePerc / 4) * 100 - 4}%`}
-                height={`${(matrixSizePerc / 4) * 100 - 4}%`}
-              >
-                <WorkflowBadgeRoleIcon
-                  roleName={role}
-                  foregroundColor={
-                    hoveringRole === role
-                      ? hoveredForegroundColor
-                      : foregroundColor
-                  }
-                  backgroundColor={backgroundColor}
-                  count={counts[role.toLowerCase()]}
-                  onMouseEnter={() => setHoveringRole(role)}
-                  onMouseLeave={() => setHoveringRole('none')}
-                />
-              </svg>
-            );
-          })}
-
-          <svg
-            x={`${(1 - matrixSizePerc) * 100 - 2}%`}
-            y={`${matrixYOffsetPerc * 100}%`}
+        <div
+          className="workflow-badge__left-column"
+          style={{ top: 0, left: 0, height: '100%', width: badgeHeight * 0.2 }}
+        >
+          <div
+            className="workflow-badge__left-column__role-icons"
+            style={{ height: `${100 - footerHeightPerc * 100}%` }}
           >
-            {/* {renderActionMatrix(matrixSize, 0)} */}
+            {roles.map((role, i) => {
+              return (
+                <svg
+                  key={`role-icon_${i}`}
+                  viewBox="0 0 20 20"
+                  width={`100%`}
+                  height={`20%`}
+                >
+                  <WorkflowBadgeRoleIcon
+                    roleName={role}
+                    foregroundColor={
+                      hoveringRole === role
+                        ? hoveredForegroundColor
+                        : foregroundColor
+                    }
+                    backgroundColor={backgroundColor}
+                    count={counts[role.toLowerCase()]}
+                    onMouseEnter={() => setHoveringRole(role)}
+                    onMouseLeave={() => setHoveringRole('none')}
+                  />
+                </svg>
+              );
+            })}
+          </div>
+        </div>
+        <div
+          className="workflow-badge__scroll-area"
+          style={{
+            top: 0,
+            left: badgeHeight * 0.2,
+            right: 0,
+            bottom: 0,
+            overflowX: 'auto'
+          }}
+        >
+          <div className="workflow-badge__scroll-contents">
             <WorkflowBadgeMatrix
-              size={matrixSize}
+              width={matrixWidthPx}
+              height={matrixhHeightPx}
+              minTimeLineWidth={minTimeLineWidthPx}
               activePathColor={activePathColor}
               activePathHighlightColor={activePathHighlightColor}
               inactivePathColor={inactivePathColor}
@@ -96,134 +113,138 @@ function WorkflowBadge({
               cellColor={cellColor}
               highlightRole={hoveringRole}
             />
-          </svg>
-          {/* FOOTER */}
-          <svg
-            className="workflow-badge__footer"
-            x="0"
-            y={`${(matrixSizePerc + matrixYOffsetPerc) * 100}%`}
-            width={badgeSize}
-          >
-            <g
-              className="workflow-badge__footer__matrix-container"
-              transform={`translate(${0.025 * badgeSize} ${0.015 * badgeSize})`}
-            >
-              <ViewIdentityPermissionMatrix
-                matrix={viewIdentityPermissionMatrix}
-                visibleColor={activePathColor}
-                visibleHighlightColor={activePathHighlightColor}
-                invisibleColor={inactivePathColor}
-                invisibleHighlightColor={inactivePathHighlightColor}
-                highlightRole={hoveringRole.toLowerCase().replace(/s$/, '')}
-                height={
-                  (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize -
-                  0.04 * badgeSize
-                }
-              />
-            </g>
 
-            <g
-              className="workflow-badge__date-range"
-              transform={`translate(${0.185 * badgeSize} ${0.1 * badgeSize})`}
-              width={matrixSize}
-              fill={foregroundColor}
+            {/* FOOTER */}
+
+            <div
+              className="workflow-badge__footer"
               style={{
-                color: foregroundColor,
-                fontSize: Math.min(
-                  16,
-                  Math.max(
-                    10,
-                    (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8
-                  )
-                )
+                height: `${footerHeightPerc * 100}%`
               }}
             >
-              <text className="workflow-badge__date-range__start">
-                {startTime.toLocaleDateString('en-US', {
-                  day: undefined,
-                  month: '2-digit',
-                  year: 'numeric'
-                })}
-              </text>
-              <text textAnchor="middle" x={matrixSize / 2 - matrixSize * 0.02}>
-                -
-              </text>
-              <text
-                className="workflow-badge__date-range__end"
-                textAnchor="end"
-                x={matrixSize - matrixSize * 0.02}
-              >
-                {endTime.toLocaleDateString('en-US', {
-                  day: undefined,
-                  month: '2-digit',
-                  year: 'numeric'
-                })}
-              </text>
-            </g>
-          </svg>
-        </svg>
-
-        {/* <div
-            className="workflow-badge__footer"
-            style={{
-            height: `${(1 - matrixSizePerc - matrixYOffsetPerc) * 100}%`
-            }}
-            >
-            <div
+              {/*<div
             className="workflow-badge__footer__matrix-container"
             style={{
-            width: `${(1 - matrixSizePerc) * 100 - 2}%`
+              width: `${(1 - matrixHeightPerc) * 100 - 2}%`
             }}
-            >
+          >
             {' '}
             <ViewIdentityPermissionMatrix
-            matrix={viewIdentityPermissionMatrix}
-            visibleColor={activePathColor}
-            visibleHighlightColor={activePathHighlightColor}
-            invisibleColor={inactivePathColor}
-            invisibleHighlightColor={inactivePathHighlightColor}
-            highlightRole={hoveringRole}
-            height={(1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8}
+              matrix={viewIdentityPermissionMatrix}
+              visibleColor={activePathColor}
+              visibleHighlightColor={activePathHighlightColor}
+              invisibleColor={inactivePathColor}
+              invisibleHighlightColor={inactivePathHighlightColor}
+              highlightRole={hoveringRole}
+              height={footerHeightPx}
             />
-            </div>
+          </div>*/}
 
-            <div
-            className="workflow-badge__date-range"
-            style={{
-            color: foregroundColor,
-            fontSize: Math.min(
-            16,
-            Math.max(
-            10,
-            (1 - matrixSizePerc - matrixYOffsetPerc) * badgeSize - 8
-            )
-            )
-            }}
-            >
-            <span className="workflow-badge__date-range__start">
-            {startTime.toLocaleDateString('en-US', {
-            day: undefined,
-            month: '2-digit',
-            year: 'numeric'
-            })}
-            </span>{' '}
-            –{' '}
-            <span className="workflow-badge__date-range__end">
-            {endTime.toLocaleDateString('en-US', {
-            day: undefined,
-            month: '2-digit',
-            year: 'numeric'
-            })}
-            </span>
+              <div
+                className="workflow-badge__date-range"
+                style={{
+                  color: foregroundColor,
+                  fontSize: dateFontSizePx
+                }}
+              >
+                <span className="workflow-badge__date-range__start">
+                  {startTime.toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                  })}
+                </span>
+                <hr
+                  className="workflow-badge__date-range__line"
+                  style={{ borderTop: `1px solid ${foregroundColor}` }}
+                />
+                <span className="workflow-badge__date-range__end">
+                  {endTime.toLocaleDateString('en-US', {
+                    day: '2-digit',
+                    month: '2-digit',
+                    year: 'numeric'
+                  })}
+                </span>
+              </div>
             </div>
-            </div> */}
+          </div>
+          {/*<svg
+              className="workflow-badge__footer"
+              x="0"
+              y={`${(matrixHeightPerc + matrixYOffsetPerc) * 100}%`}
+              width={badgeWidth}
+            >
+              <g
+                className="workflow-badge__footer__matrix-container"
+                transform={`translate(${0.025 * badgeWidth} ${0.015 *
+                  badgeHeight})`}
+              >
+                <ViewIdentityPermissionMatrix
+                  matrix={viewIdentityPermissionMatrix}
+                  visibleColor={activePathColor}
+                  visibleHighlightColor={activePathHighlightColor}
+                  invisibleColor={inactivePathColor}
+                  invisibleHighlightColor={inactivePathHighlightColor}
+                  highlightRole={hoveringRole.toLowerCase().replace(/s$/, '')}
+                  height={
+                    (1 - matrixHeightPerc - matrixYOffsetPerc) * badgeHeight -
+                    0.04 * badgeHeight
+                  }
+                />
+              </g>
+
+              <g
+                className="workflow-badge__date-range"
+                transform={`translate(${0.185 * badgeWidth} ${0.1 *
+                  badgeHeight})`}
+                width={matrixWidthPx}
+                fill={foregroundColor}
+                style={{
+                  color: foregroundColor,
+                  fontSize: Math.min(
+                    16,
+                    Math.max(
+                      10,
+                      (1 - matrixHeightPerc - matrixYOffsetPerc) * badgeHeight - 8
+                    )
+                  )
+                }}
+              >
+                <text className="workflow-badge__date-range__start">
+                  {startTime.toLocaleDateString('en-US', {
+                    day: undefined,
+                    month: '2-digit',
+                    year: 'numeric'
+                  })}
+                </text>
+                <text
+                  textAnchor="middle"
+                  x={matrixWidthPx / 2 - matrixWidthPx * 0.02}
+                >
+                  -
+                </text>
+                <text
+                  className="workflow-badge__date-range__end"
+                  textAnchor="end"
+                  x={matrixWidthPx - matrixWidthPx * 0.02}
+                >
+                  {endTime.toLocaleDateString('en-US', {
+                    day: undefined,
+                    month: '2-digit',
+                    year: 'numeric'
+                  })}
+                </text>
+              </g>
+            </svg>*/}
+        </div>
       </div>
     </div>
   );
 }
 
 WorkflowBadge.propTypes = {
-  badgeSize: PropTypes.number,
+  badgeWidth: PropTypes.number,
+  badgeHeight: PropTypes.number,
   startTime: PropTypes.instanceOf(Date),
   endTime: PropTypes.instanceOf(Date),
   activePathColor: PropTypes.string,

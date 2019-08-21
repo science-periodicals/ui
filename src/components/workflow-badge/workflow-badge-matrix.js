@@ -2,23 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function WorkflowBadgeMatrix({
-  size,
+  width,
+  height,
+  minTimeLineWidth,
   activePathColor,
   inactivePathColor,
   activePathHighlightColor = '#ffb523',
   inactivePathHighlightColor = '#ccaa6e',
+  isPublicDuringColor = 'red',
+  isPublicAfterColor = 'blue',
+  isPublicDuringAndAfterColor = 'purple',
   cellColor,
   paths,
   highlightRole
 }) {
   const actionCount = paths.length;
   const roleNames = ['Authors', 'Editors', 'Reviewers', 'Producers'];
-  const cellHeight = size / 4;
+  const cellHeight = height / 4;
   const strokeWidth = 1.5; /* width of a single role path line */
   const strokeGap = 1; /* space between role path lines */
   const pathSize =
     4 * strokeWidth +
     3 * strokeGap; /* total width of the path (4 strokes + 3 graps) */
+  const minActionWidth = 2; /* the min width of a single action - actions can stretch to fill available space */
+
+  /* find the minimal desired space for the matrix. */
+  const minMatrixWidth = Math.max(width, minTimeLineWidth);
 
   /*
   count total number of columns - this is a function of the number of actions
@@ -44,7 +53,7 @@ function WorkflowBadgeMatrix({
   const rowCount = roleNames.length;
 
   /**
-   * Sort actions by by X value
+   * Sort actions by X value
    */
   const sortedPaths = paths.sort((actionA, actionB) => {
     if (actionA.x < actionB.x) {
@@ -138,7 +147,9 @@ function WorkflowBadgeMatrix({
               x: colIndex,
               y: row,
               z:
-                prevActionItem.z /* inherit the visibility permissions from the previous actionItem */
+                prevActionItem.z /* inherit the visibility permissions from the previous actionItem */,
+              isPublicDuring: prevActionItem.isPublicDuring,
+              isPublicAfter: prevActionItem.isPublicAfter
             };
           }
           // add the new actionItem
@@ -158,7 +169,10 @@ function WorkflowBadgeMatrix({
     roleActionMatrix.forEach(col => {
       let colWidth = 0;
       let type = 'connector';
+
       col.rows.forEach(row => {
+        /* default colWidth of action groups will be the number of actions */
+
         if (row.id === 'actionGroup') {
           type = 'actionGroup';
           if (row.actions.length > colWidth) {
@@ -175,16 +189,18 @@ function WorkflowBadgeMatrix({
       return curr.colType === 'connector' ? acc + curr.colWidth : acc;
     }, 0);
 
+    // find the minimum width we can use to render this matrix
+    const minWidth = actionCount * minActionWidth + fixedWidth;
+
     // find the available space for the actionItem widths
-    const variableWidth = size - fixedWidth;
+    const variableWidth = minMatrixWidth - fixedWidth;
 
     // now that we know how much free space we have, we can go back through the
     // matrix and plug in the widths for the actions
-    const singleActionWidth = variableWidth / actionCount;
-    if (singleActionWidth < 1) {
-      // TODO maybe scale entire badge if this happens;
-      console.warn('There is not enough space to render the worflow badge.');
-    }
+    const singleActionWidth = Math.max(
+      variableWidth / actionCount,
+      minActionWidth
+    );
 
     roleActionMatrix.forEach(col => {
       if (col.colType === 'actionGroup') {
@@ -221,6 +237,8 @@ function WorkflowBadgeMatrix({
               cell.x,
               cell.y,
               cell.z,
+              cell.isPublicDuring,
+              cell.isPublicAfter,
               'down'
             )
           );
@@ -235,6 +253,8 @@ function WorkflowBadgeMatrix({
               cell.x,
               cell.y,
               cell.z,
+              cell.isPublicDuring,
+              cell.isPublicAfter,
               'up'
             )
           );
@@ -306,7 +326,15 @@ function WorkflowBadgeMatrix({
       xOffset += col.colWidth;
     });
 
-    return segments;
+    const totalWidth = roleActionMatrix.reduce((acc, curr) => {
+      return acc + curr.colWidth;
+    }, 0);
+
+    return (
+      <svg height={height} width={totalWidth}>
+        {segments}
+      </svg>
+    );
   };
 
   /*
@@ -374,7 +402,9 @@ function WorkflowBadgeMatrix({
 
     const cornerYOffset = vAlign === 'top' ? 0 : gridSquareSize - cornerSize;
 
-    const strokes = roleNames.map((roleName, i) => {
+    const pathNames = roleNames.concat(['public']);
+
+    const strokes = pathNames.map((roleName, i) => {
       let strokeStartXOffset,
         strokeStartYOffset,
         strokeEndXOffset,
@@ -391,6 +421,11 @@ function WorkflowBadgeMatrix({
         cornerQY,
         r,
         sweep;
+
+      // if (roleName === 'public') {
+      //   strokeGap = 0;
+      //   strokeWidth = pathSize + 2;
+      // }
 
       if (type === 'tr') {
         // must be entering from the left
@@ -582,6 +617,8 @@ function WorkflowBadgeMatrix({
     col,
     row,
     viz,
+    isPublicDuring,
+    isPublicAfter,
     type
   ) => {
     const x = xOffset + strokeWidth / 2;
@@ -613,12 +650,35 @@ function WorkflowBadgeMatrix({
         />
       );
     });
+
+    const isPublicColor =
+      isPublicAfter && isPublicDuring
+        ? isPublicDuringAndAfterColor
+        : isPublicDuring
+        ? isPublicDuringColor
+        : isPublicAfter
+        ? isPublicAfterColor
+        : 'none';
+
+    const publicPath = (
+      <path
+        fill="none"
+        key={`down_${col}_${row}_pub-viz`}
+        stroke={isPublicColor}
+        strokeWidth={pathSize + 2}
+        d={`
+      M ${x + width / 2}, ${y}
+      L ${x + width / 2}, ${y + height}
+    `}
+      />
+    );
     return (
       <g
         className={`workflow-badge__segment-down`}
         data-pos={`${col},${row}`}
         key={`down_${col}_${row}`}
       >
+        {publicPath}
         {paths}
       </g>
     );
@@ -668,22 +728,53 @@ function WorkflowBadgeMatrix({
       });
     });
 
+    const publicPath = actions.map((actionItem, subActionIndex) => {
+      const subActionWidth = width / actions.length;
+      const subActionXOffset = subActionIndex * subActionWidth;
+      const strokeYOffset = cellHeight / 2;
+
+      const color =
+        actionItem.isPublicAfter && actionItem.isPublicDuring
+          ? isPublicDuringAndAfterColor
+          : actionItem.isPublicDuring
+          ? isPublicDuringColor
+          : actionItem.isPublicAfter
+          ? isPublicAfterColor
+          : 'none';
+
+      return (
+        <path
+          key={`right_${col}_${row}_${subActionIndex}_pub-vis`}
+          fill="none"
+          stroke={color}
+          strokeWidth={pathSize + 2}
+          d={`
+              M ${x + subActionXOffset}, ${y + strokeYOffset}
+              L ${x + subActionXOffset + subActionWidth}, ${y + strokeYOffset}
+            `}
+        />
+      );
+    });
+
     return (
       <g
         className={`workflow-badge__segment-right`}
         data-pos={`${col},${row}`}
         key={`right_${col}_${row}`}
       >
+        {publicPath}
         {paths}
       </g>
     );
   };
 
-  return <g> {renderActionMatrix(size, 0)}</g>;
+  return renderActionMatrix(height, 0);
 }
 
 WorkflowBadgeMatrix.propTypes = {
-  size: PropTypes.number,
+  width: PropTypes.number,
+  height: PropTypes.number,
+  minTimeLineWidth: PropTypes.number,
   cellColor: PropTypes.string,
   activePathColor: PropTypes.string,
   inactivePathColor: PropTypes.string,

@@ -1,28 +1,35 @@
 .workflow-badge {
   position: relative;
+
   &__background {
     position: relative;
     /* background-color: darkgrey;
     border: 1px solid grey; */
   }
-  /* &__footer {
-    position: absolute;
-    bottom: 0;
+  &__footer {
+    font-stretch: condensed;
     display: flex;
     width: 100%;
     box-sizing: border-box;
-    padding-right: 3px;
+    padding: 0 4px;
     align-items: center;
     justify-content: space-between;
     opacity: 0.7;
+    outline: 1px solid yellow;
+
     &__matrix-container {
       flex: 0 0 auto;
       box-sizing: border-box;
       padding-left: 4px;
     }
-  } */
+  }
 
   &__date-range {
+    /* 
+    font must be fixed width to estimate min width necesarry to render to date sets. 
+      note that Roboto has fixded with numerals.
+    */
+    font-family: 'roboto', monospace;
     display: flex;
     flex: 1 0 auto;
     justify-content: space-between;
@@ -32,6 +39,42 @@
     padding-left: 1px;
     bottom: -0.035em;
     box-sizing: border-box;
+    letter-spacing: 0;
+
+    &__line {
+      border: none;
+      margin: 0 3px;
+      flex: 1 1 auto;
+    }
+  }
+
+  &__left-column {
+    /* more styles set in js */
+    position: absolute;
+    left: 0;
+    top: 0;
+    outline: 1px solid purple;
+
+    &__role-icons {
+      padding: 3px; /* padding is % of element width */
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+  }
+
+  &__scroll-area {
+    /* more styles set in js */
+    outline: 1px solid red;
+    position: absolute;
+  }
+
+  &__scroll-contents {
+    width: fit-content;
+    height: 100%;
+    outline: 1px solid blue;
+    line-height: 0; /* remove unwanted vertical space from line-breaks */
   }
 }
 
