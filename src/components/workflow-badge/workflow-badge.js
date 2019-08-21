@@ -19,8 +19,11 @@ function WorkflowBadge({
   viewIdentityPermissionMatrix,
   activePathColor = 'black',
   activePathHighlightColor = '#ffb773',
-  inactivePathColor = 'darkgrey',
+  inactivePathColor = '#808080',
   inactivePathHighlightColor = '#ccaa6e',
+  isPublicDuringColor = '#f1d2d3',
+  isPublicAfterColor = '#cadddd',
+  isPublicDuringAndAfterColor = '#ecedbe',
   foregroundColor = 'black',
   backgroundColor = 'whitesmoke',
   cellColor = '#efefef'
@@ -109,6 +112,9 @@ function WorkflowBadge({
               activePathHighlightColor={activePathHighlightColor}
               inactivePathColor={inactivePathColor}
               inactivePathHighlightColor={inactivePathHighlightColor}
+              isPublicDuringColor={isPublicDuringColor}
+              isPublicAfterColor={isPublicAfterColor}
+              isPublicDuringAndAfterColor={isPublicDuringAndAfterColor}
               paths={paths}
               cellColor={cellColor}
               highlightRole={hoveringRole}

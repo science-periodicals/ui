@@ -169,11 +169,6 @@ export default function WorkflowBadgeExample(props) {
           endTime={new Date()}
           viewIdentityPermissionMatrix={viewIdentityPermissionMatrix}
           counts={counts}
-          activePathColor="white"
-          inactivePathColor="#cccccc"
-          foregroundColor="white"
-          backgroundColor="#858585"
-          cellColor="#949494"
         />
       </div>
       <div className="example__row">

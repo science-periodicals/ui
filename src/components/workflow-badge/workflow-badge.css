@@ -15,8 +15,6 @@
     align-items: center;
     justify-content: space-between;
     opacity: 0.7;
-    outline: 1px solid yellow;
-
     &__matrix-container {
       flex: 0 0 auto;
       box-sizing: border-box;
@@ -53,7 +51,6 @@
     position: absolute;
     left: 0;
     top: 0;
-    outline: 1px solid purple;
 
     &__role-icons {
       padding: 3px; /* padding is % of element width */
@@ -66,15 +63,17 @@
 
   &__scroll-area {
     /* more styles set in js */
-    outline: 1px solid red;
     position: absolute;
   }
 
   &__scroll-contents {
     width: fit-content;
     height: 100%;
-    outline: 1px solid blue;
     line-height: 0; /* remove unwanted vertical space from line-breaks */
+  }
+
+  &__cell-bg {
+    z-index: -1;
   }
 }
 

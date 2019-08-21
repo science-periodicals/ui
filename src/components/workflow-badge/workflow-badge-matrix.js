@@ -24,6 +24,9 @@ function WorkflowBadgeMatrix({
   const pathSize =
     4 * strokeWidth +
     3 * strokeGap; /* total width of the path (4 strokes + 3 graps) */
+
+  const publicPathSize =
+    pathSize + 2; /* the size of the path used to color code the isPublic bg */
   const minActionWidth = 2; /* the min width of a single action - actions can stretch to fill available space */
 
   /* find the minimal desired space for the matrix. */
@@ -268,6 +271,8 @@ function WorkflowBadgeMatrix({
               cell.x,
               cell.y,
               cell.z,
+              cell.isPublicDuring,
+              cell.isPublicAfter,
               'tr'
             )
           );
@@ -281,6 +286,8 @@ function WorkflowBadgeMatrix({
               cell.x,
               cell.y,
               cell.z,
+              cell.isPublicDuring,
+              cell.isPublicAfter,
               'br'
             )
           );
@@ -294,6 +301,8 @@ function WorkflowBadgeMatrix({
               cell.x,
               cell.y,
               cell.z,
+              cell.isPublicDuring,
+              cell.isPublicAfter,
               'tl'
             )
           );
@@ -307,6 +316,8 @@ function WorkflowBadgeMatrix({
               cell.x,
               cell.y,
               cell.z,
+              cell.isPublicDuring,
+              cell.isPublicAfter,
               'bl'
             )
           );
@@ -343,10 +354,11 @@ function WorkflowBadgeMatrix({
   const renderCell = (xOffset, yOffset, width, height, col, row) => {
     return (
       <rect
-        width={width - 1}
-        height={height - 1}
-        x={xOffset + 0.5}
-        y={yOffset + 0.5}
+        className="workflow-badge__cell-bg"
+        width={width - 2}
+        height={height - 2}
+        x={xOffset + 1}
+        y={yOffset + 1}
         fill={cellColor}
         key={`cell_${col}_${row}`}
       />
@@ -364,6 +376,8 @@ function WorkflowBadgeMatrix({
     col,
     row,
     viz,
+    isPublicDuring,
+    isPublicAfter,
     type
   ) => {
     const x1 = xOffset;
@@ -402,7 +416,7 @@ function WorkflowBadgeMatrix({
 
     const cornerYOffset = vAlign === 'top' ? 0 : gridSquareSize - cornerSize;
 
-    const pathNames = roleNames.concat(['public']);
+    const pathNames = ['public'].concat(roleNames);
 
     const strokes = pathNames.map((roleName, i) => {
       let strokeStartXOffset,
@@ -422,16 +436,14 @@ function WorkflowBadgeMatrix({
         r,
         sweep;
 
-      // if (roleName === 'public') {
-      //   strokeGap = 0;
-      //   strokeWidth = pathSize + 2;
-      // }
+      // the bg isPublic stroke should offset to the middle of path, instead offset according to the role position
+      const strokePos = roleName === 'public' ? 1.5 : i - 1;
 
       if (type === 'tr') {
         // must be entering from the left
         strokeStartXOffset = 0;
-        strokeStartYOffset = i * (strokeGap + strokeWidth);
-        strokeEndXOffset = (3 - i) * (strokeGap + strokeWidth);
+        strokeStartYOffset = strokePos * (strokeGap + strokeWidth);
+        strokeEndXOffset = (3 - strokePos) * (strokeGap + strokeWidth);
         strokeEndYOffset = 0;
         startX = x1;
         startY =
@@ -451,15 +463,15 @@ function WorkflowBadgeMatrix({
         cornerQY = cornerStartY;
         r =
           strokeWidth / 2 +
-          (3 - i) * (strokeGap + strokeWidth) +
+          (3 - strokePos) * (strokeGap + strokeWidth) +
           (gridSquareSize - cornerSize) / 2;
         sweep = 1;
       } else if (type == 'tl') {
         // must be entering from the bottom
-        strokeStartXOffset = i * (strokeGap + strokeWidth);
+        strokeStartXOffset = strokePos * (strokeGap + strokeWidth);
         strokeStartYOffset = 0;
         strokeEndXOffset = 0;
-        strokeEndYOffset = i * (strokeGap + strokeWidth);
+        strokeEndYOffset = strokePos * (strokeGap + strokeWidth);
         startX =
           strokeWidth / 2 +
           x1 +
@@ -477,15 +489,15 @@ function WorkflowBadgeMatrix({
         cornerQY = cornerEndY;
         r =
           strokeWidth / 2 +
-          (3 - i) * (strokeGap + strokeWidth) +
+          (3 - strokePos) * (strokeGap + strokeWidth) +
           (cornerSize - pathSize) / 2;
         sweep = 1;
       } else if (type == 'bl') {
         // must be entering from the top
-        strokeStartXOffset = (3 - i) * (strokeGap + strokeWidth);
+        strokeStartXOffset = (3 - strokePos) * (strokeGap + strokeWidth);
         strokeStartYOffset = 0;
         strokeEndXOffset = 0;
-        strokeEndYOffset = i * (strokeGap + strokeWidth);
+        strokeEndYOffset = strokePos * (strokeGap + strokeWidth);
         startX =
           strokeWidth / 2 +
           x1 +
@@ -503,15 +515,15 @@ function WorkflowBadgeMatrix({
         cornerQY = cornerEndY;
         r =
           strokeWidth / 2 +
-          i * (strokeGap + strokeWidth) +
+          strokePos * (strokeGap + strokeWidth) +
           (cornerSize - pathSize) / 2;
         sweep = 0;
       } else if (type == 'br') {
         // must be entering from the bottom
         // must be entering from the left
         strokeStartXOffset = 0;
-        strokeStartYOffset = i * (strokeGap + strokeWidth);
-        strokeEndXOffset = i * (strokeGap + strokeWidth);
+        strokeStartYOffset = strokePos * (strokeGap + strokeWidth);
+        strokeEndXOffset = strokePos * (strokeGap + strokeWidth);
         strokeEndYOffset = 0;
         startX = x1;
         startY =
@@ -530,26 +542,40 @@ function WorkflowBadgeMatrix({
         cornerQY = cornerStartY;
         r =
           strokeWidth / 2 +
-          i * (strokeGap + strokeWidth) +
+          strokePos * (strokeGap + strokeWidth) +
           (gridSquareSize - pathSize) / 2;
         sweep = 0;
       }
+
+      const color = (() => {
+        if (roleName === 'public') {
+          if (isPublicAfter && isPublicDuring) {
+            return isPublicDuringAndAfterColor;
+          } else if (isPublicAfter) {
+            return isPublicAfter;
+          } else if (isPublicDuring) {
+            return isPublicDuring;
+          }
+        } else if (viz[strokePos]) {
+          if (roleName === highlightRole) {
+            return activePathHighlightColor;
+          } else {
+            return activePathColor;
+          }
+        } else if (roleName === highlightRole) {
+          return inactivePathHighlightColor;
+        } else {
+          return inactivePathColor;
+        }
+      })();
 
       return (
         <path
           fill="none"
           key={`rcorner_${col}_${row}_${i}`}
-          stroke={
-            viz[i]
-              ? roleName === highlightRole
-                ? activePathHighlightColor
-                : activePathColor
-              : roleName === highlightRole
-              ? inactivePathHighlightColor
-              : inactivePathColor
-          }
-          strokeWidth={strokeWidth}
-          data-role={roleNames[i]}
+          stroke={color}
+          strokeWidth={roleName === 'public' ? publicPathSize : strokeWidth}
+          data-role={roleNames[strokePos]}
           d={`
               M ${startX},${startY}
               L ${cornerStartX},${cornerStartY}
@@ -667,8 +693,8 @@ function WorkflowBadgeMatrix({
         stroke={isPublicColor}
         strokeWidth={pathSize + 2}
         d={`
-      M ${x + width / 2}, ${y}
-      L ${x + width / 2}, ${y + height}
+      M ${xOffset + width / 2}, ${y}
+      L ${xOffset + width / 2}, ${y + height}
     `}
       />
     );
