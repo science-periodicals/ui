@@ -278,35 +278,35 @@ WorkflowBadge.propTypes = {
     })
   ),
   viewIdentityPermissionMatrix: PropTypes.shape({
-    author: PropTypes.shape({
-      author: PropTypes.bool,
-      editor: PropTypes.bool,
-      reviewer: PropTypes.bool,
-      producer: PropTypes.bool
+    authors: PropTypes.shape({
+      authors: PropTypes.bool,
+      editors: PropTypes.bool,
+      reviewers: PropTypes.bool,
+      producers: PropTypes.bool
     }).isRequired,
-    editor: PropTypes.shape({
-      author: PropTypes.bool,
-      editor: PropTypes.bool,
-      reviewer: PropTypes.bool,
-      producer: PropTypes.bool
+    editors: PropTypes.shape({
+      authors: PropTypes.bool,
+      editors: PropTypes.bool,
+      reviewers: PropTypes.bool,
+      producers: PropTypes.bool
     }).isRequired,
-    reviewer: PropTypes.shape({
-      author: PropTypes.bool,
-      editor: PropTypes.bool,
-      reviewer: PropTypes.bool,
-      producer: PropTypes.bool
+    reviewers: PropTypes.shape({
+      authors: PropTypes.bool,
+      editors: PropTypes.bool,
+      reviewers: PropTypes.bool,
+      producers: PropTypes.bool
     }).isRequired,
-    producer: PropTypes.shape({
-      author: PropTypes.bool,
-      editor: PropTypes.bool,
-      reviewer: PropTypes.bool,
-      producer: PropTypes.bool
+    producers: PropTypes.shape({
+      authors: PropTypes.bool,
+      editors: PropTypes.bool,
+      reviewers: PropTypes.bool,
+      producers: PropTypes.bool
     }).isRequired,
     public: PropTypes.shape({
-      author: PropTypes.bool,
-      editor: PropTypes.bool,
-      reviewer: PropTypes.bool,
-      producer: PropTypes.bool
+      authors: PropTypes.bool,
+      editors: PropTypes.bool,
+      reviewers: PropTypes.bool,
+      producers: PropTypes.bool
     }).isRequired
   })
 };

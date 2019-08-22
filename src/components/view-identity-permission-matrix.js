@@ -132,7 +132,7 @@ ViewIdentityPermissionMatrix.propTypes = {
       reviewers: PropTypes.bool,
       producers: PropTypes.bool
     }).isRequired,
-    producer: PropTypes.shape({
+    producers: PropTypes.shape({
       authors: PropTypes.bool,
       editors: PropTypes.bool,
       reviewers: PropTypes.bool,
