@@ -152,22 +152,14 @@ function WorkflowBadge({
                 }}
               >
                 <span className="workflow-badge__date-range__start">
-                  {startTime.toLocaleDateString('en-US', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                  })}
+                  {startTime.toISOString().split('T')[0]}
                 </span>
                 <hr
                   className="workflow-badge__date-range__line"
                   style={{ borderTop: `1px solid ${foregroundColor}` }}
                 />
                 <span className="workflow-badge__date-range__end">
-                  {endTime.toLocaleDateString('en-US', {
-                    day: '2-digit',
-                    month: '2-digit',
-                    year: 'numeric'
-                  })}
+                  {endTime.toISOString().split('T')[0]}
                 </span>
               </div>
             </div>
@@ -177,69 +169,69 @@ function WorkflowBadge({
               x="0"
               y={`${(matrixHeightPerc + matrixYOffsetPerc) * 100}%`}
               width={badgeWidth}
-            >
-              <g
-                className="workflow-badge__footer__matrix-container"
-                transform={`translate(${0.025 * badgeWidth} ${0.015 *
-                  badgeHeight})`}
               >
-                <ViewIdentityPermissionMatrix
-                  matrix={viewIdentityPermissionMatrix}
-                  visibleColor={activePathColor}
-                  visibleHighlightColor={activePathHighlightColor}
-                  invisibleColor={inactivePathColor}
-                  invisibleHighlightColor={inactivePathHighlightColor}
-                  highlightRole={hoveringRole.toLowerCase().replace(/s$/, '')}
-                  height={
-                    (1 - matrixHeightPerc - matrixYOffsetPerc) * badgeHeight -
-                    0.04 * badgeHeight
-                  }
-                />
+              <g
+              className="workflow-badge__footer__matrix-container"
+              transform={`translate(${0.025 * badgeWidth} ${0.015 *
+              badgeHeight})`}
+              >
+              <ViewIdentityPermissionMatrix
+              matrix={viewIdentityPermissionMatrix}
+              visibleColor={activePathColor}
+              visibleHighlightColor={activePathHighlightColor}
+              invisibleColor={inactivePathColor}
+              invisibleHighlightColor={inactivePathHighlightColor}
+              highlightRole={hoveringRole.toLowerCase().replace(/s$/, '')}
+              height={
+              (1 - matrixHeightPerc - matrixYOffsetPerc) * badgeHeight -
+              0.04 * badgeHeight
+              }
+              />
               </g>
 
               <g
-                className="workflow-badge__date-range"
-                transform={`translate(${0.185 * badgeWidth} ${0.1 *
-                  badgeHeight})`}
-                width={matrixWidthPx}
-                fill={foregroundColor}
-                style={{
-                  color: foregroundColor,
-                  fontSize: Math.min(
-                    16,
-                    Math.max(
-                      10,
-                      (1 - matrixHeightPerc - matrixYOffsetPerc) * badgeHeight - 8
-                    )
-                  )
-                }}
+              className="workflow-badge__date-range"
+              transform={`translate(${0.185 * badgeWidth} ${0.1 *
+              badgeHeight})`}
+              width={matrixWidthPx}
+              fill={foregroundColor}
+              style={{
+              color: foregroundColor,
+              fontSize: Math.min(
+              16,
+              Math.max(
+              10,
+              (1 - matrixHeightPerc - matrixYOffsetPerc) * badgeHeight - 8
+              )
+              )
+              }}
               >
-                <text className="workflow-badge__date-range__start">
-                  {startTime.toLocaleDateString('en-US', {
-                    day: undefined,
-                    month: '2-digit',
-                    year: 'numeric'
-                  })}
-                </text>
-                <text
-                  textAnchor="middle"
-                  x={matrixWidthPx / 2 - matrixWidthPx * 0.02}
-                >
-                  -
-                </text>
-                <text
-                  className="workflow-badge__date-range__end"
-                  textAnchor="end"
-                  x={matrixWidthPx - matrixWidthPx * 0.02}
-                >
-                  {endTime.toLocaleDateString('en-US', {
-                    day: undefined,
-                    month: '2-digit',
-                    year: 'numeric'
-                  })}
-                </text>
+              <text className="workflow-badge__date-range__start">
+              {startTime.toLocaleDateString('en-US', {
+              day: undefined,
+              month: '2-digit',
+              year: 'numeric'
+              })}
+              </text>
+              <text
+              textAnchor="middle"
+              x={matrixWidthPx / 2 - matrixWidthPx * 0.02}
+              >
+              -
+              </text>
+              <text
+              className="workflow-badge__date-range__end"
+              textAnchor="end"
+              x={matrixWidthPx - matrixWidthPx * 0.02}
+              >
+              {endTime.toLocaleDateString('en-US', {
+              day: undefined,
+              month: '2-digit',
+              year: 'numeric'
+              })}
+              </text>
               </g>
-            </svg>*/}
+              </svg>*/}
         </div>
       </div>
     </div>
@@ -278,35 +270,35 @@ WorkflowBadge.propTypes = {
     })
   ),
   viewIdentityPermissionMatrix: PropTypes.shape({
-    authors: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    author: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
-    editors: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    editor: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
-    reviewers: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    reviewer: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
-    producers: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    producer: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
     public: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired
   })
 };

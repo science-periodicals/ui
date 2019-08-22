@@ -16,42 +16,40 @@ const ViewIdentityPermissionMatrix = ({
       height={height}
       width={`${height + (height / 4) * 2}`}
     >
-      {['authors', 'editors', 'reviewers', 'producers'].map((roleA, row) => {
+      {['author', 'editor', 'reviewer', 'producer'].map((roleA, row) => {
         return (
           <g
             className={`view-identity-permission-matrix__row view-identity-permission-matrix__cell--${roleA}`}
             key={roleA}
           >
-            {['authors', 'editors', 'reviewers', 'producers'].map(
-              (roleB, col) => {
-                return (
-                  <rect
-                    width={`${height / 4}px`}
-                    height={`${height / 4}px`}
-                    x={`${col * (height / 4)}px`}
-                    y={`${row * (height / 4)}px`}
-                    fill={
-                      roleA === highlightRole
-                        ? matrix[roleA][roleB]
-                          ? visibleHighlightColor
-                          : invisibleHighlightColor
-                        : matrix[roleA][roleB]
-                        ? visibleColor
-                        : invisibleColor
-                    }
-                    stroke="none"
-                    key={`${roleA}x${roleB}`}
-                    className={`view-identity-permission-matrix__cell view-identity-permission-matrix__cell${
-                      matrix[roleA][roleB] ? '--visible' : '--invisible'
-                    } view-identity-permission-matrix__cell--${roleB}`}
-                  >
-                    <title>{`${roleA}s can ${
-                      matrix[roleA][roleB] ? '' : 'not '
-                    }view identity of ${roleB}s`}</title>
-                  </rect>
-                );
-              }
-            )}
+            {['author', 'editor', 'reviewer', 'producer'].map((roleB, col) => {
+              return (
+                <rect
+                  width={`${height / 4}px`}
+                  height={`${height / 4}px`}
+                  x={`${col * (height / 4)}px`}
+                  y={`${row * (height / 4)}px`}
+                  fill={
+                    roleA === highlightRole
+                      ? matrix[roleA][roleB]
+                        ? visibleHighlightColor
+                        : invisibleHighlightColor
+                      : matrix[roleA][roleB]
+                      ? visibleColor
+                      : invisibleColor
+                  }
+                  stroke="none"
+                  key={`${roleA}x${roleB}`}
+                  className={`view-identity-permission-matrix__cell view-identity-permission-matrix__cell${
+                    matrix[roleA][roleB] ? '--visible' : '--invisible'
+                  } view-identity-permission-matrix__cell--${roleB}`}
+                >
+                  <title>{`${roleA}s can ${
+                    matrix[roleA][roleB] ? '' : 'not '
+                  }view identity of ${roleB}s`}</title>
+                </rect>
+              );
+            })}
 
             {/* public case */}
             <rect
@@ -114,35 +112,35 @@ ViewIdentityPermissionMatrix.propTypes = {
     ''
   ]),
   matrix: PropTypes.shape({
-    authors: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    author: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
-    editors: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    editor: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
-    reviewers: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    reviewer: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
-    producers: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+    producer: PropTypes.shape({
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired,
     public: PropTypes.shape({
-      authors: PropTypes.bool,
-      editors: PropTypes.bool,
-      reviewers: PropTypes.bool,
-      producers: PropTypes.bool
+      author: PropTypes.bool,
+      editor: PropTypes.bool,
+      reviewer: PropTypes.bool,
+      producer: PropTypes.bool
     }).isRequired
   })
 };
