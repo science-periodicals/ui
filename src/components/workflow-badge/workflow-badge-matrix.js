@@ -27,7 +27,7 @@ function WorkflowBadgeMatrix({
 
   const publicPathSize =
     pathSize + 2; /* the size of the path used to color code the isPublic bg */
-  const minActionWidth = 2; /* the min width of a single action - actions can stretch to fill available space */
+  const minActionWidth = 1; /* the min width of a single action - actions can stretch to fill available space */
 
   /* find the minimal desired space for the matrix. */
   const minMatrixWidth = Math.max(width, minTimeLineWidth);
