@@ -552,9 +552,9 @@ function WorkflowBadgeMatrix({
           if (isPublicAfter && isPublicDuring) {
             return isPublicDuringAndAfterColor;
           } else if (isPublicAfter) {
-            return isPublicAfter;
+            return isPublicAfterColor;
           } else if (isPublicDuring) {
-            return isPublicDuring;
+            return isPublicDuringColor;
           }
         } else if (viz[strokePos]) {
           if (roleName === highlightRole) {

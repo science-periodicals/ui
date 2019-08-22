@@ -92,6 +92,22 @@ function WorkflowBadge({
               );
             })}
           </div>
+          <div
+            className="workflow-badge__footer__matrix-container"
+            style={{
+              width: `${(1 - matrixHeightPerc) * 100 - 2}%`
+            }}
+          >
+            <ViewIdentityPermissionMatrix
+              matrix={viewIdentityPermissionMatrix}
+              visibleColor={activePathColor}
+              visibleHighlightColor={activePathHighlightColor}
+              invisibleColor={inactivePathColor}
+              invisibleHighlightColor={inactivePathHighlightColor}
+              highlightRole={hoveringRole.toLowerCase()}
+              height={footerHeightPx - 8}
+            />
+          </div>
         </div>
         <div
           className="workflow-badge__scroll-area"
@@ -120,7 +136,7 @@ function WorkflowBadge({
               highlightRole={hoveringRole}
             />
 
-            {/* FOOTER */}
+            {/* Timeline footer */}
 
             <div
               className="workflow-badge__footer"
@@ -128,24 +144,6 @@ function WorkflowBadge({
                 height: `${footerHeightPerc * 100}%`
               }}
             >
-              {/*<div
-            className="workflow-badge__footer__matrix-container"
-            style={{
-              width: `${(1 - matrixHeightPerc) * 100 - 2}%`
-            }}
-          >
-            {' '}
-            <ViewIdentityPermissionMatrix
-              matrix={viewIdentityPermissionMatrix}
-              visibleColor={activePathColor}
-              visibleHighlightColor={activePathHighlightColor}
-              invisibleColor={inactivePathColor}
-              invisibleHighlightColor={inactivePathHighlightColor}
-              highlightRole={hoveringRole}
-              height={footerHeightPx}
-            />
-          </div>*/}
-
               <div
                 className="workflow-badge__date-range"
                 style={{
@@ -254,7 +252,12 @@ WorkflowBadge.propTypes = {
   startTime: PropTypes.instanceOf(Date),
   endTime: PropTypes.instanceOf(Date),
   activePathColor: PropTypes.string,
+  activePathHighlightColor: PropTypes.string,
   inactivePathColor: PropTypes.string,
+  inactivePathHighlightColor: PropTypes.string,
+  isPublicDuringColor: PropTypes.string,
+  isPublicAfterColor: PropTypes.string,
+  isPublicDuringAndAfterColor: PropTypes.string,
   foregroundColor: PropTypes.string,
   backgroundColor: PropTypes.string,
   cellColor: PropTypes.string,
