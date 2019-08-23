@@ -1,0 +1,7 @@
+.view-identity-permission-matrix {
+  &__cell {
+    &:hover {
+      fill: #f7b2a8;
+    }
+  }
+}

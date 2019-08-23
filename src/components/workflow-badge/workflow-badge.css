@@ -15,10 +15,12 @@
     align-items: center;
     justify-content: space-between;
     opacity: 0.7;
+
     &__matrix-container {
       flex: 0 0 auto;
       box-sizing: border-box;
-      padding-left: 4px;
+      padding-left: 3px;
+      padding-top: 3px;
     }
   }
 
@@ -89,5 +91,25 @@
     font: 500 6.25px Roboto, 'sans-serif';
 
     /* letter-spacing: -0.25px; */
+  }
+}
+
+.workflow-badge-matrix {
+  &__grid {
+    z-index: 0;
+    position: absolute;
+
+    &__cell--tooltip {
+      transition: background-color 0.1s;
+      &:hover {
+        background-color: #c6c6c6 !important;
+      }
+    }
+  }
+
+  &__path-svg {
+    position: relative;
+    z-index: 10;
+    pointer-events: none;
   }
 }

@@ -25,8 +25,8 @@ const ViewIdentityPermissionMatrix = ({
             {['author', 'editor', 'reviewer', 'producer'].map((roleB, col) => {
               return (
                 <rect
-                  width={`${height / 4}px`}
-                  height={`${height / 4}px`}
+                  width={`${height / 4 - 0.5}px`}
+                  height={`${height / 4 - 0.5}px`}
                   x={`${col * (height / 4)}px`}
                   y={`${row * (height / 4)}px`}
                   fill={
@@ -38,7 +38,7 @@ const ViewIdentityPermissionMatrix = ({
                       ? visibleColor
                       : invisibleColor
                   }
-                  stroke="none"
+                  opacity={matrix[roleA][roleB] ? 1 : 0.3}
                   key={`${roleA}x${roleB}`}
                   className={`view-identity-permission-matrix__cell view-identity-permission-matrix__cell${
                     matrix[roleA][roleB] ? '--visible' : '--invisible'
@@ -53,8 +53,8 @@ const ViewIdentityPermissionMatrix = ({
 
             {/* public case */}
             <rect
-              width={`${height / 4}px`}
-              height={`${height / 4}px`}
+              width={`${height / 4 - 0.5}px`}
+              height={`${height / 4 - 0.5}px`}
               x={`${4 * (height / 4) + 2}px`}
               y={`${row * (height / 4)}px`}
               fill={
@@ -104,10 +104,10 @@ ViewIdentityPermissionMatrix.propTypes = {
   visibleHighlightColor: PropTypes.string,
   invisibleHighlightColor: PropTypes.string,
   highlightRole: PropTypes.oneOf([
-    'editors',
-    'authors',
-    'reviewers',
-    'producers',
+    'editor',
+    'author',
+    'reviewer',
+    'producer',
     'none',
     ''
   ]),

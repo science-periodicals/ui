@@ -178,3 +178,5 @@
 @import './components/status-badge.css';
 
 @import './components/workflow-badge/workflow-badge.css';
+
+@import './components/view-identity-permission-matrix.css';

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Tooltip, { TooltipContent } from '../tooltip';
 
 function WorkflowBadgeMatrix({
   width,
@@ -7,7 +8,7 @@ function WorkflowBadgeMatrix({
   minTimeLineWidth,
   activePathColor,
   inactivePathColor,
-  activePathHighlightColor = '#ffb523',
+  activePathHighlightColor = '#ff7560',
   inactivePathHighlightColor = '#ccaa6e',
   isPublicDuringColor = 'red',
   isPublicAfterColor = 'blue',
@@ -41,12 +42,12 @@ function WorkflowBadgeMatrix({
     paths.forEach((actionItem, i) => {
       if (i > 0) {
         const prevActionItem = paths[i - 1];
-        if (
-          prevActionItem.x !== actionItem.x &&
-          prevActionItem.y !== actionItem.y
-        ) {
+        if (prevActionItem.y !== actionItem.y) {
           // make a col for the connector and one for the actionItem
           count += 2;
+        } else if (prevActionItem.id !== actionItem.id) {
+          // new col for each group of matching action id's
+          count += 1;
         }
       }
     });
@@ -87,27 +88,34 @@ function WorkflowBadgeMatrix({
         if (!roleActionMatrix[col]) {
           roleActionMatrix[col] = { rows: [], colType: undefined, colWidth: 0 };
         }
-        roleActionMatrix[col].rows[row] = { id: 'empty', x: col, y: row };
+        roleActionMatrix[col].rows[row] = { type: 'empty', x: col, y: row };
       }
     }
 
     // piece together the different types of paths
     let colIndex = 0;
     paths.forEach((actionItem, i) => {
-      if (i == 0) {
+      if (i === 0) {
+        // initialize so we can have prevActionItem moving forward
         roleActionMatrix[colIndex].rows[actionItem.y] = {
           first: true,
-          id: 'actionGroup',
+          type: 'actionGroup',
+          id: actionItem.id,
           x: colIndex,
           y: actionItem.y,
           actions: [actionItem]
         };
       } else {
         const prevActionItem = sortedPaths[i - 1];
-        if (actionItem.y == prevActionItem.y) {
+        if (
+          actionItem.id === prevActionItem.id &&
+          actionItem.y === prevActionItem.y
+        ) {
           // part of same group
+          const existing = roleActionMatrix[colIndex].rows[actionItem.y];
           roleActionMatrix[colIndex].rows[actionItem.y] = {
-            id: 'actionGroup',
+            type: 'actionGroup',
+            id: actionItem.id,
             x: colIndex,
             y: actionItem.y,
             actions: roleActionMatrix[colIndex].rows[
@@ -115,51 +123,57 @@ function WorkflowBadgeMatrix({
             ].actions.concat(actionItem)
           };
         } else {
-          const prevActionItem = sortedPaths[i - 1];
           // new group - add actionItem connectors
+          const prevActionItem = sortedPaths[i - 1];
+
           colIndex++;
-          // an actionItem can jump through multiple roles, so build segment for each one
-          // Note: actionItem's can move up or down
-          const rowStart =
-            prevActionItem.y < actionItem.y ? prevActionItem.y : actionItem.y;
-          const rowEnd =
-            prevActionItem.y < actionItem.y ? actionItem.y : prevActionItem.y;
 
-          for (let row = rowStart; row <= rowEnd; row++) {
-            const type =
-              row === prevActionItem.y || row == actionItem.y
-                ? 'corner'
-                : 'vertical';
-            const direction = prevActionItem.y < actionItem.y ? 'down' : 'up';
+          if (actionItem.y !== prevActionItem.y) {
+            // an actionItem can jump through multiple roles, so build segment for each one
+            // Note: actionItem's can move up or down
+            const rowStart =
+              prevActionItem.y < actionItem.y ? prevActionItem.y : actionItem.y;
+            const rowEnd =
+              prevActionItem.y < actionItem.y ? actionItem.y : prevActionItem.y;
 
-            let subtype;
-            if (row === prevActionItem.y && direction === 'down') {
-              subtype = 'tr'; // top-right radius
-            } else if (row == actionItem.y && direction === 'down') {
-              subtype = 'bl'; // bottom-left radius
-            } else if (row === prevActionItem.y && direction === 'up') {
-              subtype = 'br'; // bottom-right radius
-            } else if (row === actionItem.y && direction === 'up') {
-              subtype = 'tl'; // top-right radius
-            } else {
-              subtype = direction;
+            for (let row = rowStart; row <= rowEnd; row++) {
+              const type =
+                row === prevActionItem.y || row == actionItem.y
+                  ? 'corner'
+                  : 'vertical';
+              const direction = prevActionItem.y < actionItem.y ? 'down' : 'up';
+
+              let subtype;
+              if (row === prevActionItem.y && direction === 'down') {
+                subtype = 'tr'; // top-right radius
+              } else if (row == actionItem.y && direction === 'down') {
+                subtype = 'bl'; // bottom-left radius
+              } else if (row === prevActionItem.y && direction === 'up') {
+                subtype = 'br'; // bottom-right radius
+              } else if (row === actionItem.y && direction === 'up') {
+                subtype = 'tl'; // top-right radius
+              } else {
+                subtype = direction;
+              }
+
+              roleActionMatrix[colIndex].rows[row] = {
+                type: `${type}:${subtype}`,
+                x: colIndex,
+                y: row,
+                z:
+                  prevActionItem.z /* inherit the visibility permissions from the previous actionItem */,
+                isPublicDuring: prevActionItem.isPublicDuring,
+                isPublicAfter: prevActionItem.isPublicAfter
+              };
             }
-
-            roleActionMatrix[colIndex].rows[row] = {
-              id: `${type}:${subtype}`,
-              x: colIndex,
-              y: row,
-              z:
-                prevActionItem.z /* inherit the visibility permissions from the previous actionItem */,
-              isPublicDuring: prevActionItem.isPublicDuring,
-              isPublicAfter: prevActionItem.isPublicAfter
-            };
+            // add the new actionItem
+            colIndex++;
           }
-          // add the new actionItem
-          colIndex++;
+
           //console.log('add actionItem to ', colIndex, actionItem.y);
           roleActionMatrix[colIndex].rows[actionItem.y] = {
-            id: 'actionGroup',
+            type: 'actionGroup',
+            id: actionItem.id,
             x: colIndex,
             y: actionItem.y,
             actions: [actionItem]
@@ -176,7 +190,7 @@ function WorkflowBadgeMatrix({
       col.rows.forEach(row => {
         /* default colWidth of action groups will be the number of actions */
 
-        if (row.id === 'actionGroup') {
+        if (row.type === 'actionGroup') {
           type = 'actionGroup';
           if (row.actions.length > colWidth) {
             colWidth = row.actions.length;
@@ -210,9 +224,86 @@ function WorkflowBadgeMatrix({
         col.colWidth = col.colWidth * singleActionWidth;
       }
     });
-    //console.log('roleActionMatrix: ', roleActionMatrix);
+    // console.log('roleActionMatrix: ', roleActionMatrix);
     return roleActionMatrix;
   })();
+
+  /** 
+    Render the underlying grid for each action 
+  */
+  const renderGrid = size => {
+    let cellBlocks = [];
+
+    let xOffset = 0;
+    let prevActionId;
+    let actionId;
+
+    roleActionMatrix.forEach((col, x) => {
+      col.rows.forEach((cell, y) => {
+        let yOffset = y * cellHeight;
+        let isEmpty = false;
+        if (cell.type === 'actionGroup') {
+          actionId = cell.actions[0].id;
+        } else if (cell.type === 'empty') {
+          isEmpty = true;
+        }
+        cellBlocks.push(
+          renderGridCell(
+            xOffset,
+            yOffset,
+            col.colWidth,
+            isEmpty ? null : actionId
+          )
+        );
+
+        // if (cell.type === 'actionGroup') {
+        //   const actionCells = cell.actions.map((action, index) => {
+        //     return renderGridCell(xOffset, yOffset, col.colWidth);
+        //   });
+        //   cellBlocks = cellBlocks.concat(actionCells);
+        // } else {
+        //   cellBlocks.push(
+        //     renderGridCell(xOffset, yOffset, col.colWidth, `${x}_${y}`)
+        //   );
+        // }
+      });
+      xOffset += col.colWidth;
+    });
+    return <div className="workflow-badge-matrix__grid">{cellBlocks}</div>;
+  };
+
+  const renderGridCell = (xOffset, yOffset, width, toolTipText) => {
+    return (
+      <div
+        className={`workflow-badge-matrix__grid__cell ${
+          toolTipText ? 'workflow-badge-matrix__grid__cell--tooltip' : ''
+        }`}
+        key={`${xOffset}_${yOffset}`}
+        style={{
+          position: 'absolute',
+          left: `${xOffset + 0.5}px`,
+          top: `${yOffset + 0.5}px`,
+          width: `${width - 1}px`,
+          height: `${cellHeight - 1}px`,
+          backgroundColor: cellColor
+        }}
+      >
+        {toolTipText && (
+          <Tooltip tagName="div">
+            <TooltipContent>{toolTipText}</TooltipContent>
+            <div
+              style={{
+                left: '0px',
+                top: '0px',
+                width: '100%',
+                height: '100%'
+              }}
+            ></div>
+          </Tooltip>
+        )}
+      </div>
+    );
+  };
 
   /**
    * Render functions to convert matrix into svg paths
@@ -225,11 +316,11 @@ function WorkflowBadgeMatrix({
       col.rows.forEach((cell, y) => {
         let yOffset = y * cellHeight;
 
-        segments.push(
-          renderCell(xOffset, yOffset, col.colWidth, cellHeight, cell.x, cell.y)
-        );
+        // segments.push(
+        //   renderCell(xOffset, yOffset, col.colWidth, cellHeight, cell.x, cell.y)
+        // );
 
-        if (cell.id === 'vertical:down') {
+        if (cell.type === 'vertical:down') {
           //console.log('adding cell', cell);
           segments.push(
             renderVerticalPathSegment(
@@ -245,7 +336,7 @@ function WorkflowBadgeMatrix({
               'down'
             )
           );
-        } else if (cell.id === 'vertical:up') {
+        } else if (cell.type === 'vertical:up') {
           //console.log('adding cell', cell);
           segments.push(
             renderVerticalPathSegment(
@@ -261,7 +352,7 @@ function WorkflowBadgeMatrix({
               'up'
             )
           );
-        } else if (cell.id === 'corner:tr') {
+        } else if (cell.type === 'corner:tr') {
           segments.push(
             renderCorner(
               xOffset,
@@ -276,7 +367,7 @@ function WorkflowBadgeMatrix({
               'tr'
             )
           );
-        } else if (cell.id === 'corner:br') {
+        } else if (cell.type === 'corner:br') {
           segments.push(
             renderCorner(
               xOffset,
@@ -291,7 +382,7 @@ function WorkflowBadgeMatrix({
               'br'
             )
           );
-        } else if (cell.id === 'corner:tl') {
+        } else if (cell.type === 'corner:tl') {
           segments.push(
             renderCorner(
               xOffset,
@@ -306,7 +397,7 @@ function WorkflowBadgeMatrix({
               'tl'
             )
           );
-        } else if (cell.id === 'corner:bl') {
+        } else if (cell.type === 'corner:bl') {
           segments.push(
             renderCorner(
               xOffset,
@@ -321,7 +412,7 @@ function WorkflowBadgeMatrix({
               'bl'
             )
           );
-        } else if (cell.id === 'actionGroup') {
+        } else if (cell.type === 'actionGroup') {
           segments.push(
             renderRightPathSegment(
               xOffset,
@@ -342,23 +433,30 @@ function WorkflowBadgeMatrix({
     }, 0);
 
     return (
-      <svg height={height} width={totalWidth}>
-        {segments}
-      </svg>
+      <div className="workflow-badge-matrix-container">
+        {renderGrid()}
+        <svg
+          height={height}
+          width={totalWidth}
+          className="workflow-badge-matrix__path-svg"
+        >
+          {segments}
+        </svg>
+      </div>
     );
   };
 
   /*
-  render the background grid cell
+  render the background grid cell as an svg rect
   */
   const renderCell = (xOffset, yOffset, width, height, col, row) => {
     return (
       <rect
         className="workflow-badge__cell-bg"
-        width={width - 2}
-        height={height - 2}
-        x={xOffset + 1}
-        y={yOffset + 1}
+        width={width - 1}
+        height={height - 1}
+        x={xOffset + 0.5}
+        y={yOffset + 0.5}
         fill={cellColor}
         key={`cell_${col}_${row}`}
       />

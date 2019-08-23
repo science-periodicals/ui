@@ -33,7 +33,7 @@ export default function WorkflowBadgeExample(props) {
       isPublicAfter: false
     },
     {
-      id: 'action:createReleaseActionId',
+      id: 'action:createReleaseActionId2',
       x: 3,
       y: A,
       z: [true, true, true, true], // all can view
@@ -53,7 +53,7 @@ export default function WorkflowBadgeExample(props) {
 
     // editor
     {
-      id: 'action:editorActionId',
+      id: 'action:editorActionId1',
       x: 5,
       y: E,
       z: [false, false, true, false], // only visible to reviewer first
@@ -63,7 +63,7 @@ export default function WorkflowBadgeExample(props) {
 
     // author
     {
-      id: 'action:editorActionId',
+      id: 'action:editorActionId2',
       x: 6,
       y: A,
       z: [true, true, true, false], // only visible to reviewer first
@@ -73,7 +73,7 @@ export default function WorkflowBadgeExample(props) {
 
     // producer
     {
-      id: 'action:editorActionId',
+      id: 'action:editorActionId3',
       x: 7,
       y: P,
       z: [true, true, true, false], // only visible to reviewer first
@@ -82,7 +82,7 @@ export default function WorkflowBadgeExample(props) {
     },
     // author
     {
-      id: 'action:authorActionId',
+      id: 'action:authorActionId0',
       x: 8,
       y: A,
       z: [true, true, true, false], // only visible to reviewer first
@@ -90,8 +90,16 @@ export default function WorkflowBadgeExample(props) {
       isPublicAfter: false
     },
     {
-      id: 'action:authorActionId',
+      id: 'action:authorActionId1',
       x: 9,
+      y: A,
+      z: [true, true, true, true], // only visible to reviewer first
+      isPublicDuring: true,
+      isPublicAfter: true
+    },
+    {
+      id: 'action:authorActionId2',
+      x: 10,
       y: A,
       z: [true, true, true, true], // only visible to reviewer first
       isPublicDuring: true,
@@ -148,6 +156,8 @@ export default function WorkflowBadgeExample(props) {
           endTime={new Date()}
           viewIdentityPermissionMatrix={viewIdentityPermissionMatrix}
           counts={counts}
+          badgeHeight={108}
+          badgeWidth={260}
         />
         <WorkflowBadge
           paths={testPaths1}

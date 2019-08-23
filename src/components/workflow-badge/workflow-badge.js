@@ -18,12 +18,12 @@ function WorkflowBadge({
   paths,
   viewIdentityPermissionMatrix,
   activePathColor = 'black',
-  activePathHighlightColor = '#ffb773',
+  activePathHighlightColor = '#ff7560',
   inactivePathColor = '#808080',
-  inactivePathHighlightColor = '#ccaa6e',
-  isPublicDuringColor = '#f1d2d3',
-  isPublicAfterColor = '#cadddd',
-  isPublicDuringAndAfterColor = '#ecedbe',
+  inactivePathHighlightColor = '#f7b2a8',
+  isPublicDuringColor = '#ed1c2422',
+  isPublicAfterColor = '#00a99d33',
+  isPublicDuringAndAfterColor = '#cccc3144',
   foregroundColor = 'black',
   backgroundColor = 'whitesmoke',
   cellColor = '#efefef'
@@ -31,7 +31,8 @@ function WorkflowBadge({
   const leftColWidthPercentOfHeight = 0.2;
   const leftColWidthPx = leftColWidthPercentOfHeight * badgeHeight;
 
-  const footerHeightPerc = 0.15;
+  // min footer height is 20px;
+  const footerHeightPerc = badgeHeight * 0.15 < 20 ? 20 / badgeHeight : 0.15;
   const footerHeightPx = badgeHeight * footerHeightPerc;
 
   const matrixHeightPerc = 1 - footerHeightPerc;
@@ -48,7 +49,7 @@ function WorkflowBadge({
 
   const [hoveringRole, setHoveringRole] = useState('');
 
-  const hoveredForegroundColor = '#ffb773';
+  const hoveredForegroundColor = activePathHighlightColor;
 
   return (
     <div className="workflow-badge">
@@ -86,7 +87,7 @@ function WorkflowBadge({
                     backgroundColor={backgroundColor}
                     count={counts[role.toLowerCase()]}
                     onMouseEnter={() => setHoveringRole(role)}
-                    onMouseLeave={() => setHoveringRole('none')}
+                    onMouseLeave={() => setHoveringRole('none_')}
                   />
                 </svg>
               );
@@ -103,9 +104,9 @@ function WorkflowBadge({
               visibleColor={activePathColor}
               visibleHighlightColor={activePathHighlightColor}
               invisibleColor={inactivePathColor}
-              invisibleHighlightColor={inactivePathHighlightColor}
-              highlightRole={hoveringRole.toLowerCase()}
-              height={footerHeightPx - 8}
+              invisibleHighlightColor={activePathHighlightColor}
+              highlightRole={hoveringRole.toLowerCase().slice(0, -1)}
+              height={footerHeightPx - 6}
             />
           </div>
         </div>
