@@ -141,7 +141,7 @@
     "@scipe/librarian": "^1.0.12",
     "@scipe/resources": "^1.0.1",
     "ally.js": "^1.4.1",
-    "async": "^2.6.3",
+    "async": "^3.2.2",
     "capture-submit": "^1.0.3",
     "classnames": "^2.2.6",
     "clipboard-copy": "^2.0.1",
